@@ -1,362 +1,503 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>JETRIDERS CLUB PAMPANGA INC.</title>
-
+<title>JETRIDERS CLUB PAMPANGA INC. | Official Website</title>
+<meta name="description" content="Official website of JETRIDERS CLUB PAMPANGA INC. Pampanga motorcycle club promoting brotherhood, safety, discipline, service, and responsible riding.">
+<meta name="keywords" content="JETRIDERS, JETRIDERS CLUB PAMPANGA INC, Pampanga Riders Club, Motorcycle Club Pampanga, Scooter Club Pampanga, JRCPI">
+<meta name="author" content="JETRIDERS CLUB PAMPANGA INC.">
 <style>
 *{box-sizing:border-box}
+html{scroll-behavior:smooth}
+:root{
+  --green:#00ff66;
+  --dark:#080808;
+  --card:rgba(18,18,18,.92);
+  --line:rgba(0,255,102,.35);
+}
 body{
-margin:0;
-font-family:Arial,sans-serif;
-color:white;
-background:linear-gradient(rgba(0,0,0,.92),rgba(0,0,0,.92)),url('logo.jpg');
-background-size:230px;
-background-attachment:fixed;
+  margin:0;
+  font-family:Arial,Helvetica,sans-serif;
+  color:#fff;
+  background:
+    linear-gradient(rgba(0,0,0,.91),rgba(0,0,0,.91)),
+    url('logo.jpg');
+  background-repeat:repeat;
+  background-size:220px;
+  background-attachment:fixed;
+  background-position:center;
 }
+a{color:inherit}
 header{
-text-align:center;
-padding:25px;
-background:linear-gradient(135deg,#006b20,#009933,#001a0a);
+  text-align:center;
+  padding:24px 14px;
+  background:linear-gradient(135deg,#004d18,#00a33d,#001f0b);
+  box-shadow:0 0 25px rgba(0,255,102,.35);
 }
-header img{width:130px;border-radius:12px}
-header h1{color:#00ff66}
+.logo{
+  width:140px;
+  height:140px;
+  object-fit:contain;
+  border-radius:16px;
+  box-shadow:0 0 22px rgba(0,255,102,.55);
+  background:rgba(0,0,0,.25);
+}
+header h1{
+  color:var(--green);
+  margin:14px 0 4px;
+  font-size:34px;
+  text-shadow:0 0 12px var(--green);
+}
+.tagline{margin:0;font-weight:bold;letter-spacing:1px}
 nav{
-background:#000;
-padding:12px;
-text-align:center;
-position:sticky;
-top:0;
-z-index:99;
+  position:sticky;
+  top:0;
+  z-index:99;
+  background:#000;
+  text-align:center;
+  padding:10px 6px;
+  border-bottom:1px solid var(--line);
 }
 nav a{
-color:white;
-text-decoration:none;
-font-weight:bold;
-margin:6px;
-font-size:14px;
+  display:inline-block;
+  text-decoration:none;
+  font-weight:bold;
+  font-size:14px;
+  margin:5px 7px;
+  padding:7px 9px;
+  border-radius:18px;
 }
+nav a:hover{background:var(--green);color:#000}
 .hero{
-text-align:center;
-padding:70px 20px;
-background:linear-gradient(135deg,#001a0a,#008000,#000);
+  min-height:68vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  padding:70px 18px;
+  background:
+    radial-gradient(circle at center,rgba(0,255,102,.22),transparent 38%),
+    linear-gradient(135deg,rgba(0,20,8,.9),rgba(0,125,45,.65),rgba(0,0,0,.94));
+}
+.hero-box{
+  max-width:900px;
 }
 .hero h2{
-font-size:42px;
-text-shadow:0 0 15px #00ff66;
+  margin:0;
+  font-size:56px;
+  line-height:1.05;
+  text-shadow:0 0 18px var(--green);
 }
-.hero span{color:#00ff66}
+.hero h2 span{color:var(--green)}
+.hero p{font-size:18px}
 .btn{
-display:inline-block;
-background:#00ff66;
-color:#000;
-padding:12px 20px;
-border-radius:25px;
-font-weight:bold;
-text-decoration:none;
-margin:6px;
+  display:inline-block;
+  background:var(--green);
+  color:#000;
+  padding:13px 22px;
+  border-radius:30px;
+  text-decoration:none;
+  font-weight:bold;
+  margin:7px;
+  box-shadow:0 0 16px rgba(0,255,102,.5);
+}
+.btn.dark{
+  background:#111;
+  color:#fff;
+  border:1px solid var(--green);
 }
 .section{
-max-width:1150px;
-margin:auto;
-padding:20px;
+  max-width:1180px;
+  margin:auto;
+  padding:28px 18px;
 }
 .card{
-background:rgba(25,25,25,.92);
-padding:22px;
-border-radius:18px;
-margin-bottom:22px;
-border-left:5px solid #00ff66;
-box-shadow:0 0 15px rgba(0,255,102,.2);
+  background:var(--card);
+  border:1px solid rgba(0,255,102,.22);
+  border-left:5px solid var(--green);
+  border-radius:20px;
+  padding:24px;
+  margin-bottom:25px;
+  box-shadow:0 0 20px rgba(0,255,102,.14);
+  backdrop-filter:blur(3px);
 }
-h2{color:#00ff66}
-.officers-grid{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(140px,1fr));
-gap:14px;
+h2{
+  margin-top:0;
+  color:var(--green);
+  font-size:29px;
+  text-shadow:0 0 10px rgba(0,255,102,.65);
+}
+p,li{font-size:16px;line-height:1.6}
+.stats{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(140px,1fr));
+  gap:15px;
+  text-align:center;
+}
+.stat{
+  background:#0c0c0c;
+  border:1px solid var(--line);
+  border-radius:16px;
+  padding:18px 10px;
+}
+.stat h3{
+  color:var(--green);
+  font-size:34px;
+  margin:0;
+}
+.values{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(170px,1fr));
+  gap:10px;
+}
+.value{
+  background:#0f0f0f;
+  border:1px solid rgba(0,255,102,.25);
+  border-radius:12px;
+  padding:12px;
+}
+.officers-grid,.gallery,.downloads{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(170px,1fr));
+  gap:16px;
 }
 .officer-card{
-background:#111;
-border:1px solid #00ff66;
-border-radius:14px;
-text-align:center;
-padding:12px;
+  text-align:center;
+  background:#111;
+  border:1px solid var(--green);
+  border-radius:18px;
+  padding:14px;
+  box-shadow:0 0 12px rgba(0,255,102,.25);
 }
 .officer-card img{
-width:95px;
-height:95px;
-border-radius:50%;
-object-fit:cover;
-border:3px solid #00ff66;
+  width:110px;
+  height:110px;
+  border-radius:50%;
+  object-fit:cover;
+  border:3px solid var(--green);
+  background:#222;
 }
 .officer-card h3{
-font-size:14px;
-color:#00ff66;
-margin:8px 0 4px;
+  margin:9px 0 3px;
+  color:var(--green);
+  font-size:16px;
 }
-.officer-card p{font-size:12px;margin:0}
-.gallery{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-gap:15px;
-}
+.officer-card p{margin:0;font-size:13px}
 .gallery img{
-width:100%;
-height:200px;
-object-fit:cover;
-border-radius:12px;
-border:2px solid #00ff66;
+  width:100%;
+  height:210px;
+  object-fit:cover;
+  border-radius:16px;
+  border:2px solid var(--green);
+  box-shadow:0 0 12px rgba(0,255,102,.25);
+  background:#1b1b1b;
+}
+.notice{
+  background:rgba(0,255,102,.12);
+  border:1px dashed var(--green);
+  padding:13px;
+  border-radius:12px;
+}
+.timeline p{
+  border-left:3px solid var(--green);
+  padding-left:12px;
+  margin:10px 0;
 }
 .table-wrap{overflow-x:auto}
 table{
-width:100%;
-border-collapse:collapse;
-min-width:650px;
-font-size:14px;
+  width:100%;
+  min-width:650px;
+  border-collapse:collapse;
+  font-size:14px;
 }
-th{background:#008000}
+th{
+  background:#00852f;
+  color:#fff;
+}
 td,th{
-border:1px solid #333;
-padding:7px;
-text-align:left;
+  border:1px solid #333;
+  padding:8px;
+  text-align:left;
+}
+tr:nth-child(even){background:#151515}
+.search-box{
+  width:100%;
+  max-width:420px;
+  padding:13px;
+  border-radius:10px;
+  border:1px solid var(--green);
+  background:#050505;
+  color:#fff;
+  font-size:16px;
+}
+.form-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:12px;
+}
+.form-grid input,.form-grid textarea{
+  width:100%;
+  padding:12px;
+  border-radius:10px;
+  border:1px solid #333;
+  background:#111;
+  color:#fff;
 }
 footer{
-text-align:center;
-padding:25px;
-background:#006b20;
+  text-align:center;
+  padding:28px 16px;
+  background:linear-gradient(135deg,#004d18,#001b08);
+  border-top:1px solid var(--line);
 }
-@media(max-width:600px){
-.hero h2{font-size:32px}
-header h1{font-size:23px}
-nav a{font-size:12px}
+.floating{
+  position:fixed;
+  right:15px;
+  bottom:15px;
+  z-index:100;
+}
+@media(max-width:650px){
+  header h1{font-size:23px}
+  .logo{width:110px;height:110px}
+  nav a{font-size:12px;margin:3px;padding:6px}
+  .hero{min-height:55vh}
+  .hero h2{font-size:36px}
+  .section{padding:16px 10px}
+  .card{padding:18px}
+  h2{font-size:23px}
+  p,li{font-size:14px}
+  .officer-card img{width:95px;height:95px}
+  .gallery img{height:180px}
 }
 </style>
 </head>
-
 <body>
 
 <header id="home">
-<img src="logo.jpg">
-<h1>JETRIDERS CLUB PAMPANGA INC.</h1>
-<p>Ride As One. Ride Together.</p>
+  <img class="logo" src="logo.jpg" alt="JETRIDERS CLUB PAMPANGA INC. Logo">
+  <h1>JETRIDERS CLUB PAMPANGA INC.</h1>
+  <p class="tagline">Ride As One. Ride Together.</p>
 </header>
 
 <nav>
-<a href="#home">Home</a>
-<a href="#about">About</a>
-<a href="#membership">Membership</a>
-<a href="#officers">Officers</a>
-<a href="#events">Events</a>
-<a href="#rides">Rides</a>
-<a href="#gallery">Gallery</a>
-<a href="#members">Members</a>
-<a href="#contact">Contact</a>
+  <a href="#home">Home</a>
+  <a href="#about">About</a>
+  <a href="#membership">Membership</a>
+  <a href="#officers">Officers</a>
+  <a href="#events">Events</a>
+  <a href="#rides">Rides</a>
+  <a href="#gallery">Gallery</a>
+  <a href="#members">Members</a>
+  <a href="#contact">Contact</a>
 </nav>
 
 <section class="hero">
-<h2>RIDE AS ONE.<br><span>RIDE TOGETHER.</span></h2>
-<p>Brotherhood • Safety • Discipline • Service</p>
-<a class="btn" href="#membership">Join the Club</a>
-<a class="btn" href="#contact">Contact Us</a>
+  <div class="hero-box">
+    <h2>RIDE AS ONE.<br><span>RIDE TOGETHER.</span></h2>
+    <p>Brotherhood • Safety • Discipline • Service</p>
+    <a class="btn" href="#membership">Join the Club</a>
+    <a class="btn dark" href="#officers">Meet the Officers</a>
+  </div>
 </section>
 
-<div class="section">
+<main class="section">
 
 <div class="card" id="about">
-<h2>About Us</h2>
-<p>JETRIDERS CLUB PAMPANGA INC. is a motorcycle riding organization promoting brotherhood, safety, discipline, camaraderie, and responsible riding.</p>
-<p><b>Established:</b> 2001</p>
-<p><b>SEC Registration No.:</b> CN201720885</p>
+  <h2>About Us</h2>
+  <p><b>JETRIDERS CLUB PAMPANGA INC.</b> is a motorcycle riding organization promoting brotherhood, discipline, safety, camaraderie, community service, and responsible riding.</p>
+  <p><b>Established:</b> 2001</p>
+  <p><b>SEC Registration No.:</b> CN201720885</p>
+  <p><b>Location:</b> Pampanga, Philippines</p>
 </div>
 
 <div class="card">
-<h2>Club Highlights</h2>
-<p>🏍️ Established 2001</p>
-<p>👥 30 Official Members</p>
-<p>🏆 25+ Years of Brotherhood</p>
-<p>📍 Pampanga, Philippines</p>
-<p>📅 Monthly Meeting: Every 2nd Saturday of the Month</p>
+  <h2>Club Highlights</h2>
+  <div class="stats">
+    <div class="stat"><h3>2001</h3><p>Established</p></div>
+    <div class="stat"><h3>30</h3><p>Official Members</p></div>
+    <div class="stat"><h3>25+</h3><p>Years Strong</p></div>
+    <div class="stat"><h3>100+</h3><p>Club Rides</p></div>
+  </div>
+  <p>📅 <b>Monthly Meeting:</b> Every 2nd Saturday of the Month</p>
+</div>
+
+<div class="card">
+  <h2>JETRIDERS Core Values</h2>
+  <div class="values">
+    <div class="value"><b>J</b> – Justice</div>
+    <div class="value"><b>E</b> – Excellence</div>
+    <div class="value"><b>T</b> – Teamwork</div>
+    <div class="value"><b>R</b> – Respect</div>
+    <div class="value"><b>I</b> – Integrity</div>
+    <div class="value"><b>D</b> – Discipline</div>
+    <div class="value"><b>E</b> – Equality</div>
+    <div class="value"><b>R</b> – Responsibility</div>
+    <div class="value"><b>S</b> – Service</div>
+  </div>
 </div>
 
 <div class="card" id="membership">
-<h2>Membership Requirements</h2>
-<ul>
-<li>Attend 3 General Membership Meetings</li>
-<li>Join 3 consecutive rides</li>
-<li>155cc scooter and above</li>
-<li>Registered motorcycle</li>
-<li>With side mirrors</li>
-<li>Complete riding gear during rides</li>
-</ul>
+  <h2>Membership Requirements</h2>
+  <ul>
+    <li>Attend 3 General Membership Meetings</li>
+    <li>Join 3 consecutive rides</li>
+    <li>155cc scooter and above</li>
+    <li>Registered motorcycle in good condition</li>
+    <li>Side mirrors required</li>
+    <li>Complete riding gear required during rides</li>
+    <li>Respect club rules, marshals, and fellow riders</li>
+  </ul>
 </div>
 
 <div class="card" id="officers">
-<h2>2026 Officers & Advisers</h2>
-
-<div class="officers-grid">
-
-<div class="officer-card">
-<img src="apolonio.jpg.png">
-<h3>Apolonio "Apol" Ignacio</h3>
-<p>Founder</p>
+  <h2>2026 Officers & Advisers</h2>
+  <div class="officers-grid">
+    <div class="officer-card"><img src="apolonio.jpg.png" alt="Apolonio Ignacio"><h3>Apolonio “Apol” Ignacio</h3><p>Founder</p></div>
+    <div class="officer-card"><img src="edwin.jpg.jpg" alt="Edwin David"><h3>Edwin R. David</h3><p>President</p></div>
+    <div class="officer-card"><img src="arlen.jpg.png" alt="Arlene Pineda"><h3>Arlene C. Pineda</h3><p>Treasurer</p></div>
+    <div class="officer-card"><img src="jojo.jpg.jpg" alt="Jojo Policarpio"><h3>Jojo Policarpio</h3><p>Corporate Secretary</p></div>
+    <div class="officer-card"><img src="rodelson.jpg.jpg" alt="Rodelson Pring"><h3>Rodelson D. Pring</h3><p>VPOP</p></div>
+    <div class="officer-card"><img src="ryan.jpg.png" alt="Ryan Escanillas"><h3>Ryan P. Escanillas</h3><p>Adviser</p></div>
+    <div class="officer-card"><img src="nation.jpg.jpg" alt="Nation Garcia"><h3>Nation Garcia</h3><p>Adviser</p></div>
+    <div class="officer-card"><img src="michael.jpg.png" alt="Michael Manio"><h3>Michael T. Manio</h3><p>Adviser</p></div>
+    <div class="officer-card"><img src="rey.jpg.png" alt="Reynaldo Ignacio"><h3>Reynaldo Ignacio</h3><p>Adviser</p></div>
+    <div class="officer-card"><img src="gilbert.jpg" alt="Gilbert Basilio"><h3>Gilbert Basilio</h3><p>Adviser</p></div>
+  </div>
 </div>
 
-<div class="officer-card">
-<img src="edwin.jpg.jpg">
-<h3>Edwin David</h3>
-<p>President</p>
-</div>
-
-<div class="officer-card">
-<img src="jojo.jpg.jpg">
-<h3>Jojo Policarpio</h3>
-<p>Corporate Secretary</p>
-</div>
-
-<div class="officer-card">
-<img src="arlen.jpg.png">
-<h3>Arlene Pineda</h3>
-<p>Treasurer</p>
-</div>
-
-<div class="officer-card">
-<img src="rodelson.jpg.jpg">
-<h3>Rodelson Pring</h3>
-<p>VPOP</p>
-</div>
-
-<div class="officer-card">
-<img src="rey.jpg.png">
-<h3>Reynaldo Ignacio</h3>
-<p>Adviser</p>
-</div>
-
-<div class="officer-card">
-<img src="ryan.jpg.png">
-<h3>Ryan Escanillas</h3>
-<p>Adviser</p>
-</div>
-
-<div class="officer-card">
-<img src="nation.jpg.jpg">
-<h3>Nation Garcia</h3>
-<p>Adviser</p>
-</div>
-
-<div class="officer-card">
-<img src="michael.jpg.png">
-<h3>Michael Manio</h3>
-<p>Adviser</p>
-</div>
-
-<div class="officer-card">
-<img src="gilbert.jpg">
-<h3>Gilbert Basilio</h3>
-<p>Adviser</p>
-</div>
-
-</div>
-</div>
-
-<div class="card">
-<h2>Past Presidents</h2>
-<p>2016 - Michael Manio</p>
-<p>2017 - Celestino Medina</p>
-<p>2018 - Henry Faustino</p>
-<p>2019-2020 - Arlene Pineda</p>
-<p>2021 - Jojo Policarpio</p>
-<p>2022 - Gilbert Basilio</p>
-<p>2023 - Charlie Caranto</p>
-<p>2025 - Ryan Escanillas</p>
-<p>2026 - Edwin David</p>
+<div class="card timeline">
+  <h2>Past Presidents</h2>
+  <p>2016 – Michael Manio</p>
+  <p>2017 – Celestino Medina</p>
+  <p>2018 – Henry Faustino</p>
+  <p>2019–2020 – Arlene Pineda</p>
+  <p>2021 – Jojo Policarpio</p>
+  <p>2022 – Gilbert Basilio</p>
+  <p>2023 – Charlie Caranto</p>
+  <p>2025 – Ryan Escanillas</p>
+  <p>2026 – Edwin David</p>
 </div>
 
 <div class="card" id="events">
-<h2>📅 Upcoming Events</h2>
-<p>✅ General Membership Meeting - Every 2nd Saturday of the Month</p>
-<p>🎉 JETRIDERS Anniversary Celebration</p>
-<p>🏅 Induction of New Members</p>
-<p>🤝 Charity and Community Service Activities</p>
+  <h2>📅 Upcoming Events</h2>
+  <p>✅ General Membership Meeting – Every 2nd Saturday of the Month</p>
+  <p>🎉 JETRIDERS Anniversary Celebration</p>
+  <p>🏅 Induction of New Members</p>
+  <p>🤝 Charity and Community Service Activities</p>
 </div>
 
 <div class="card" id="rides">
-<h2>🏍️ Featured Rides</h2>
-<p>🏍️ Baler Aurora Ride</p>
-<p>🏍️ Mother Falls Adventure</p>
-<p>🏍️ Dingalan Ride</p>
-<p>🏍️ Atok Benguet Ride</p>
-<p>🏍️ Pampanga Breakfast Ride</p>
+  <h2>🏍️ Featured Rides</h2>
+  <p>🏍️ Baler Aurora Ride</p>
+  <p>🏍️ Mother Falls Adventure</p>
+  <p>🏍️ Dingalan Ride</p>
+  <p>🏍️ Atok Benguet Ride</p>
+  <p>🏍️ Pampanga Breakfast Ride</p>
 </div>
 
 <div class="card" id="gallery">
-<h2>📸 Photo Gallery</h2>
-<p>Upload photos with filenames: baler.jpg, motherfalls.jpg, anniversary.jpg, gmm.jpg, ride.jpg</p>
-<div class="gallery">
-<img src="baler.jpg">
-<img src="motherfalls.jpg">
-<img src="anniversary.jpg">
-<img src="gmm.jpg">
-<img src="ride.jpg">
+  <h2>📸 Photo Gallery</h2>
+  <p class="notice">Upload photos to GitHub with these filenames: <b>baler.jpg</b>, <b>motherfalls.jpg</b>, <b>anniversary.jpg</b>, <b>gmm.jpg</b>, <b>ride.jpg</b>. Lalabas sila dito automatically kapag uploaded na.</p>
+  <div class="gallery">
+    <img src="baler.jpg" alt="Baler Aurora Ride">
+    <img src="motherfalls.jpg" alt="Mother Falls Adventure">
+    <img src="anniversary.jpg" alt="JETRIDERS Anniversary">
+    <img src="gmm.jpg" alt="General Membership Meeting">
+    <img src="ride.jpg" alt="Club Ride">
+  </div>
 </div>
+
+<div class="card">
+  <h2>Member ID Verification</h2>
+  <p>Search member ID or name below.</p>
+  <input class="search-box" id="memberSearch" onkeyup="searchMembers()" placeholder="Example: JRCP-022 or Jojo">
 </div>
 
 <div class="card" id="members">
-<h2>Official Members Directory</h2>
-<div class="table-wrap">
-<table>
-<tr><th>No.</th><th>Date Joined</th><th>Member ID</th><th>Name</th></tr>
-<tr><td>1</td><td>2001</td><td>JRCP-001</td><td>REYNALDO JACINTO IGNACIO</td></tr>
-<tr><td>2</td><td>2001</td><td>JRCP-002</td><td>ARLENE C. PINEDA</td></tr>
-<tr><td>3</td><td>2001</td><td>JRCP-003</td><td>ENRIQUE MANABAT</td></tr>
-<tr><td>4</td><td>2002</td><td>JRCP-004</td><td>NATION GARCIA</td></tr>
-<tr><td>5</td><td>2002</td><td>JRCP-005</td><td>GILBERT G. BASILIO</td></tr>
-<tr><td>6</td><td>2002</td><td>JRCP-006</td><td>HENRY R. FAUSTINO</td></tr>
-<tr><td>7</td><td>2004</td><td>JRCP-007</td><td>CHARLIE B. CARANTO</td></tr>
-<tr><td>8</td><td>2004</td><td>JRCP-008</td><td>DENNIS JUNIO</td></tr>
-<tr><td>9</td><td>2004</td><td>JRCP-009</td><td>EDWIN R. DAVID</td></tr>
-<tr><td>10</td><td>2004</td><td>JRCP-010</td><td>ERIC NOVEDA</td></tr>
-<tr><td>11</td><td>2004</td><td>JRCP-011</td><td>ARES SANTOS</td></tr>
-<tr><td>12</td><td>2004</td><td>JRCP-012</td><td>RONALDO PINEDA</td></tr>
-<tr><td>13</td><td>2008</td><td>JRCP-013</td><td>MARLON M. AGUILAR</td></tr>
-<tr><td>14</td><td>2008</td><td>JRCP-014</td><td>JAYAR CARANTO</td></tr>
-<tr><td>15</td><td>2010</td><td>JRCP-015</td><td>LEO MADARANG</td></tr>
-<tr><td>16</td><td>2010</td><td>JRCP-016</td><td>ROGER P. CHAVEZ</td></tr>
-<tr><td>17</td><td>2010</td><td>JRCP-017</td><td>HOWARD DAVID</td></tr>
-<tr><td>18</td><td>2013</td><td>JRCP-018</td><td>DOMINGO JUNIO JR</td></tr>
-<tr><td>19</td><td>2014</td><td>JRCP-019</td><td>ONASIS AQUINO</td></tr>
-<tr><td>20</td><td>2014</td><td>JRCP-020</td><td>RODELSON D. PRING</td></tr>
-<tr><td>21</td><td>2016</td><td>JRCP-021</td><td>MICHAEL T. MANIO</td></tr>
-<tr><td>22</td><td>2017</td><td>JRCP-022</td><td>JOJO POLICARPIO</td></tr>
-<tr><td>23</td><td>2017</td><td>JRCP-023</td><td>ALEXANDER D. MICLAT</td></tr>
-<tr><td>24</td><td>2018</td><td>JRCP-024</td><td>EDUARDO T. TOLENTINO</td></tr>
-<tr><td>25</td><td>2021</td><td>JRCP-025</td><td>RYAN P. ESCANILLAS</td></tr>
-<tr><td>26</td><td>2023</td><td>JRCP-026</td><td>MYRON MARK C. LIWANAG</td></tr>
-<tr><td>27</td><td>2025</td><td>JRCP-027</td><td>MALIK GIRO BASILIO</td></tr>
-<tr><td>28</td><td>2026</td><td>JRCP-028</td><td>RONALD ALLAN TIZON</td></tr>
-<tr><td>29</td><td>2026</td><td>JRCP-029</td><td>RICHARD R. REYES</td></tr>
-<tr><td>30</td><td>2026</td><td>JRCP-030</td><td>DEAN UMALI</td></tr>
-</table>
+  <h2>Official Members Directory</h2>
+  <div class="table-wrap">
+    <table id="membersTable">
+      <tr><th>No.</th><th>Date Joined</th><th>Member ID</th><th>Name</th><th>Status</th></tr>
+      <tr><td>1</td><td>2001</td><td>JRCP-001</td><td>REYNALDO JACINTO IGNACIO</td><td>Active</td></tr>
+      <tr><td>2</td><td>2001</td><td>JRCP-002</td><td>ARLENE C. PINEDA</td><td>Active</td></tr>
+      <tr><td>3</td><td>2001</td><td>JRCP-003</td><td>ENRIQUE MANABAT</td><td>Active</td></tr>
+      <tr><td>4</td><td>2002</td><td>JRCP-004</td><td>NATION GARCIA</td><td>Active</td></tr>
+      <tr><td>5</td><td>2002</td><td>JRCP-005</td><td>GILBERT G. BASILIO</td><td>Active</td></tr>
+      <tr><td>6</td><td>2002</td><td>JRCP-006</td><td>HENRY R. FAUSTINO</td><td>Active</td></tr>
+      <tr><td>7</td><td>2004</td><td>JRCP-007</td><td>CHARLIE B. CARANTO</td><td>Active</td></tr>
+      <tr><td>8</td><td>2004</td><td>JRCP-008</td><td>DENNIS JUNIO</td><td>Active</td></tr>
+      <tr><td>9</td><td>2004</td><td>JRCP-009</td><td>EDWIN R. DAVID</td><td>Active</td></tr>
+      <tr><td>10</td><td>2004</td><td>JRCP-010</td><td>ERIC NOVEDA</td><td>Active</td></tr>
+      <tr><td>11</td><td>2004</td><td>JRCP-011</td><td>ARES SANTOS</td><td>Active</td></tr>
+      <tr><td>12</td><td>2004</td><td>JRCP-012</td><td>RONALDO PINEDA</td><td>Active</td></tr>
+      <tr><td>13</td><td>2008</td><td>JRCP-013</td><td>MARLON M. AGUILAR</td><td>Active</td></tr>
+      <tr><td>14</td><td>2008</td><td>JRCP-014</td><td>JAYAR CARANTO</td><td>Active</td></tr>
+      <tr><td>15</td><td>2010</td><td>JRCP-015</td><td>LEO MADARANG</td><td>Active</td></tr>
+      <tr><td>16</td><td>2010</td><td>JRCP-016</td><td>ROGER P. CHAVEZ</td><td>Active</td></tr>
+      <tr><td>17</td><td>2010</td><td>JRCP-017</td><td>HOWARD DAVID</td><td>Active</td></tr>
+      <tr><td>18</td><td>2013</td><td>JRCP-018</td><td>DOMINGO JUNIO JR</td><td>Active</td></tr>
+      <tr><td>19</td><td>2014</td><td>JRCP-019</td><td>ONASIS AQUINO</td><td>Active</td></tr>
+      <tr><td>20</td><td>2014</td><td>JRCP-020</td><td>RODELSON D. PRING</td><td>Active</td></tr>
+      <tr><td>21</td><td>2016</td><td>JRCP-021</td><td>MICHAEL T. MANIO</td><td>Active</td></tr>
+      <tr><td>22</td><td>2017</td><td>JRCP-022</td><td>JOJO POLICARPIO</td><td>Active</td></tr>
+      <tr><td>23</td><td>2017</td><td>JRCP-023</td><td>ALEXANDER D. MICLAT</td><td>Active</td></tr>
+      <tr><td>24</td><td>2018</td><td>JRCP-024</td><td>EDUARDO T. TOLENTINO</td><td>Active</td></tr>
+      <tr><td>25</td><td>2021</td><td>JRCP-025</td><td>RYAN P. ESCANILLAS</td><td>Active</td></tr>
+      <tr><td>26</td><td>2023</td><td>JRCP-026</td><td>MYRON MARK C. LIWANAG</td><td>Active</td></tr>
+      <tr><td>27</td><td>2025</td><td>JRCP-027</td><td>MALIK GIRO BASILIO</td><td>Active</td></tr>
+      <tr><td>28</td><td>2026</td><td>JRCP-028</td><td>RONALD ALLAN TIZON</td><td>Active</td></tr>
+      <tr><td>29</td><td>2026</td><td>JRCP-029</td><td>RICHARD R. REYES</td><td>Active</td></tr>
+      <tr><td>30</td><td>2026</td><td>JRCP-030</td><td>DEAN UMALI</td><td>Active</td></tr>
+    </table>
+  </div>
 </div>
+
+<div class="card">
+  <h2>Membership Application</h2>
+  <p>Interested applicants may submit details to the club secretary or contact the official Facebook page.</p>
+  <div class="form-grid">
+    <input placeholder="Full Name">
+    <input placeholder="Contact Number">
+    <input placeholder="Motorcycle Model">
+    <input placeholder="Displacement">
+    <textarea placeholder="Address / Notes"></textarea>
+  </div>
+  <p class="notice">Note: This form is display-only on GitHub Pages. For online submission, connect it later to Google Forms, Formspree, or Netlify Forms.</p>
 </div>
 
 <div class="card" id="contact">
-<h2>Contact Us</h2>
-<p><b>Mobile:</b> 09055907699</p>
-<p><b>Email:</b> jetridersclubpampangainc@gmail.com</p>
-<p><b>Facebook:</b> JETRIDERS CLUB PAMPANGA INC.</p>
-<a class="btn" href="https://www.facebook.com" target="_blank">Visit Facebook Page</a>
+  <h2>Contact Us</h2>
+  <p><b>Mobile:</b> 09055907699</p>
+  <p><b>Email:</b> jetridersclubpampangainc@gmail.com</p>
+  <p><b>Facebook:</b> JETRIDERS CLUB PAMPANGA INC.</p>
+  <a class="btn" href="https://www.facebook.com" target="_blank">Visit Facebook Page</a>
+  <a class="btn dark" href="mailto:jetridersclubpampangainc@gmail.com">Email Us</a>
 </div>
 
-</div>
+</main>
+
+<a class="btn floating" href="#home">↑ Top</a>
 
 <footer>
-<h3>JETRIDERS CLUB PAMPANGA INC.</h3>
-<p>SEC Registration No. CN201720885</p>
-<p>Established 2001</p>
-<p>Ride As One. Ride Together.</p>
-<p>© 2026 All Rights Reserved.</p>
+  <h3>JETRIDERS CLUB PAMPANGA INC.</h3>
+  <p>SEC Registration No. CN201720885</p>
+  <p>Established 2001 • Pampanga, Philippines</p>
+  <p>Ride As One. Ride Together.</p>
+  <p>© 2026 All Rights Reserved.</p>
 </footer>
 
+<script>
+function searchMembers(){
+  const input=document.getElementById("memberSearch").value.toUpperCase();
+  const table=document.getElementById("membersTable");
+  const tr=table.getElementsByTagName("tr");
+  for(let i=1;i<tr.length;i++){
+    const rowText=tr[i].textContent.toUpperCase();
+    tr[i].style.display=rowText.indexOf(input)>-1?"":"none";
+  }
+}
+</script>
+
 </body>
+</html>
 </html>
