@@ -1,7 +1,4 @@
-## Hi there 👋
-
-<!--
-**jetridersclubpampangainc** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
+Jet riders club pampamnga inc
 
 Here are some ideas to get you started:
 
