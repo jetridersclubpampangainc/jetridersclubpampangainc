@@ -525,393 +525,204 @@ Submit Application
 
 <!-- START: COMPLETE MEMBERS SECTION WITH STATUS + PHOTOS -->
 <style>
-.member-photo-grid{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(145px,1fr));
-gap:14px;
-margin:18px 0;
-}
-.member-card{
-background:rgba(0,0,0,.55);
-border:1px solid #b8ffb8;
-border-radius:15px;
-text-align:center;
-padding:12px;
-box-shadow:0 0 12px rgba(0,255,102,.30);
-}
-.member-card img{
-width:95px;
-height:95px;
-border-radius:50%;
-object-fit:cover;
-border:3px solid #00ff66;
-background:white;
-}
-.member-card h3{
-font-size:13px;
-color:#b8ffb8;
-margin:8px 0 3px;
-}
-.member-card p{
-font-size:12px;
-margin:0 0 6px;
-}
-.members-table{
-width:100%;
-border-collapse:collapse;
-margin-top:20px;
-background:rgba(0,0,0,.70);
-border-radius:15px;
-overflow:hidden;
-}
-.members-table th{
-background:#00aa44;
-color:#fff;
-padding:12px;
-text-align:left;
-}
-.members-table td{
-padding:10px;
-border-bottom:1px solid rgba(255,255,255,.12);
-color:#fff;
-}
-.status{
-display:inline-block;
-padding:5px 10px;
-border-radius:20px;
-font-size:11px;
-font-weight:bold;
-text-transform:uppercase;
-}
-.active{background:#00ff66;color:#003300;}
-.inactive{background:#ff4d4d;color:#ffffff;}
-.provisionary{background:#ffd700;color:#222222;}
-@media(max-width:768px){
-.members-table{display:block;overflow-x:auto;white-space:nowrap;}
-}
-</style>
+<div class="members-grid">
 
-<div class="card" id="members">
-<h2>Official Members Directory</h2>
-<p>Total Official Members: 30</p>
+  <div class="member-card">
+    <img src="image/rey.jpg.png" alt="Reynaldo Ignacio">
+    <h3>REYNALDO J. IGNACIO</h3>
+    <p>JRCP-001</p>
+    <span class="status active">ACTIVE</span>
+  </div>
 
-<div class="member-photo-grid">
-<div class="member-card">
-<img src="rey.jpg.png" alt="REYNALDO JACINTO IGNACIO" onerror="this.src='logo.jpg'">
-<h3>REYNALDO JACINTO IGNACIO</h3>
-<p>JRCP-001</p>
-<span class="status active">Active</span>
-</div>
-<div class="member-card">
-<img src="arlene.jpg.png" alt="ARLENE C. PINEDA" onerror="this.src='logo.jpg'">
-<h3>ARLENE C. PINEDA</h3>
-<p>JRCP-002</p>
-<span class="status active">Active</span>
-</div>
-<div class="member-card">
-<img src="enrique.jpg.jpg" alt="ENRIQUE MANABAT" onerror="this.src='logo.jpg'">
-<h3>ENRIQUE MANABAT</h3>
-<p>JRCP-003</p>
-<span class="status active">Active</span>
-</div>
-<div class="member-card">
-<img src="nation.jpg.jpg" alt="NATION GARCIA" onerror="this.src='logo.jpg'">
-<h3>NATION GARCIA</h3>
-<p>JRCP-004</p>
-<span class="status active">Active</span>
-</div>
-<div class="member-card">
-<img src="gilbert.jpg" alt="GILBERT G. BASILIO" onerror="this.src='logo.jpg'">
-<h3>GILBERT G. BASILIO</h3>
-<p>JRCP-005</p>
-<span class="status active">Active</span>
-</div>
-<div class="member-card">
-<img src="henry.jpg.jpg" alt="HENRY R. FAUSTINO" onerror="this.src='logo.jpg'">
-<h3>HENRY R. FAUSTINO</h3>
-<p>JRCP-006</p>
-<span class="status active">Active</span>
-</div>
-<div class="member-card">
-<img src="charle.jpg.jpg" alt="CHARLIE B. CARANTO" onerror="this.src='logo.jpg'">
-<h3>CHARLIE B. CARANTO</h3>
-<p>JRCP-007</p>
-<span class="status active">Active</span>
-</div>
-<div class="member-card">
-<img src="dennis.jpg.jpg" alt="DENNIS JUNIO" onerror="this.src='logo.jpg'">
-<h3>DENNIS JUNIO</h3>
-<p>JRCP-008</p>
-<span class="status active">Active</span>
-</div>
-<div class="member-card">
-<img src="edwin.jpg.jpg" alt="EDWIN R. DAVID" onerror="this.src='logo.jpg'">
-<h3>EDWIN R. DAVID</h3>
-<p>JRCP-009</p>
-<span class="status active">Active</span>
-</div>
-<div class="member-card">
-<img src="eric.jpg.jpg" alt="ERIC NOVEDA" onerror="this.src='logo.jpg'">
-<h3>ERIC NOVEDA</h3>
-<p>JRCP-010</p>
-<span class="status active">Active</span>
-</div>
-<div class="member-card">
-<img src="ares.jpg.jpg" alt="ARES SANTOS" onerror="this.src='logo.jpg'">
-<h3>ARES SANTOS</h3>
-<p>JRCP-011</p>
-<span class="status active">Active</span>
-</div>
-<div class="member-card">
-<img src="ronaldo.jpg.jpg" alt="RONALDO PINEDA" onerror="this.src='logo.jpg'">
-<h3>RONALDO PINEDA</h3>
-<p>JRCP-012</p>
-<span class="status active">Active</span>
-</div>
-<div class="member-card">
-<img src="marlon.jpg.jpg" alt="MARLON M. AGUILAR" onerror="this.src='logo.jpg'">
-<h3>MARLON M. AGUILAR</h3>
-<p>JRCP-013</p>
-<span class="status active">Active</span>
-</div>
-<div class="member-card">
-<img src="jayar.jpg.jpg" alt="JAYAR CARANTO" onerror="this.src='logo.jpg'">
-<h3>JAYAR CARANTO</h3>
-<p>JRCP-014</p>
-<span class="status active">Active</span>
-</div>
-<div class="member-card">
-<img src="leo.jpg.jpg" alt="LEO MADARANG" onerror="this.src='logo.jpg'">
-<h3>LEO MADARANG</h3>
-<p>JRCP-015</p>
-<span class="status active">Active</span>
-</div>
-<div class="member-card">
-<img src="roger.jpg.jpg" alt="ROGER P. CHAVEZ" onerror="this.src='logo.jpg'">
-<h3>ROGER P. CHAVEZ</h3>
-<p>JRCP-016</p>
-<span class="status active">Active</span>
-</div>
-<div class="member-card">
-<img src="howard.jpg.jpg" alt="HOWARD DAVID" onerror="this.src='logo.jpg'">
-<h3>HOWARD DAVID</h3>
-<p>JRCP-017</p>
-<span class="status active">Active</span>
-</div>
-<div class="member-card">
-<img src="domingo.jpg.jpg" alt="DOMINGO JUNIO JR" onerror="this.src='logo.jpg'">
-<h3>DOMINGO JUNIO JR</h3>
-<p>JRCP-018</p>
-<span class="status active">Active</span>
-</div>
-<div class="member-card">
-<img src="onasis.jpg.jpg" alt="ONASIS AQUINO" onerror="this.src='logo.jpg'">
-<h3>ONASIS AQUINO</h3>
-<p>JRCP-019</p>
-<span class="status active">Active</span>
-</div>
-<div class="member-card">
-<img src="rodelson.jpg.jpg" alt="RODELSON D. PRING" onerror="this.src='logo.jpg'">
-<h3>RODELSON D. PRING</h3>
-<p>JRCP-020</p>
-<span class="status active">Active</span>
-</div>
-<div class="member-card">
-<img src="michael.jpg.png" alt="MICHAEL T. MANIO" onerror="this.src='logo.jpg'">
-<h3>MICHAEL T. MANIO</h3>
-<p>JRCP-021</p>
-<span class="status active">Active</span>
-</div>
-<div class="member-card">
-<img src="jojo.jpg.jpg" alt="JOJO POLICARPIO" onerror="this.src='logo.jpg'">
-<h3>JOJO POLICARPIO</h3>
-<p>JRCP-022</p>
-<span class="status active">Active</span>
-</div>
-<div class="member-card">
-<img src="alexander.jpg.jpg" alt="ALEXANDER D. MICLAT" onerror="this.src='logo.jpg'">
-<h3>ALEXANDER D. MICLAT</h3>
-<p>JRCP-023</p>
-<span class="status active">Active</span>
-</div>
-<div class="member-card">
-<img src="eduardo.jpg.jpg" alt="EDUARDO T. TOLENTINO" onerror="this.src='logo.jpg'">
-<h3>EDUARDO T. TOLENTINO</h3>
-<p>JRCP-024</p>
-<span class="status active">Active</span>
-</div>
-<div class="member-card">
-<img src="ryan.jpg.png" alt="RYAN P. ESCANILLAS" onerror="this.src='logo.jpg'">
-<h3>RYAN P. ESCANILLAS</h3>
-<p>JRCP-025</p>
-<span class="status active">Active</span>
-</div>
-<div class="member-card">
-<img src="myron.jpg.jpg" alt="MYRON MARK C. LIWANAG" onerror="this.src='logo.jpg'">
-<h3>MYRON MARK C. LIWANAG</h3>
-<p>JRCP-026</p>
-<span class="status active">Active</span>
-</div>
-<div class="member-card">
-<img src="malik.jpg.jpg" alt="MALIK GIRO BASILIO" onerror="this.src='logo.jpg'">
-<h3>MALIK GIRO BASILIO</h3>
-<p>JRCP-027</p>
-<span class="status provisionary">Provisionary</span>
-</div>
-<div class="member-card">
-<img src="ronald.jpg.jpg" alt="RONALD ALLAN TIZON" onerror="this.src='logo.jpg'">
-<h3>RONALD ALLAN TIZON</h3>
-<p>JRCP-028</p>
-<span class="status provisionary">Provisionary</span>
-</div>
-<div class="member-card">
-<img src="richard.jpg.jpg" alt="RICHARD R. REYES" onerror="this.src='logo.jpg'">
-<h3>RICHARD R. REYES</h3>
-<p>JRCP-029</p>
-<span class="status provisionary">Provisionary</span>
-</div>
-<div class="member-card">
-<img src="dean.jpg.jpg" alt="DEAN UMALI" onerror="this.src='logo.jpg'">
-<h3>DEAN UMALI</h3>
-<p>JRCP-030</p>
-<span class="status provisionary">Provisionary</span>
-</div>
-</div>
+  <div class="member-card">
+    <img src="image/arlene.jpg.jpg" alt="Arlene Pineda">
+    <h3>ARLENE C. PINEDA</h3>
+    <p>JRCP-002</p>
+    <span class="status active">ACTIVE</span>
+  </div>
 
-<div class="table-wrap">
-<table class="members-table">
-<thead>
-<tr>
-<th>No.</th>
-<th>Date Joined</th>
-<th>Member ID</th>
-<th>Name</th>
-<th>Status</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>001</td><td>2001</td><td>JRCP-001</td><td>REYNALDO JACINTO IGNACIO</td>
-<td><span class="status active">Active</span></td>
-</tr>
-<tr>
-<td>002</td><td>2001</td><td>JRCP-002</td><td>ARLENE C. PINEDA</td>
-<td><span class="status active">Active</span></td>
-</tr>
-<tr>
-<td>003</td><td>2001</td><td>JRCP-003</td><td>ENRIQUE MANABAT</td>
-<td><span class="status active">Active</span></td>
-</tr>
-<tr>
-<td>004</td><td>2002</td><td>JRCP-004</td><td>NATION GARCIA</td>
-<td><span class="status active">Active</span></td>
-</tr>
-<tr>
-<td>005</td><td>2002</td><td>JRCP-005</td><td>GILBERT G. BASILIO</td>
-<td><span class="status active">Active</span></td>
-</tr>
-<tr>
-<td>006</td><td>2002</td><td>JRCP-006</td><td>HENRY R. FAUSTINO</td>
-<td><span class="status active">Active</span></td>
-</tr>
-<tr>
-<td>007</td><td>2004</td><td>JRCP-007</td><td>CHARLIE B. CARANTO</td>
-<td><span class="status active">Active</span></td>
-</tr>
-<tr>
-<td>008</td><td>2004</td><td>JRCP-008</td><td>DENNIS JUNIO</td>
-<td><span class="status active">Active</span></td>
-</tr>
-<tr>
-<td>009</td><td>2004</td><td>JRCP-009</td><td>EDWIN R. DAVID</td>
-<td><span class="status active">Active</span></td>
-</tr>
-<tr>
-<td>010</td><td>2004</td><td>JRCP-010</td><td>ERIC NOVEDA</td>
-<td><span class="status active">Active</span></td>
-</tr>
-<tr>
-<td>011</td><td>2004</td><td>JRCP-011</td><td>ARES SANTOS</td>
-<td><span class="status active">Active</span></td>
-</tr>
-<tr>
-<td>012</td><td>2004</td><td>JRCP-012</td><td>RONALDO PINEDA</td>
-<td><span class="status active">Active</span></td>
-</tr>
-<tr>
-<td>013</td><td>2008</td><td>JRCP-013</td><td>MARLON M. AGUILAR</td>
-<td><span class="status active">Active</span></td>
-</tr>
-<tr>
-<td>014</td><td>2008</td><td>JRCP-014</td><td>JAYAR CARANTO</td>
-<td><span class="status active">Active</span></td>
-</tr>
-<tr>
-<td>015</td><td>2010</td><td>JRCP-015</td><td>LEO MADARANG</td>
-<td><span class="status active">Active</span></td>
-</tr>
-<tr>
-<td>016</td><td>2010</td><td>JRCP-016</td><td>ROGER P. CHAVEZ</td>
-<td><span class="status active">Active</span></td>
-</tr>
-<tr>
-<td>017</td><td>2010</td><td>JRCP-017</td><td>HOWARD DAVID</td>
-<td><span class="status active">Active</span></td>
-</tr>
-<tr>
-<td>018</td><td>2013</td><td>JRCP-018</td><td>DOMINGO JUNIO JR</td>
-<td><span class="status active">Active</span></td>
-</tr>
-<tr>
-<td>019</td><td>2014</td><td>JRCP-019</td><td>ONASIS AQUINO</td>
-<td><span class="status active">Active</span></td>
-</tr>
-<tr>
-<td>020</td><td>2014</td><td>JRCP-020</td><td>RODELSON D. PRING</td>
-<td><span class="status active">Active</span></td>
-</tr>
-<tr>
-<td>021</td><td>2016</td><td>JRCP-021</td><td>MICHAEL T. MANIO</td>
-<td><span class="status active">Active</span></td>
-</tr>
-<tr>
-<td>022</td><td>2017</td><td>JRCP-022</td><td>JOJO POLICARPIO</td>
-<td><span class="status active">Active</span></td>
-</tr>
-<tr>
-<td>023</td><td>2017</td><td>JRCP-023</td><td>ALEXANDER D. MICLAT</td>
-<td><span class="status active">Active</span></td>
-</tr>
-<tr>
-<td>024</td><td>2018</td><td>JRCP-024</td><td>EDUARDO T. TOLENTINO</td>
-<td><span class="status active">Active</span></td>
-</tr>
-<tr>
-<td>025</td><td>2021</td><td>JRCP-025</td><td>RYAN P. ESCANILLAS</td>
-<td><span class="status active">Active</span></td>
-</tr>
-<tr>
-<td>026</td><td>2023</td><td>JRCP-026</td><td>MYRON MARK C. LIWANAG</td>
-<td><span class="status active">Active</span></td>
-</tr>
-<tr>
-<td>027</td><td>2025</td><td>JRCP-027</td><td>MALIK GIRO BASILIO</td>
-<td><span class="status provisionary">Provisionary</span></td>
-</tr>
-<tr>
-<td>028</td><td>2026</td><td>JRCP-028</td><td>RONALD ALLAN TIZON</td>
-<td><span class="status provisionary">Provisionary</span></td>
-</tr>
-<tr>
-<td>029</td><td>2026</td><td>JRCP-029</td><td>RICHARD R. REYES</td>
-<td><span class="status provisionary">Provisionary</span></td>
-</tr>
-<tr>
-<td>030</td><td>2026</td><td>JRCP-030</td><td>DEAN UMALI</td>
-<td><span class="status provisionary">Provisionary</span></td>
-</tr>
-</tbody>
-</table>
+  <div class="member-card">
+    <img src="image/enrique.jpg.jpg" alt="Enrique Manabat">
+    <h3>ENRIQUE MANABAT</h3>
+    <p>JRCP-003</p>
+    <span class="status active">ACTIVE</span>
+  </div>
+
+  <div class="member-card">
+    <img src="image/nation.jpg.jpg" alt="Nation Garcia">
+    <h3>NATION GARCIA</h3>
+    <p>JRCP-004</p>
+    <span class="status active">ACTIVE</span>
+  </div>
+
+  <div class="member-card">
+    <img src="image/gilbert.jpg" alt="Gilbert Basilio">
+    <h3>GILBERT G. BASILIO</h3>
+    <p>JRCP-005</p>
+    <span class="status active">ACTIVE</span>
+  </div>
+
+  <div class="member-card">
+    <img src="image/henry.jpg.jpg" alt="Henry Faustino">
+    <h3>HENRY R. FAUSTINO</h3>
+    <p>JRCP-006</p>
+    <span class="status active">ACTIVE</span>
+  </div>
+
+  <div class="member-card">
+    <img src="image/charle.jpg.jpg" alt="Charlie Caranto">
+    <h3>CHARLIE B. CARANTO</h3>
+    <p>JRCP-007</p>
+    <span class="status active">ACTIVE</span>
+  </div>
+
+  <div class="member-card">
+    <img src="image/dennis.jpg.jpg" alt="Dennis Junio">
+    <h3>DENNIS JUNIO</h3>
+    <p>JRCP-008</p>
+    <span class="status active">ACTIVE</span>
+  </div>
+
+  <div class="member-card">
+    <img src="image/edwin.jpg.jpg" alt="Edwin David">
+    <h3>EDWIN R. DAVID</h3>
+    <p>JRCP-009</p>
+    <span class="status active">ACTIVE</span>
+  </div>
+
+  <div class="member-card">
+    <img src="image/eric.jpg.jpg" alt="Eric Noveda">
+    <h3>ERIC NOVEDA</h3>
+    <p>JRCP-010</p>
+    <span class="status active">ACTIVE</span>
+  </div>
+
+  <div class="member-card">
+    <img src="image/ares.jpg.jpg" alt="Ares Santos">
+    <h3>ARES SANTOS</h3>
+    <p>JRCP-011</p>
+    <span class="status active">ACTIVE</span>
+  </div>
+
+  <div class="member-card">
+    <img src="image/ronaldo.jpg.jpg" alt="Ronaldo Pineda">
+    <h3>RONALDO PINEDA</h3>
+    <p>JRCP-012</p>
+    <span class="status active">ACTIVE</span>
+  </div>
+
+  <div class="member-card">
+    <img src="image/apolonio.jpg.png" alt="Apolonio">
+    <h3>APOLONIO</h3>
+    <span class="status active">ACTIVE</span>
+  </div>
+
+  <div class="member-card">
+    <img src="image/alexander.jpg.jpg" alt="Alexander Miclat">
+    <h3>ALEXANDER MICLAT</h3>
+    <span class="status active">ACTIVE</span>
+  </div>
+
+  <div class="member-card">
+    <img src="image/dean.jpg.jpg" alt="Dean Umali">
+    <h3>DEAN UMALI</h3>
+    <span class="status active">ACTIVE</span>
+  </div>
+
+  <div class="member-card">
+    <img src="image/domingo.jpg.jpg" alt="Domingo Jumio">
+    <h3>DOMINGO JUMIO</h3>
+    <span class="status active">ACTIVE</span>
+  </div>
+
+  <div class="member-card">
+    <img src="image/eduardo.jpg.jpg" alt="Eduardo">
+    <h3>EDUARDO</h3>
+    <span class="status active">ACTIVE</span>
+  </div>
+
+  <div class="member-card">
+    <img src="image/howard.jpg.jpg" alt="Howard">
+    <h3>HOWARD</h3>
+    <span class="status active">ACTIVE</span>
+  </div>
+
+  <div class="member-card">
+    <img src="image/jayar.jpg.jpg" alt="Jayar Caranto">
+    <h3>JAYAR CARANTO</h3>
+    <span class="status active">ACTIVE</span>
+  </div>
+
+  <div class="member-card">
+    <img src="image/jojo.jpg.jpg" alt="Jojo Policarpio">
+    <h3>JOJO POLICARPIO</h3>
+    <span class="status active">ACTIVE</span>
+  </div>
+
+  <div class="member-card">
+    <img src="image/leo.jpg.jpg" alt="Leo">
+    <h3>LEO</h3>
+    <span class="status active">ACTIVE</span>
+  </div>
+
+  <div class="member-card">
+    <img src="image/malik.jpg.jpg" alt="Malik Giro Basilio">
+    <h3>MALIK GIRO BASILIO</h3>
+    <span class="status provisional">PROVISIONARY</span>
+  </div>
+
+  <div class="member-card">
+    <img src="image/marlon.jpg.jpg" alt="Marlon Aguilar">
+    <h3>MARLON AGUILAR</h3>
+    <span class="status active">ACTIVE</span>
+  </div>
+
+  <div class="member-card">
+    <img src="image/michael.jpg.png" alt="Michael Manio">
+    <h3>MICHAEL MANIO</h3>
+    <span class="status active">ACTIVE</span>
+  </div>
+
+  <div class="member-card">
+    <img src="image/myron.jpg.jpg" alt="Myron Liwanag">
+    <h3>MYRON LIWANAG</h3>
+    <span class="status active">ACTIVE</span>
+  </div>
+
+  <div class="member-card">
+    <img src="image/onasis.jpg.jpg" alt="Onasis Aquino">
+    <h3>ONASIS AQUINO</h3>
+    <span class="status active">ACTIVE</span>
+  </div>
+
+  <div class="member-card">
+    <img src="image/richard.jpg.jpg" alt="Richard Reyes">
+    <h3>RICHARD REYES</h3>
+    <span class="status active">ACTIVE</span>
+  </div>
+
+  <div class="member-card">
+    <img src="image/rodelson.jpg.jpg" alt="Rodelson Pring">
+    <h3>RODELSON PRING</h3>
+    <span class="status active">ACTIVE</span>
+  </div>
+
+  <div class="member-card">
+    <img src="image/roger.jpg.jpg" alt="Roger">
+    <h3>ROGER</h3>
+    <span class="status inactive">IN-ACTIVE</span>
+  </div>
+
+  <div class="member-card">
+    <img src="image/ronald allan.jpg" alt="Ronald Allan Tizon">
+    <h3>RONALD ALLAN TIZON</h3>
+    <span class="status active">ACTIVE</span>
+  </div>
+
+  <div class="member-card">
+    <img src="image/ryan.jpg.png" alt="Ryan Escanillas">
+    <h3>RYAN P. ESCANILLAS</h3>
+    <span class="status active">ACTIVE</span>
+  </div>
+
 </div>
-</div>
-<!-- END: COMPLETE MEMBERS SECTION WITH STATUS + PHOTOS -->
