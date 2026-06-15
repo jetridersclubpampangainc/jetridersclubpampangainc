@@ -525,89 +525,169 @@ Submit Application
 
 <div class="card" id="members">
 
-<h2>Official Members Directory</h2>
+<section id="members" class="card">
+    <h2>Official Members Directory</h2>
 
-<p>
-Total Official Members: 30
-</p>
+    <style>
+        .members-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            background: rgba(0,0,0,0.7);
+            border-radius: 15px;
+            overflow: hidden;
+        }
 
-<div class="table-wrap">
+        .members-table th {
+            background: #00cc44;
+            color: #fff;
+            padding: 15px;
+            text-align: left;
+        }
 
-<table>
+        .members-table td {
+            padding: 12px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            color: #fff;
+        }
 
-<tr>
-<th>ID</th>
-<th>Name</th>
-</tr>
+        .members-table tr:hover {
+            background: rgba(0,255,102,0.1);
+        }
 
-<tr><td>JRCP-001</td><td>REYNALDO JACINTO IGNACIO</td></tr>
-<tr><td>JRCP-002</td><td>ARLENE C. PINEDA</td></tr>
-<tr><td>JRCP-003</td><td>ENRIQUE MANABAT</td></tr>
-<tr><td>JRCP-004</td><td>NATION GARCIA</td></tr>
-<tr><td>JRCP-005</td><td>GILBERT G. BASILIO</td></tr>
-<tr><td>JRCP-006</td><td>HENRY R. FAUSTINO</td></tr>
-<tr><td>JRCP-007</td><td>CHARLIE B. CARANTO</td></tr>
-<tr><td>JRCP-008</td><td>DENNIS JUNIO</td></tr>
-<tr><td>JRCP-009</td><td>EDWIN R. DAVID</td></tr>
-<tr><td>JRCP-010</td><td>ERIC NOVEDA</td></tr>
-<tr><td>JRCP-011</td><td>ARES SANTOS</td></tr>
-<tr><td>JRCP-012</td><td>RONALDO PINEDA</td></tr>
-<tr><td>JRCP-013</td><td>MARLON M. AGUILAR</td></tr>
-<tr><td>JRCP-014</td><td>JAYAR CARANTO</td></tr>
-<tr><td>JRCP-015</td><td>LEO MADARANG</td></tr>
-<tr><td>JRCP-016</td><td>ROGER P. CHAVEZ</td></tr>
-<tr><td>JRCP-017</td><td>HOWARD DAVID</td></tr>
-<tr><td>JRCP-018</td><td>DOMINGO JUNIO JR</td></tr>
-<tr><td>JRCP-019</td><td>ONASIS AQUINO</td></tr>
-<tr><td>JRCP-020</td><td>RODELSON D. PRING</td></tr>
-<tr><td>JRCP-021</td><td>MICHAEL T. MANIO</td></tr>
-<tr><td>JRCP-022</td><td>JOJO POLICARPIO</td></tr>
-<tr><td>JRCP-023</td><td>ALEXANDER D. MICLAT</td></tr>
-<tr><td>JRCP-024</td><td>EDUARDO T. TOLENTINO</td></tr>
-<tr><td>JRCP-025</td><td>RYAN P. ESCANILLAS</td></tr>
-<tr><td>JRCP-026</td><td>MYRON MARK C. LIWANAG</td></tr>
-<tr><td>JRCP-027</td><td>MALIK GIRO BASILIO</td></tr>
-<tr><td>JRCP-028</td><td>RONALD ALLAN TIZON</td></tr>
-<tr><td>JRCP-029</td><td>RICHARD R. REYES</td></tr>
-<tr><td>JRCP-030</td><td>DEAN UMALI</td></tr>
+        .status {
+            display: inline-block;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
 
-</table>
+        .active {
+            background: #00ff66;
+            color: #003300;
+        }
 
-</div>
+        .inactive {
+            background: #ff4d4d;
+            color: #ffffff;
+        }
 
-</div>
+        .provisionary {
+            background: #ffd700;
+            color: #222222;
+        }
 
-<div class="card" id="contact">
+        @media (max-width: 768px) {
+            .members-table {
+                display: block;
+                overflow-x: auto;
+                white-space: nowrap;
+            }
+        }
+    </style>
 
-<h2>Contact Us</h2>
+    <table class="members-table">
+        <thead>
+            <tr>
+                <th>No.</th>
+                <th>Member ID</th>
+                <th>Name</th>
+                <th>Date Joined</th>
+                <th>Status</th>
+            </tr>
+        </thead>
 
-<p>📱 09055907699</p>
+        <tbody>
+            <tr>
+                <td>001</td>
+                <td>JRCP-001</td>
+                <td>Reynaldo Jacinto Ignacio</td>
+                <td>2001</td>
+                <td><span class="status active">Active</span></td>
+            </tr>
 
-<p>📧 jetridersclubpampangainc@gmail.com</p>
+            <tr>
+                <td>002</td>
+                <td>JRCP-002</td>
+                <td>Arlene C. Pineda</td>
+                <td>2001</td>
+                <td><span class="status active">Active</span></td>
+            </tr>
 
-<p>Facebook: JETRIDERS CLUB PAMPANGA INC.</p>
+            <tr>
+                <td>003</td>
+                <td>JRCP-003</td>
+                <td>Nation Garcia</td>
+                <td>2002</td>
+                <td><span class="status active">Active</span></td>
+            </tr>
 
-<a class="btn" href="https://www.facebook.com" target="_blank">
-Visit Facebook Page
-</a>
+            <tr>
+                <td>004</td>
+                <td>JRCP-004</td>
+                <td>Gilbert Basilio</td>
+                <td>2002</td>
+                <td><span class="status active">Active</span></td>
+            </tr>
 
-</div>
+            <tr>
+                <td>005</td>
+                <td>JRCP-005</td>
+                <td>Henry R. Faustino</td>
+                <td>2002</td>
+                <td><span class="status active">Active</span></td>
+            </tr>
 
-</div>
+            <tr>
+                <td>006</td>
+                <td>JRCP-006</td>
+                <td>Charlie B. Caranto</td>
+                <td>2004</td>
+                <td><span class="status active">Active</span></td>
+            </tr>
 
-<footer>
+            <tr>
+                <td>007</td>
+                <td>JRCP-007</td>
+                <td>Dennis Junio</td>
+                <td>2004</td>
+                <td><span class="status active">Active</span></td>
+            </tr>
 
-<h3>JET RIDERS CLUB PAMPANGA INC.</h3>
+            <tr>
+                <td>008</td>
+                <td>JRCP-008</td>
+                <td>Edwin R. David</td>
+                <td>2004</td>
+                <td><span class="status active">Active</span></td>
+            </tr>
 
-<p>SEC Registration No. CN201720885</p>
+            <tr>
+                <td>009</td>
+                <td>JRCP-009</td>
+                <td>Jojo Policarpio</td>
+                <td>2017</td>
+                <td><span class="status active">Active</span></td>
+            </tr>
 
-<p>Established 2001</p>
+            <tr>
+                <td>010</td>
+                <td>JRCP-010</td>
+                <td>New Member Sample</td>
+                <td>2026</td>
+                <td><span class="status provisionary">Provisionary</span></td>
+            </tr>
 
-<p>Ride As One. Ride Together.</p>
-
-<p>© 2026 All Rights Reserved.</p>
-
-</footer>
-
-</body>
+            <tr>
+                <td>011</td>
+                <td>JRCP-011</td>
+                <td>Inactive Member Sample</td>
+                <td>2023</td>
+                <td><span class="status inactive">In-Active</span></td>
+            </tr>
+        </tbody>
+    </table>
+</section>
 </html>
