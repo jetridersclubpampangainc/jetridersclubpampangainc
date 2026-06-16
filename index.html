@@ -8,22 +8,8 @@
 *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;font-family:Arial,Helvetica,sans-serif;color:white;background:linear-gradient(rgba(185,255,185,.72),rgba(0,85,25,.82)),url('logo.jpg');background-repeat:repeat;background-size:300px;background-attachment:fixed;background-position:center}body:before{content:"";position:fixed;inset:0;background:rgba(0,0,0,.15);z-index:-1}.hero-banner{width:100%;overflow:hidden;background:#000;position:relative}.hero-banner img{width:100%;display:block;object-fit:cover;max-height:720px}.top-actions{position:absolute;right:18px;bottom:18px;z-index:3;display:flex;gap:8px;flex-wrap:wrap}nav{background:#001f0a;text-align:center;padding:12px 5px;position:sticky;top:0;z-index:99}nav a{color:white;text-decoration:none;margin:4px;font-weight:bold;font-size:14px;display:inline-block;padding:8px 10px;border-radius:20px}nav a:hover,.btn:hover{background:white;color:#001a0a}.btn{display:inline-block;background:#00ff66;color:#001a0a;padding:13px 22px;border-radius:30px;font-weight:bold;text-decoration:none;margin:8px;border:none;cursor:pointer}.section{padding:25px;max-width:1200px;margin:auto}.card{background:rgba(0,34,10,.88);padding:24px;border-radius:18px;margin-bottom:24px;border-left:6px solid #b8ffb8;box-shadow:0 0 20px rgba(0,80,0,.38)}h2{color:#b8ffb8;text-shadow:0 0 8px #003d12;font-size:30px;margin-top:0}p,li,label{font-size:16px;line-height:1.55}.grid,.officers-grid,.member-photo-grid,.gallery,.documents-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:15px;margin-top:16px}.person,.document-card,.stat-box{background:rgba(0,0,0,.58);border:1px solid #b8ffb8;border-radius:16px;text-align:center;padding:14px 10px;box-shadow:0 0 14px rgba(0,255,102,.32)}.person img{width:120px;height:120px;border-radius:50%;object-fit:cover;border:4px solid #00ff66;background:white}.person h3{font-size:14px;color:#b8ffb8;margin:10px 0 4px;text-transform:uppercase}.person p{font-size:13px;margin:0 0 4px}.status{display:inline-block;padding:6px 12px;border-radius:20px;font-size:11px;font-weight:bold;text-transform:uppercase}.active{background:#00ff66;color:#003300}.inactive{background:#ff4d4d;color:white}.provisionary{background:#ffd700;color:#222}input,select,textarea{width:100%;padding:12px;border-radius:10px;border:1px solid #b8ffb8;margin-top:5px;background:rgba(255,255,255,.96);color:#001a0a;font-size:15px}textarea{min-height:90px}.form-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:15px}.controls{display:grid;grid-template-columns:2fr 1fr;gap:10px;margin:16px 0}.payment-box{margin-top:15px;padding:20px;background:rgba(0,255,120,.08);border:2px solid #00ff88;border-radius:15px}.waiver-box{margin-top:25px;padding:20px;background:rgba(255,215,0,.10);border:2px solid #ffd700;border-radius:15px}.waiver-box h3{color:#ffd700}.waiver-check{display:flex;gap:10px;align-items:flex-start}.waiver-check input{width:auto}.gallery img,.gallery video{width:100%;height:210px;object-fit:cover;border-radius:14px;border:2px solid #b8ffb8;background:#000}table{width:100%;border-collapse:collapse;font-size:14px;min-width:750px;background:rgba(0,0,0,.45)}.table-wrap{overflow-x:auto}th{background:#008000;color:white}td,th{border:1px solid rgba(184,255,184,.35);padding:8px;text-align:left}footer{background:#003d12;text-align:center;padding:25px;margin-top:30px}@media(max-width:700px){.hero-banner img{min-height:230px;max-height:360px}.top-actions{position:static;justify-content:center;background:#001f0a;padding:8px}nav a{font-size:12px;margin:2px;padding:6px}.section{padding:12px}.card{padding:18px}h2{font-size:23px}p,li,label{font-size:14px}.person img{width:95px;height:95px}.controls{grid-template-columns:1fr}}
 </style>
 </head>
-<body><section class="card" id="visitor-counter">
-    <h2>👁️ Total Visits</h2>
-
-    <p>
-        <span id="visitCount">Loading...</span>
-    </p>
-</section>
-
-<script>
-fetch("https://jetriders.goatcounter.com/counter/" +
-      encodeURIComponent(location.pathname) + ".json")
-  .then(response => response.json())
-  .then(data => {
-      document.getElementById("visitCount").innerText =
-          data.count_unique + " visits";
-  });
+<body><script data-goatcounter="https://jetriders.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
 </script>
 <header id="home" class="hero-banner"><img src="gruop.jpg.jpg" alt="JETRIDERS 25th Anniversary Banner"><div class="top-actions"><a class="btn" href="#application">Apply as New Member</a><a class="btn" href="#contact">Contact Us</a></div></header>
 <nav><a href="#home">Home</a><a href="#about">About</a><a href="#membership">Membership</a><a href="#officers">Officers</a><a href="#events">Events</a><a href="#rides">Rides</a><a href="#gallery">Gallery</a><a href="#documents">Documents</a><a href="#application">Apply</a><a href="#members">Members</a><a href="#contact">Contact</a></nav>
