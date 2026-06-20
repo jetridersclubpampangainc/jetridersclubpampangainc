@@ -33,67 +33,62 @@
 <section class="card" id="events"><h2>📅 Upcoming Events</h2><p>✅ General Membership Meeting - Every 2nd Saturday of the Month</p><p>🎉 JETRIDERS Anniversary Celebration</p><p>🏅 Induction of New Members</p><p>🤝 Charity and Community Service Activities</p></section>
 <section class="card" id="rides"><h2>🏍️ Featured Rides</h2><p>🏍️ Baler Aurora Ride</p><p>🏍️ Mother Falls Adventure</p><p>🏍️ Dingalan Ride</p><p>🏍️ Atok Benguet Ride</p><p>🏍️ Pampanga Breakfast Ride</p></section>
 <!-- GALLERY SECTION -->
+<!-- GALLERY SECTION -->
 <section id="gallery" class="gallery-section">
-  <h2>JETRIDERS GALLERY</h2>
+  <h2>📸 Photo & Video Gallery</h2>
   <p class="gallery-subtitle">
-    Memories, rides, meetings, events, and brotherhood of Jetriders Club Pampanga Inc.
+    Upload files sa GitHub folder <b>image</b>: baler.jpg, motherfalls.jpg, anniversary.jpg, gmm.jpg, ride.jpg, video1.mp4, video2.mp4
   </p>
 
   <div class="gallery-buttons">
-    <button onclick="filterGallery('all')" class="active">All</button>
-    <button onclick="filterGallery('rides')">Rides</button>
-    <button onclick="filterGallery('events')">Events</button>
-    <button onclick="filterGallery('meetings')">Meetings</button>
-    <button onclick="filterGallery('videos')">Videos</button>
+    <button class="active" onclick="filterGallery('all', this)">All</button>
+    <button onclick="filterGallery('rides', this)">Rides</button>
+    <button onclick="filterGallery('events', this)">Events</button>
+    <button onclick="filterGallery('meetings', this)">Meetings</button>
+    <button onclick="filterGallery('videos', this)">Videos</button>
   </div>
 
   <div class="gallery-grid">
 
-    <!-- RIDES -->
     <div class="gallery-item rides">
-      <img src="image/rides/ride1.jpg" alt="Jetriders Ride">
+      <img src="image/baler.jpg" alt="Baler Aurora Ride" onerror="this.src='logo.jpg'">
+      <div class="gallery-caption">Baler Aurora Ride</div>
+    </div>
+
+    <div class="gallery-item rides">
+      <img src="image/motherfalls.jpg" alt="Mother Falls Adventure" onerror="this.src='logo.jpg'">
+      <div class="gallery-caption">Mother Falls Adventure</div>
+    </div>
+
+    <div class="gallery-item events">
+      <img src="image/anniversary.jpg" alt="Jetriders Anniversary" onerror="this.src='logo.jpg'">
+      <div class="gallery-caption">Jetriders Anniversary</div>
+    </div>
+
+    <div class="gallery-item meetings">
+      <img src="image/gmm.jpg" alt="General Membership Meeting" onerror="this.src='logo.jpg'">
+      <div class="gallery-caption">General Membership Meeting</div>
+    </div>
+
+    <div class="gallery-item rides">
+      <img src="image/ride.jpg" alt="Official Ride" onerror="this.src='logo.jpg'">
       <div class="gallery-caption">Official Ride</div>
     </div>
 
-    <div class="gallery-item rides">
-      <img src="image/rides/ride2.jpg" alt="Jetriders Ride">
-      <div class="gallery-caption">Long Ride Memories</div>
-    </div>
-
-    <div class="gallery-item rides">
-      <img src="image/rides/ride3.jpg" alt="Jetriders Ride">
-      <div class="gallery-caption">Brotherhood Ride</div>
-    </div>
-
-    <!-- EVENTS -->
-    <div class="gallery-item events">
-      <img src="image/events/event1.jpg" alt="Jetriders Event">
-      <div class="gallery-caption">Club Event</div>
-    </div>
-
-    <div class="gallery-item events">
-      <img src="image/events/event2.jpg" alt="Jetriders Event">
-      <div class="gallery-caption">Raffle for a Cause</div>
-    </div>
-
-    <!-- MEETINGS -->
-    <div class="gallery-item meetings">
-      <img src="image/meetings/meeting1.jpg" alt="Jetriders Meeting">
-      <div class="gallery-caption">General Monthly Meeting</div>
-    </div>
-
-    <div class="gallery-item meetings">
-      <img src="image/meetings/meeting2.jpg" alt="Jetriders Meeting">
-      <div class="gallery-caption">Officers Meeting</div>
-    </div>
-
-    <!-- VIDEOS -->
     <div class="gallery-item videos">
       <video controls>
-        <source src="video/video1.mp4" type="video/mp4">
+        <source src="image/video1.mp4" type="video/mp4">
         Your browser does not support video.
       </video>
-      <div class="gallery-caption">Jetriders Video</div>
+      <div class="gallery-caption">Jetriders Video 1</div>
+    </div>
+
+    <div class="gallery-item videos">
+      <video controls>
+        <source src="image/video2.mp4" type="video/mp4">
+        Your browser does not support video.
+      </video>
+      <div class="gallery-caption">Jetriders Video 2</div>
     </div>
 
   </div>
@@ -116,7 +111,7 @@
 
 .gallery-subtitle {
   color: #333;
-  font-size: 16px;
+  font-size: 15px;
   margin-bottom: 25px;
 }
 
@@ -133,7 +128,6 @@
   border-radius: 25px;
   cursor: pointer;
   font-weight: 700;
-  transition: 0.3s;
 }
 
 .gallery-buttons button:hover,
@@ -151,7 +145,6 @@
 }
 
 .gallery-item {
-  position: relative;
   overflow: hidden;
   border-radius: 16px;
   background: white;
@@ -202,12 +195,12 @@
 </style>
 
 <script>
-function filterGallery(category) {
+function filterGallery(category, button) {
   const items = document.querySelectorAll('.gallery-item');
   const buttons = document.querySelectorAll('.gallery-buttons button');
 
-  buttons.forEach(button => button.classList.remove('active'));
-  event.target.classList.add('active');
+  buttons.forEach(btn => btn.classList.remove('active'));
+  button.classList.add('active');
 
   items.forEach(item => {
     if (category === 'all') {
@@ -221,6 +214,7 @@ function filterGallery(category) {
     }
   });
 }
+</script>
 </script>
 <section class="card" id="documents"><h2>📁 Legal Documents & Certificates</h2><p>Upload PDFs sa GitHub folder <b>documents/</b> para gumana ang buttons.</p><div class="documents-grid"><div class="document-card"><h3>📄 SEC Registration</h3><p>CN201720885</p><a class="btn" href="documents/sec-registration.pdf" target="_blank">View</a></div><div class="document-card"><h3>📜 Articles & By-Laws</h3><p>Official constitution and by-laws.</p><a class="btn" href="documents/articles-bylaws.pdf" target="_blank">View</a></div><div class="document-card"><h3>🏆 Certificate</h3><p>Certificate of incorporation.</p><a class="btn" href="documents/certificate-incorporation.pdf" target="_blank">View</a></div><div class="document-card"><h3>📝 Membership Form</h3><p>Downloadable form.</p><a class="btn" href="documents/membership-form.pdf" target="_blank">Download</a></div><div class="document-card"><h3>🪪 ID Guidelines</h3><p>ID issuance policies.</p><a class="btn" href="documents/id-guidelines.pdf" target="_blank">View</a></div><div class="document-card"><h3>📋 Club Rules</h3><p>Official club policies.</p><a class="btn" href="documents/club-policies.pdf" target="_blank">View</a></div></div></section>
 <section class="card" id="application"><h2>📝 New Member Application Form</h2><p class="form-note">Display form only. Pwede natin i-connect sa Google Forms later para automatic submit.</p><form><div class="form-grid"><div><label>Full Name</label><input type="text"></div><div><label>Address</label><input type="text"></div><div><label>Contact Number</label><input type="text"></div><div><label>Date of Birth</label><input type="date"></div><div><label>Blood Type</label><input type="text"></div><div><label>Facebook Profile Link</label><input type="text"></div><div><label>Motorcycle Brand / Model</label><input type="text"></div><div><label>Displacement</label><input type="number"></div><div><label>Plate Number</label><input type="text"></div><div><label>Emergency Contact Person</label><input type="text"></div><div><label>Emergency Contact Number</label><input type="text"></div><div><label>Membership Category</label><select required><option value="">Select Category</option><option>Guest Rider</option><option>Provisionary Member</option><option>Official Member</option><option>Honorary Member</option></select></div><div><label>Membership Status Applying For</label><select required><option value="">Select Status</option><option>Guest Rider</option><option>Provisionary</option><option>Active</option><option>Returning Member</option></select></div><div><label>Preferred Ride Group</label><select><option value="">Select Ride Group</option><option>City Ride</option><option>Long Ride</option><option>Adventure Ride</option><option>Charity Ride</option><option>All Rides</option></select></div><div><label>Mode of Payment</label><select id="payment" required><option value="">Select Payment Method</option><option value="GCash">GCash</option><option value="Bank Transfer">AUB Bank Transfer</option><option value="Cash">Cash Payment</option></select></div><div><label>Upload Payment Receipt</label><input type="file" accept="image/*,.pdf"></div></div><div id="paymentDetails" class="payment-box" style="display:none"><h3>JETRIDERS CLUB PAMPANGA INC.</h3><div id="gcashInfo" style="display:none"><h4>GCash Payment</h4><p><strong>GCash Number:</strong> 0917-510-6463</p><p><strong>Account Name:</strong> JET RIDERS CLUB PAMP. INC.</p></div><div id="bankInfo" style="display:none"><h4>AUB Bank Transfer</h4><p><strong>Bank:</strong> Asia United Bank (AUB)</p><p><strong>Account Name:</strong> JET RIDERS CLUB PAMP. INC.</p><p><strong>Account Number:</strong> 159010000032</p></div><p class="payment-note">Please upload screenshot/photo of receipt for verification.</p></div><div class="waiver-box"><h3>⚠️ Rider Waiver & Consent Agreement</h3><p>I understand that participation in JETRIDERS CLUB PAMPANGA INC. activities, meetings, and rides involves inherent risks, including accidents, injuries, property damage, or loss.</p><p>I certify that I possess a valid driver's license, operate a roadworthy and legally registered motorcycle, and agree to wear complete riding gear during official rides.</p><p>I voluntarily assume all risks and release JETRIDERS CLUB PAMPANGA INC., its officers, members, and organizers from any liability arising from my participation.</p><p>I agree to comply with all club rules, policies, and safety protocols.</p><label class="waiver-check"><input type="checkbox" required> I have read, understood, and agree to the Rider Waiver & Consent Agreement.</label></div><br><label>Message / Notes</label><textarea></textarea><br><br><button class="btn" type="submit">Submit Application</button></form></section>
