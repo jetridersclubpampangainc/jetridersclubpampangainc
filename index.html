@@ -153,7 +153,6 @@ tabs[i].style.display="none";
 document.getElementById(tabName).style.display="block";
 }
 </script>
-</script>
 const members={"JRCP-001":"REYNALDO JACINTO IGNACIO - ACTIVE",
 "JRCP-002":"ARLENE C. PINEDA - ACTIVE",
 "JRCP-003":"ENRIQUE MANABAT - ACTIVE",
@@ -191,7 +190,6 @@ searchBox.addEventListener("input",filterMembers);statusFilter.addEventListener(
 const payment=document.getElementById('payment'),paymentDetails=document.getElementById('paymentDetails'),gcashInfo=document.getElementById('gcashInfo'),bankInfo=document.getElementById('bankInfo');
 payment.addEventListener('change',function(){paymentDetails.style.display='none';gcashInfo.style.display='none';bankInfo.style.display='none';if(this.value==='GCash'){paymentDetails.style.display='block';gcashInfo.style.display='block'}if(this.value==='Bank Transfer'){paymentDetails.style.display='block';bankInfo.style.display='block'}});
 </script>
-<script>
 function showGalleryTab(tabId, btn){
 document.querySelectorAll('.gallery-tab').forEach(function(tab){tab.classList.remove('active')});
 document.querySelectorAll('.gallery-btn').forEach(function(button){button.classList.remove('active')});
