@@ -1,5 +1,48 @@
-<meta name="description" content="Official Website of JETRIDERS CLUB PAMPANGA INC. Motorcycle Club in Pampanga promoting brotherhood, safety and responsible riding.">
+<section class="card" id="gallery">
+  <h2>📸 JETRIDERS Gallery</h2>
+  <p>Organized gallery for club rides, events, meetings, and videos.</p>
 
-<meta name="keywords" content="JETRIDERS, JETRIDERS CLUB PAMPANGA INC, Pampanga Riders Club, Motorcycle Club Pampanga, Scooter Club Pampanga">
+  <div class="gallery-tabs">
+    <button class="gallery-btn active" type="button" onclick="showGalleryTab('gallery-rides', this)">🏍️ Rides</button>
+    <button class="gallery-btn" type="button" onclick="showGalleryTab('gallery-events', this)">🎉 Events</button>
+    <button class="gallery-btn" type="button" onclick="showGalleryTab('gallery-meetings', this)">🤝 Meetings</button>
+    <button class="gallery-btn" type="button" onclick="showGalleryTab('gallery-videos', this)">🎥 Videos</button>
+  </div>
 
-<meta name="author" content="JETRIDERS CLUB PAMPANGA INC.">
+  <div id="gallery-rides" class="gallery-tab active">
+    <h3>🏍️ Ride Photos</h3>
+    <div class="gallery-grid">
+      <img src="image/rides/FB_IMG_1781518082599.jpg" alt="Ride Photo">
+      <img src="image/rides/FB_IMG_1781518094987.jpg" alt="Ride Photo">
+      <img src="image/rides/FB_IMG_1781518214293.jpg" alt="Ride Photo">
+      <img src="image/rides/FB_IMG_1781518216816.jpg" alt="Ride Photo">
+      <img src="image/rides/FB_IMG_1781518218178.jpg" alt="Ride Photo">
+      <img src="image/rides/FB_IMG_1781518222300.jpg" alt="Ride Photo">
+    </div>
+  </div>
+
+  <div id="gallery-events" class="gallery-tab">
+    <h3>🎉 Events</h3>
+    <div class="gallery-grid">
+      <img src="event/event1.jpg" alt="Event Photo">
+      <img src="event/event2.jpg" alt="Event Photo">
+      <img src="event/event3.jpg" alt="Event Photo">
+    </div>
+  </div>
+
+  <div id="gallery-meetings" class="gallery-tab">
+    <h3>🤝 Meetings</h3>
+    <div class="gallery-grid">
+      <img src="meeting/meeting1.jpg" alt="Meeting Photo">
+      <img src="meeting/meeting2.jpg" alt="Meeting Photo">
+      <img src="meeting/meeting3.jpg" alt="Meeting Photo">
+    </div>
+  </div>
+
+  <div id="gallery-videos" class="gallery-tab">
+    <h3>🎥 Videos</h3>
+    <video controls style="width:100%;border-radius:12px;">
+      <source src="video/video1.mp4" type="video/mp4">
+    </video>
+  </div>
+</section>
