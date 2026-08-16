@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex,nofollow">
-<title>Admin Photo Upload | JETRIDERS CLUB PAMPANGA INC.</title>
+<title>Admin Dashboard | JETRIDERS CLUB PAMPANGA INC.</title>
 <style>
 :root{--green:#006d2c;--green-dark:#003d18;--bright:#00e765;--mint:#dfffea;--gold:#ffd54a;--danger:#b42318;--ink:#102016;--muted:#5d6b62;--line:#d7e5dc;--bg:#f2f7f3}
 *{box-sizing:border-box}
@@ -43,21 +43,37 @@ input:focus,select:focus,textarea:focus{outline:3px solid rgba(0,231,101,.18);bo
 .progress{display:none;height:10px;background:#e3eee6;border-radius:8px;overflow:hidden;margin-top:12px}.progress.show{display:block}.progress-bar{height:100%;width:0;background:linear-gradient(90deg,var(--green),var(--bright));transition:width .25s}
 details{margin-top:13px}summary{cursor:pointer;font-weight:bold;color:var(--green)}ol{padding-left:23px}code{background:#edf2ee;padding:2px 5px;border-radius:5px}
 .toolbar{display:flex;flex-wrap:wrap;gap:10px;margin-top:12px}
+.quick-nav{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}
+.quick-nav .btn{min-height:58px;text-align:center}
+.manager-heading{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.mode-row{display:grid;grid-template-columns:1fr 2fr;gap:14px;margin-bottom:14px}
+.small-preview{display:block;width:110px;height:110px;object-fit:cover;border-radius:14px;border:3px solid #b7d9c1;background:#eef5f0;margin-top:10px}
+.section-note{padding:12px 14px;background:#f1f8f3;border-left:4px solid var(--green);border-radius:8px;margin-bottom:15px;color:#35523e}
 footer{text-align:center;color:#4a6252;padding:10px 15px 35px;font-size:13px}
-@media(max-width:650px){header{padding:18px 14px}.brand img{width:54px;height:54px}h1{font-size:20px}.wrap{padding:14px 10px 35px}.card{padding:17px;border-radius:15px}.form-grid,.token-row{grid-template-columns:1fr}.btn{width:100%}.previews{grid-template-columns:1fr 1fr}.preview img{height:135px}}
+@media(max-width:650px){header{padding:18px 14px}.brand img{width:54px;height:54px}h1{font-size:20px}.wrap{padding:14px 10px 35px}.card{padding:17px;border-radius:15px}.form-grid,.token-row,.mode-row,.quick-nav{grid-template-columns:1fr}.btn{width:100%}.previews{grid-template-columns:1fr 1fr}.preview img{height:135px}}
 @media(max-width:420px){.previews{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
 <header>
 <div class="header-inner">
-<div class="brand"><img src="logo.jpg" alt="JETRIDERS logo"><div><h1>Admin Photo Upload</h1><p class="subtitle">JETRIDERS CLUB PAMPANGA INC.</p></div></div>
+<div class="brand"><img src="logo.jpg" alt="JETRIDERS logo"><div><h1>Admin Dashboard</h1><p class="subtitle">JETRIDERS CLUB PAMPANGA INC.</p></div></div>
 <a class="back" href="index.html#gallery">← Back to Official Website</a>
 </div>
 </header>
 
 <main class="wrap">
 <section class="card">
+<h2>Admin Tools</h2>
+<div class="quick-nav">
+<a class="btn" href="#gallery-manager">📷 Gallery Photos</a>
+<a class="btn" href="#member-manager">👥 Add/Edit Member</a>
+<a class="btn" href="#ride-manager">🏍️ Featured Rides</a>
+<a class="btn" href="#past-president-manager">🏆 Past Presidents</a>
+</div>
+</section>
+
+<section class="card" id="admin-access">
 <h2><span class="step">1</span>Admin Access</h2>
 <p class="muted">Ilagay ang iyong GitHub Admin Key. Kailangan lang ito para mapatunayan na ikaw ang authorized administrator.</p>
 <div class="token-row">
@@ -75,14 +91,15 @@ footer{text-align:center;color:#4a6252;padding:10px 15px 35px;font-size:13px}
 <li>Buksan ang <a href="https://github.com/settings/personal-access-tokens/new" target="_blank" rel="noopener">GitHub Fine-grained Token page</a> at mag-login.</li>
 <li>Token name: <code>JETRIDERS Photo Upload</code>.</li>
 <li>Sa Repository access, piliin ang <strong>Only select repositories</strong>, tapos piliin ang <strong>jetridersclubpampangainc</strong>.</li>
-<li>Sa Repository permissions, itakda ang <strong>Contents: Read and write</strong>.</li>
+<li>Sa Repository permissions, click <strong>Add permissions</strong>, check ang <strong>Contents</strong>, at isara ang black menu.</li>
+<li>Sa dropdown sa kanan ng Contents, piliin ang <strong>Read and write</strong>. Iwanang Read-only ang Metadata.</li>
 <li>Click <strong>Generate token</strong>, copy ito, at i-paste sa Admin Key box.</li>
 </ol>
 <div class="notice danger"><strong>Important:</strong> Isang beses lang ipapakita ng GitHub ang token. I-save sa password manager at huwag ipadala sa chat o GC.</div>
 </details>
 </section>
 
-<section class="card">
+<section class="card" id="gallery-manager">
 <h2><span class="step">2</span>Photo Details</h2>
 <div class="form-grid">
 <label>Gallery Category
@@ -119,6 +136,105 @@ footer{text-align:center;color:#4a6252;padding:10px 15px 35px;font-size:13px}
 <div id="progress" class="progress"><div id="progress-bar" class="progress-bar"></div></div>
 <div id="publish-status" class="status" role="status"></div>
 </section>
+
+<section class="card" id="member-manager">
+<div class="manager-heading"><h2>👥 Member Management</h2><a class="btn secondary" href="index.html#members" target="_blank">View Members</a></div>
+<p class="section-note">Mag-add ng bagong member o mag-edit ng existing member. Automatic ang susunod na Member ID.</p>
+<div class="mode-row">
+<label>Action
+<select id="member-mode"><option value="add">➕ Add New Member</option><option value="edit">✏️ Edit Existing Member</option></select>
+</label>
+<label id="member-select-wrap" style="display:none">Choose Member
+<select id="member-select"><option value="">Select a member</option></select>
+</label>
+</div>
+<div class="form-grid">
+<label>Member ID
+<input id="member-id" type="text" readonly>
+</label>
+<label>Full Name
+<input id="member-name" type="text" maxlength="100" placeholder="Example: JUAN DELA CRUZ">
+</label>
+<label>Year Joined
+<input id="member-joined" type="number" min="2001" max="2100">
+</label>
+<label>Status
+<select id="member-status"><option value="active">Active</option><option value="provisionary">Provisionary</option><option value="inactive">Inactive</option></select>
+</label>
+<label class="full">Position / Role
+<input id="member-position" type="text" maxlength="80" placeholder="Example: Member, President, Adviser">
+</label>
+<label class="full">Member Photo (optional when editing)
+<input id="member-photo" type="file" accept="image/jpeg,image/png,image/webp">
+<img id="member-photo-preview" class="small-preview" src="logo.jpg" alt="Member photo preview">
+</label>
+</div>
+<button class="btn publish" id="save-member" type="button" disabled>💾 Save & Publish Member</button>
+<div id="member-status-message" class="status" role="status"></div>
+</section>
+
+<section class="card" id="ride-manager">
+<div class="manager-heading"><h2>🏍️ Featured Ride Management</h2><a class="btn secondary" href="index.html#rides" target="_blank">View Featured Rides</a></div>
+<p class="section-note">Mag-add ng bagong featured ride o i-update ang title, date, location, description, at cover photo.</p>
+<div class="mode-row">
+<label>Action
+<select id="ride-mode"><option value="add">➕ Add Featured Ride</option><option value="edit">✏️ Edit Featured Ride</option></select>
+</label>
+<label id="ride-select-wrap" style="display:none">Choose Featured Ride
+<select id="ride-select"><option value="">Select a ride</option></select>
+</label>
+</div>
+<div class="form-grid">
+<label class="full">Ride Title
+<input id="ride-title" type="text" maxlength="120" placeholder="Example: Rama Beach Ride 2026">
+</label>
+<label>Date (optional)
+<input id="ride-date" type="date">
+</label>
+<label>Location (optional)
+<input id="ride-location" type="text" maxlength="120" placeholder="Example: Botolan, Zambales">
+</label>
+<label class="full">Description (optional)
+<textarea id="ride-description" maxlength="300" placeholder="Short details about the ride"></textarea>
+</label>
+<label class="full">Cover Photo (optional)
+<input id="ride-photo" type="file" accept="image/jpeg,image/png,image/webp">
+<img id="ride-photo-preview" class="small-preview" src="logo.jpg" alt="Ride cover preview">
+</label>
+</div>
+<button class="btn publish" id="save-ride" type="button" disabled>💾 Save & Publish Featured Ride</button>
+<div id="ride-status-message" class="status" role="status"></div>
+</section>
+
+<section class="card" id="past-president-manager">
+<div class="manager-heading"><h2>🏆 Past Presidents Management</h2><a class="btn secondary" href="index.html#past-presidents" target="_blank">View Past Presidents</a></div>
+<p class="section-note">Pumili ng past president para mag-upload o magpalit ng picture. Puwede ring ayusin ang name, term, at note.</p>
+<div class="mode-row">
+<label>Action
+<select id="past-mode"><option value="edit">✏️ Edit Past President</option><option value="add">➕ Add Past President</option></select>
+</label>
+<label id="past-select-wrap">Choose Past President
+<select id="past-select"><option value="">Select a past president</option></select>
+</label>
+</div>
+<div class="form-grid">
+<label>Term / Year
+<input id="past-term" type="text" maxlength="30" placeholder="Example: 2019–2020">
+</label>
+<label>Full Name
+<input id="past-name" type="text" maxlength="100" placeholder="Past president's name">
+</label>
+<label class="full">Note / Title
+<input id="past-note" type="text" maxlength="80" placeholder="Example: Founder or Past President">
+</label>
+<label class="full">Past President Photo
+<input id="past-photo" type="file" accept="image/jpeg,image/png,image/webp">
+<img id="past-photo-preview" class="small-preview" src="logo.jpg" alt="Past president photo preview">
+</label>
+</div>
+<button class="btn publish" id="save-past" type="button" disabled>💾 Save & Publish Past President</button>
+<div id="past-status-message" class="status" role="status"></div>
+</section>
 </main>
 
 <footer>Authorized club administrators only · JETRIDERS CLUB PAMPANGA INC.</footer>
@@ -148,19 +264,59 @@ var progress=document.getElementById('progress');
 var progressBar=document.getElementById('progress-bar');
 var dateInput=document.getElementById('photo-date');
 var defaultCaption=document.getElementById('default-caption');
+var memberMode=document.getElementById('member-mode');
+var memberSelect=document.getElementById('member-select');
+var memberSelectWrap=document.getElementById('member-select-wrap');
+var memberId=document.getElementById('member-id');
+var memberName=document.getElementById('member-name');
+var memberJoined=document.getElementById('member-joined');
+var memberRecordStatus=document.getElementById('member-status');
+var memberPosition=document.getElementById('member-position');
+var memberPhoto=document.getElementById('member-photo');
+var memberPhotoPreview=document.getElementById('member-photo-preview');
+var saveMemberButton=document.getElementById('save-member');
+var memberStatusMessage=document.getElementById('member-status-message');
+var rideMode=document.getElementById('ride-mode');
+var rideSelect=document.getElementById('ride-select');
+var rideSelectWrap=document.getElementById('ride-select-wrap');
+var rideTitle=document.getElementById('ride-title');
+var rideDate=document.getElementById('ride-date');
+var rideLocation=document.getElementById('ride-location');
+var rideDescription=document.getElementById('ride-description');
+var ridePhoto=document.getElementById('ride-photo');
+var ridePhotoPreview=document.getElementById('ride-photo-preview');
+var saveRideButton=document.getElementById('save-ride');
+var rideStatusMessage=document.getElementById('ride-status-message');
+var pastMode=document.getElementById('past-mode');
+var pastSelect=document.getElementById('past-select');
+var pastSelectWrap=document.getElementById('past-select-wrap');
+var pastTerm=document.getElementById('past-term');
+var pastName=document.getElementById('past-name');
+var pastNote=document.getElementById('past-note');
+var pastPhoto=document.getElementById('past-photo');
+var pastPhotoPreview=document.getElementById('past-photo-preview');
+var savePastButton=document.getElementById('save-past');
+var pastStatusMessage=document.getElementById('past-status-message');
+var memberData=[];var rideData=[];var pastData=[];
 
 function localDateString(date){
 var local=new Date(date.getTime()-date.getTimezoneOffset()*60000);
 return local.toISOString().slice(0,10);
 }
 dateInput.value=localDateString(new Date());
+memberJoined.value=new Date().getFullYear();
 var savedToken=sessionStorage.getItem('jrcp_admin_token');
 if(savedToken){tokenInput.value=savedToken;setAuthStatus('May saved Admin Key sa session na ito. Click Verify Admin.','info')}
 
 function setStatus(element,message,type){element.textContent=message;element.className='status show '+type}
 function clearStatus(element){element.textContent='';element.className='status'}
 function setAuthStatus(message,type){setStatus(authStatus,message,type)}
-function updatePublishButton(){publishButton.disabled=!verified||preparedFiles.length===0}
+function updatePublishButton(){
+publishButton.disabled=!verified||preparedFiles.length===0;
+saveMemberButton.disabled=!verified;
+saveRideButton.disabled=!verified;
+savePastButton.disabled=!verified;
+}
 function formatBytes(bytes){if(bytes<1024*1024){return Math.round(bytes/1024)+' KB'}return (bytes/(1024*1024)).toFixed(1)+' MB'}
 function uniqueId(){return window.crypto&&crypto.randomUUID?crypto.randomUUID():Date.now().toString(36)+'-'+Math.random().toString(36).slice(2)}
 function safeName(name){return name.toLowerCase().replace(/\.[^.]+$/,'').replace(/[^a-z0-9]+/g,'-').replace(/^-+|-+$/g,'').slice(0,45)||'photo'}
@@ -276,6 +432,129 @@ var clean=value.replace(/\s/g,'');var binary=atob(clean);var bytes=new Uint8Arra
 for(var i=0;i<binary.length;i++){bytes[i]=binary.charCodeAt(i)}
 return new TextDecoder().decode(bytes);
 }
+
+async function getRepositoryJson(path){
+var response=await githubApi('/repos/'+REPOSITORY+'/contents/'+path+'?ref='+encodeURIComponent(BRANCH));
+return JSON.parse(base64ToText(response.content));
+}
+
+async function commitRepositoryFiles(files,message){
+var ref=await githubApi('/repos/'+REPOSITORY+'/git/ref/heads/'+encodeURIComponent(BRANCH));
+var headSha=ref.object.sha;
+var commit=await githubApi('/repos/'+REPOSITORY+'/git/commits/'+headSha);
+var treeEntries=[];
+for(var i=0;i<files.length;i++){
+var file=files[i];
+var blob=await githubApi('/repos/'+REPOSITORY+'/git/blobs',{method:'POST',body:JSON.stringify({content:file.content,encoding:file.encoding||'utf-8'})});
+treeEntries.push({path:file.path,mode:'100644',type:'blob',sha:blob.sha});
+}
+var tree=await githubApi('/repos/'+REPOSITORY+'/git/trees',{method:'POST',body:JSON.stringify({base_tree:commit.tree.sha,tree:treeEntries})});
+var newCommit=await githubApi('/repos/'+REPOSITORY+'/git/commits',{method:'POST',body:JSON.stringify({message:message,tree:tree.sha,parents:[headSha]})});
+await githubApi('/repos/'+REPOSITORY+'/git/refs/heads/'+encodeURIComponent(BRANCH),{method:'PATCH',body:JSON.stringify({sha:newCommit.sha,force:false})});
+return newCommit.sha;
+}
+
+function optionList(select,items,label){
+select.innerHTML='<option value="">'+label+'</option>';
+items.forEach(function(item){var option=document.createElement('option');option.value=item.id;option.textContent=(item.id?item.id+' — ':'')+(item.name||item.title||'Record');select.appendChild(option)});
+}
+
+function nextMemberId(){
+var maximum=memberData.reduce(function(max,item){var number=parseInt(String(item.id||'').replace(/\D/g,''),10)||0;return Math.max(max,number)},0);
+return 'JRCP-'+String(maximum+1).padStart(3,'0');
+}
+
+function resetMemberForm(){
+memberId.value=memberMode.value==='add'?nextMemberId():'';memberName.value='';memberJoined.value=new Date().getFullYear();memberRecordStatus.value='active';memberPosition.value='Member';memberPhoto.value='';memberPhotoPreview.src='logo.jpg';clearStatus(memberStatusMessage);
+}
+
+function refreshMemberControls(){
+optionList(memberSelect,memberData,'Select a member');memberSelectWrap.style.display=memberMode.value==='edit'?'block':'none';resetMemberForm();
+}
+
+function loadSelectedMember(){
+var item=memberData.find(function(record){return record.id===memberSelect.value});if(!item){resetMemberForm();return}
+memberId.value=item.id;memberName.value=item.name||'';memberJoined.value=item.joined||'';memberRecordStatus.value=item.status||'active';memberPosition.value=item.position||'Member';memberPhoto.value='';memberPhotoPreview.src=item.photo||'logo.jpg';
+}
+
+function resetRideForm(){rideSelect.value='';rideTitle.value='';rideDate.value='';rideLocation.value='';rideDescription.value='';ridePhoto.value='';ridePhotoPreview.src='logo.jpg';clearStatus(rideStatusMessage)}
+function refreshRideControls(){optionList(rideSelect,rideData,'Select a featured ride');rideSelectWrap.style.display=rideMode.value==='edit'?'block':'none';resetRideForm()}
+function loadSelectedRide(){var item=rideData.find(function(record){return record.id===rideSelect.value});if(!item){resetRideForm();return}rideTitle.value=item.title||'';rideDate.value=item.date||'';rideLocation.value=item.location||'';rideDescription.value=item.description||'';ridePhoto.value='';ridePhotoPreview.src=item.photo||'logo.jpg'}
+
+function resetPastForm(){pastSelect.value='';pastTerm.value='';pastName.value='';pastNote.value='Past President';pastPhoto.value='';pastPhotoPreview.src='logo.jpg';clearStatus(pastStatusMessage)}
+function refreshPastControls(){optionList(pastSelect,pastData,'Select a past president');pastSelectWrap.style.display=pastMode.value==='edit'?'block':'none';resetPastForm()}
+function loadSelectedPast(){var item=pastData.find(function(record){return record.id===pastSelect.value});if(!item){resetPastForm();return}pastTerm.value=item.term||'';pastName.value=item.name||'';pastNote.value=item.note||'Past President';pastPhoto.value='';pastPhotoPreview.src=item.photo||'logo.jpg'}
+
+async function loadAdminData(){
+try{
+var responses=await Promise.all(['members.json','rides.json','past-presidents.json'].map(function(path){return fetch(path+'?version='+Date.now()).then(function(response){if(!response.ok){throw new Error(path)};return response.json()})}));
+memberData=responses[0].items||[];rideData=responses[1].items||[];pastData=responses[2].items||[];
+refreshMemberControls();refreshRideControls();refreshPastControls();
+}catch(error){setStatus(memberStatusMessage,'Hindi ma-load ang management data. Paki-refresh ang page.','error')}
+}
+
+function previewSelectedPhoto(input,preview){
+var file=input.files&&input.files[0];if(!file){return}
+if(!/^image\/(jpeg|png|webp)$/i.test(file.type)||file.size>MAX_INPUT_BYTES){input.value='';setStatus(authStatus,'JPG, PNG, o WebP lamang at maximum 20 MB.','error');return}
+preview.src=URL.createObjectURL(file);
+}
+
+memberMode.addEventListener('change',refreshMemberControls);memberSelect.addEventListener('change',loadSelectedMember);memberPhoto.addEventListener('change',function(){previewSelectedPhoto(memberPhoto,memberPhotoPreview)});
+rideMode.addEventListener('change',refreshRideControls);rideSelect.addEventListener('change',loadSelectedRide);ridePhoto.addEventListener('change',function(){previewSelectedPhoto(ridePhoto,ridePhotoPreview)});
+pastMode.addEventListener('change',refreshPastControls);pastSelect.addEventListener('change',loadSelectedPast);pastPhoto.addEventListener('change',function(){previewSelectedPhoto(pastPhoto,pastPhotoPreview)});
+
+saveMemberButton.addEventListener('click',async function(){
+if(!verified){setStatus(memberStatusMessage,'Verify Admin muna.','error');return}
+var id=memberId.value.trim(),name=memberName.value.trim().toUpperCase(),joined=memberJoined.value.trim();
+if(!id||!name||!joined){setStatus(memberStatusMessage,'Complete Member ID, Full Name, at Year Joined.','error');return}
+if(memberMode.value==='edit'&&!memberSelect.value){setStatus(memberStatusMessage,'Pumili muna ng member na ie-edit.','error');return}
+saveMemberButton.disabled=true;setStatus(memberStatusMessage,'Sine-save ang member record...','info');
+try{
+var manifest=await getRepositoryJson('members.json');var items=Array.isArray(manifest.items)?manifest.items:[];var existing=items.find(function(item){return item.id===id});
+var record={id:id,name:name,joined:joined,status:memberRecordStatus.value,position:memberPosition.value.trim()||'Member',photo:existing&&existing.photo?existing.photo:'logo.jpg'};
+var files=[];var photoFile=memberPhoto.files&&memberPhoto.files[0];
+if(photoFile){var compressed=await compressPhoto(photoFile);record.photo='image/members/'+id.toLowerCase()+'-'+Date.now()+'.jpg';files.push({path:record.photo,content:bufferToBase64(await compressed.arrayBuffer()),encoding:'base64'})}
+var index=items.findIndex(function(item){return item.id===id});if(index>=0){items[index]=record}else{items.push(record)}
+items.sort(function(a,b){return a.id.localeCompare(b.id,undefined,{numeric:true})});manifest.version=1;manifest.updatedAt=new Date().toISOString();manifest.items=items;
+files.push({path:'members.json',content:JSON.stringify(manifest,null,2)+'\n'});await commitRepositoryFiles(files,(index>=0?'Update ':'Add ')+'member '+id);
+memberData=items;refreshMemberControls();setStatus(memberStatusMessage,'✅ Member published! Lalabas ang update sa website sa loob ng 1–3 minuto.','success');
+}catch(error){setStatus(memberStatusMessage,'❌ Hindi na-save: '+error.message,'error')}
+updatePublishButton();
+});
+
+saveRideButton.addEventListener('click',async function(){
+if(!verified){setStatus(rideStatusMessage,'Verify Admin muna.','error');return}
+var title=rideTitle.value.trim();if(!title){setStatus(rideStatusMessage,'Ilagay ang Ride Title.','error');return}
+if(rideMode.value==='edit'&&!rideSelect.value){setStatus(rideStatusMessage,'Pumili muna ng featured ride na ie-edit.','error');return}
+saveRideButton.disabled=true;setStatus(rideStatusMessage,'Sine-save ang featured ride...','info');
+try{
+var manifest=await getRepositoryJson('rides.json');var items=Array.isArray(manifest.items)?manifest.items:[];var id=rideMode.value==='edit'?rideSelect.value:'ride-'+safeName(title)+'-'+Date.now().toString(36);var existing=items.find(function(item){return item.id===id});
+var record={id:id,title:title,date:rideDate.value,location:rideLocation.value.trim(),description:rideDescription.value.trim(),photo:existing&&existing.photo?existing.photo:''};var files=[];var photoFile=ridePhoto.files&&ridePhoto.files[0];
+if(photoFile){var compressed=await compressPhoto(photoFile);record.photo='image/featured-rides/'+safeName(title)+'-'+Date.now()+'.jpg';files.push({path:record.photo,content:bufferToBase64(await compressed.arrayBuffer()),encoding:'base64'})}
+var index=items.findIndex(function(item){return item.id===id});if(index>=0){items[index]=record}else{items.unshift(record)}manifest.version=1;manifest.updatedAt=new Date().toISOString();manifest.items=items;
+files.push({path:'rides.json',content:JSON.stringify(manifest,null,2)+'\n'});await commitRepositoryFiles(files,(index>=0?'Update ':'Add ')+'featured ride: '+title);
+rideData=items;refreshRideControls();setStatus(rideStatusMessage,'✅ Featured ride published! Lalabas sa website sa loob ng 1–3 minuto.','success');
+}catch(error){setStatus(rideStatusMessage,'❌ Hindi na-save: '+error.message,'error')}
+updatePublishButton();
+});
+
+savePastButton.addEventListener('click',async function(){
+if(!verified){setStatus(pastStatusMessage,'Verify Admin muna.','error');return}
+var term=pastTerm.value.trim(),name=pastName.value.trim();if(!term||!name){setStatus(pastStatusMessage,'Ilagay ang Term/Year at Full Name.','error');return}
+if(pastMode.value==='edit'&&!pastSelect.value){setStatus(pastStatusMessage,'Pumili muna ng past president.','error');return}
+savePastButton.disabled=true;setStatus(pastStatusMessage,'Sine-save ang past president...','info');
+try{
+var manifest=await getRepositoryJson('past-presidents.json');var items=Array.isArray(manifest.items)?manifest.items:[];var id=pastMode.value==='edit'?pastSelect.value:'past-'+safeName(name)+'-'+Date.now().toString(36);var existing=items.find(function(item){return item.id===id});
+var record={id:id,term:term,name:name,note:pastNote.value.trim()||'Past President',photo:existing&&existing.photo?existing.photo:''};var files=[];var photoFile=pastPhoto.files&&pastPhoto.files[0];
+if(photoFile){var compressed=await compressPhoto(photoFile);record.photo='image/past-presidents/'+safeName(name)+'-'+Date.now()+'.jpg';files.push({path:record.photo,content:bufferToBase64(await compressed.arrayBuffer()),encoding:'base64'})}
+var index=items.findIndex(function(item){return item.id===id});if(index>=0){items[index]=record}else{items.push(record)}manifest.version=1;manifest.updatedAt=new Date().toISOString();manifest.items=items;
+files.push({path:'past-presidents.json',content:JSON.stringify(manifest,null,2)+'\n'});await commitRepositoryFiles(files,(index>=0?'Update ':'Add ')+'past president: '+name);
+pastData=items;refreshPastControls();setStatus(pastStatusMessage,'✅ Past president published! Lalabas ang picture sa website sa loob ng 1–3 minuto.','success');
+}catch(error){setStatus(pastStatusMessage,'❌ Hindi na-save: '+error.message,'error')}
+updatePublishButton();
+});
+
+loadAdminData();
 
 async function publishPhotos(){
 if(!verified){setStatus(publishStatus,'Verify Admin muna.','error');return}
