@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-08-16T22:42:26.534Z",
+  "updatedAt": "2026-08-16T22:43:33.843Z",
   "items": [
     {
       "id": "JRCP-001",
@@ -263,6 +263,14 @@
       "name": "ALFREDO PAGATPATAN JR.",
       "joined": "2026",
       "status": "provisionary",
+      "position": "Member",
+      "photo": "logo.jpg"
+    },
+    {
+      "id": "JRCP-034",
+      "name": "ELVIN GAWIL BAGSIK",
+      "joined": "2014",
+      "status": "inactive",
       "position": "Member",
       "photo": "logo.jpg"
     }
