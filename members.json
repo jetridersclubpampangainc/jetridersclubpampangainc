@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-08-16T22:39:12.013Z",
+  "updatedAt": "2026-08-16T22:42:26.534Z",
   "items": [
     {
       "id": "JRCP-001",
@@ -253,6 +253,14 @@
     {
       "id": "JRCP-032",
       "name": "MARK FABIAN",
+      "joined": "2026",
+      "status": "provisionary",
+      "position": "Member",
+      "photo": "logo.jpg"
+    },
+    {
+      "id": "JRCP-033",
+      "name": "ALFREDO PAGATPATAN JR.",
       "joined": "2026",
       "status": "provisionary",
       "position": "Member",
