@@ -149,7 +149,11 @@ var progressBar=document.getElementById('progress-bar');
 var dateInput=document.getElementById('photo-date');
 var defaultCaption=document.getElementById('default-caption');
 
-dateInput.value=new Date().toISOString().slice(0,10);
+function localDateString(date){
+var local=new Date(date.getTime()-date.getTimezoneOffset()*60000);
+return local.toISOString().slice(0,10);
+}
+dateInput.value=localDateString(new Date());
 var savedToken=sessionStorage.getItem('jrcp_admin_token');
 if(savedToken){tokenInput.value=savedToken;setAuthStatus('May saved Admin Key sa session na ito. Click Verify Admin.','info')}
 
@@ -277,7 +281,7 @@ async function publishPhotos(){
 if(!verified){setStatus(publishStatus,'Verify Admin muna.','error');return}
 if(!preparedFiles.length){setStatus(publishStatus,'Pumili muna ng pictures.','error');return}
 var category=document.getElementById('category').value;
-var photoDate=dateInput.value||new Date().toISOString().slice(0,10);
+var photoDate=dateInput.value||localDateString(new Date());
 var stamp=Date.now();
 publishButton.disabled=true;verifyButton.disabled=true;progress.classList.add('show');progressBar.style.width='5%';setStatus(publishStatus,'Kinukuha ang latest gallery...','info');
 try{
