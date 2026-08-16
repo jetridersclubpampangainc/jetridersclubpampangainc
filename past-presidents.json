@@ -1,0 +1,17 @@
+{
+  "version": 1,
+  "updatedAt": "2026-08-16T00:00:00.000Z",
+  "items": [
+    {"id":"past-apol-2001","term":"2001","name":"Apol Ignacio","note":"Founder","photo":"image/apolonio.jpg.png"},
+    {"id":"past-richard-2007","term":"2007","name":"Richard Naguiat","note":"Past President","photo":""},
+    {"id":"past-michael-2016","term":"2016","name":"Michael Manio","note":"Past President","photo":"image/michael.jpg.png"},
+    {"id":"past-jolly-2017","term":"2017","name":"Celestino (Jolly) Medina","note":"Past President","photo":""},
+    {"id":"past-henry-2018","term":"2018","name":"Henry Faustino","note":"Past President","photo":"image/henry.jpg.jpg"},
+    {"id":"past-arlene-2019-2020","term":"2019–2020","name":"Arlene Pineda","note":"Past President","photo":"image/arlene.jpg.jpg"},
+    {"id":"past-jojo-2021","term":"2021","name":"Jojo Policarpio","note":"Past President","photo":"image/jojo.jpg.jpg"},
+    {"id":"past-gilbert-2022","term":"2022","name":"Gilbert Basilio","note":"Past President","photo":"image/gilbert.jpg"},
+    {"id":"past-charlie-2023","term":"2023","name":"Charlie Caranto","note":"Past President","photo":"image/charle.jpg.jpg"},
+    {"id":"past-ryan-2025","term":"2025","name":"Ryan Escanillas","note":"Past President","photo":"image/ryan.jpg.png"},
+    {"id":"past-edwin-2026","term":"2026","name":"Edwin David","note":"President","photo":"image/edwin.jpg.jpg"}
+  ]
+}
