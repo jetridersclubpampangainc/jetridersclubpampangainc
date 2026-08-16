@@ -1,0 +1,326 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Admin Photo Upload | JETRIDERS CLUB PAMPANGA INC.</title>
+<style>
+:root{--green:#006d2c;--green-dark:#003d18;--bright:#00e765;--mint:#dfffea;--gold:#ffd54a;--danger:#b42318;--ink:#102016;--muted:#5d6b62;--line:#d7e5dc;--bg:#f2f7f3}
+*{box-sizing:border-box}
+body{margin:0;font-family:Arial,Helvetica,sans-serif;color:var(--ink);background:linear-gradient(145deg,#edf8f0,#d4f2df);min-height:100vh}
+header{background:linear-gradient(135deg,var(--green-dark),var(--green));color:white;padding:24px 18px;box-shadow:0 5px 18px rgba(0,55,20,.25)}
+.header-inner,.wrap{max-width:980px;margin:auto}
+.brand{display:flex;align-items:center;gap:14px}
+.brand img{width:64px;height:64px;border-radius:50%;background:white;border:3px solid var(--bright);object-fit:cover}
+h1{font-size:25px;margin:0 0 5px}.subtitle{margin:0;color:var(--mint);font-size:14px}
+.back{color:white;text-decoration:none;font-weight:bold;display:inline-block;margin-top:15px}
+.wrap{padding:20px 14px 50px}
+.card{background:white;border:1px solid var(--line);border-radius:18px;padding:22px;margin-bottom:18px;box-shadow:0 10px 28px rgba(0,65,25,.10)}
+.step{display:inline-flex;align-items:center;justify-content:center;width:30px;height:30px;border-radius:50%;background:var(--green);color:white;font-weight:bold;margin-right:8px}
+h2{font-size:21px;margin:0 0 16px;color:var(--green-dark)}
+p,li,label{font-size:15px;line-height:1.5}.muted{color:var(--muted)}
+.notice{padding:13px 15px;border-radius:12px;background:#fff8d9;border:1px solid #ead26a;margin:12px 0}
+.safe{background:#eaf9ef;border-color:#a9dfb9}
+.danger{background:#fff0ee;border-color:#f0b1aa;color:#7a271a}
+.form-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.full{grid-column:1/-1}
+label{font-weight:bold;color:#263d2d;display:block}
+input,select,textarea{width:100%;margin-top:6px;padding:13px;border:1px solid #adc8b5;border-radius:10px;background:#fff;color:#17251c;font-size:16px}
+input:focus,select:focus,textarea:focus{outline:3px solid rgba(0,231,101,.18);border-color:var(--green)}
+.token-row{display:grid;grid-template-columns:1fr auto;gap:10px;align-items:end}
+.btn{border:0;border-radius:12px;padding:13px 18px;background:var(--green);color:white;font-size:15px;font-weight:bold;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;justify-content:center;gap:7px;min-height:46px}
+.btn:hover{background:var(--green-dark)}.btn:disabled{opacity:.55;cursor:not-allowed}.btn.secondary{background:#e7f3eb;color:var(--green-dark)}.btn.danger-btn{background:#fff0ee;color:var(--danger);border:1px solid #efb5ae}
+.btn.publish{width:100%;background:linear-gradient(135deg,#008a37,#00c853);font-size:18px;min-height:56px;box-shadow:0 7px 18px rgba(0,150,65,.22)}
+.dropzone{display:block;border:2px dashed #6eb486;border-radius:16px;padding:28px 18px;text-align:center;background:#f4fbf6;cursor:pointer;transition:.2s}
+.dropzone:hover,.dropzone.dragging{border-color:var(--green);background:#e5f8eb}.dropzone input{display:none}.dropzone strong{display:block;font-size:18px;color:var(--green-dark);margin-bottom:6px}
+.previews{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:14px;margin-top:18px}
+.preview{border:1px solid var(--line);border-radius:14px;overflow:hidden;background:#f7faf8}
+.preview img{display:block;width:100%;height:170px;object-fit:cover;background:#dfe8e2}
+.preview-body{padding:11px}.preview-name{font-size:12px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-bottom:8px}.preview input{font-size:14px;margin:0;padding:10px}
+.preview-actions{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-top:9px}.size{font-size:12px;color:var(--muted)}.remove{border:0;background:transparent;color:var(--danger);font-weight:bold;cursor:pointer}
+.status{display:none;padding:14px 15px;border-radius:12px;margin-top:14px;font-weight:bold;white-space:pre-line}.status.show{display:block}.status.info{background:#eef7ff;color:#174ea6;border:1px solid #b8d7f8}.status.success{background:#e8f8ed;color:#176b36;border:1px solid #a8deb7}.status.error{background:#fff0ee;color:#9a241a;border:1px solid #efb5ae}
+.progress{display:none;height:10px;background:#e3eee6;border-radius:8px;overflow:hidden;margin-top:12px}.progress.show{display:block}.progress-bar{height:100%;width:0;background:linear-gradient(90deg,var(--green),var(--bright));transition:width .25s}
+details{margin-top:13px}summary{cursor:pointer;font-weight:bold;color:var(--green)}ol{padding-left:23px}code{background:#edf2ee;padding:2px 5px;border-radius:5px}
+.toolbar{display:flex;flex-wrap:wrap;gap:10px;margin-top:12px}
+footer{text-align:center;color:#4a6252;padding:10px 15px 35px;font-size:13px}
+@media(max-width:650px){header{padding:18px 14px}.brand img{width:54px;height:54px}h1{font-size:20px}.wrap{padding:14px 10px 35px}.card{padding:17px;border-radius:15px}.form-grid,.token-row{grid-template-columns:1fr}.btn{width:100%}.previews{grid-template-columns:1fr 1fr}.preview img{height:135px}}
+@media(max-width:420px){.previews{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<header>
+<div class="header-inner">
+<div class="brand"><img src="logo.jpg" alt="JETRIDERS logo"><div><h1>Admin Photo Upload</h1><p class="subtitle">JETRIDERS CLUB PAMPANGA INC.</p></div></div>
+<a class="back" href="index.html#gallery">← Back to Official Website</a>
+</div>
+</header>
+
+<main class="wrap">
+<section class="card">
+<h2><span class="step">1</span>Admin Access</h2>
+<p class="muted">Ilagay ang iyong GitHub Admin Key. Kailangan lang ito para mapatunayan na ikaw ang authorized administrator.</p>
+<div class="token-row">
+<label>GitHub Admin Key
+<input id="token" type="password" autocomplete="off" spellcheck="false" placeholder="Paste your fine-grained token here">
+</label>
+<button class="btn" id="verify" type="button">🔐 Verify Admin</button>
+</div>
+<div class="toolbar"><button class="btn danger-btn" id="clear-token" type="button">Log Out / Clear Key</button></div>
+<div id="auth-status" class="status" role="status"></div>
+<div class="notice safe"><strong>Secure:</strong> Hindi kasama sa website code ang Admin Key. Sa kasalukuyang browser tab/session lang ito pansamantalang itinatago. Huwag itong i-share.</div>
+<details>
+<summary>First time? Paano gumawa ng Admin Key</summary>
+<ol>
+<li>Buksan ang <a href="https://github.com/settings/personal-access-tokens/new" target="_blank" rel="noopener">GitHub Fine-grained Token page</a> at mag-login.</li>
+<li>Token name: <code>JETRIDERS Photo Upload</code>.</li>
+<li>Sa Repository access, piliin ang <strong>Only select repositories</strong>, tapos piliin ang <strong>jetridersclubpampangainc</strong>.</li>
+<li>Sa Repository permissions, itakda ang <strong>Contents: Read and write</strong>.</li>
+<li>Click <strong>Generate token</strong>, copy ito, at i-paste sa Admin Key box.</li>
+</ol>
+<div class="notice danger"><strong>Important:</strong> Isang beses lang ipapakita ng GitHub ang token. I-save sa password manager at huwag ipadala sa chat o GC.</div>
+</details>
+</section>
+
+<section class="card">
+<h2><span class="step">2</span>Photo Details</h2>
+<div class="form-grid">
+<label>Gallery Category
+<select id="category">
+<option value="rides">🏍️ Rides</option>
+<option value="events">🎉 Events</option>
+<option value="meetings">🤝 Meetings</option>
+</select>
+</label>
+<label>Date
+<input id="photo-date" type="date">
+</label>
+<label class="full">Default Caption (optional)
+<input id="default-caption" type="text" maxlength="120" placeholder="Example: Rama Beach Ride 2026">
+</label>
+</div>
+</section>
+
+<section class="card">
+<h2><span class="step">3</span>Select Pictures</h2>
+<label class="dropzone" id="dropzone">
+<input id="files" type="file" accept="image/jpeg,image/png,image/webp" multiple>
+<strong>📷 Tap to Choose Pictures</strong>
+<span class="muted">Pwede ring i-drag dito. Maximum 12 photos bawat publish.</span>
+</label>
+<div id="file-status" class="status" role="status"></div>
+<div id="previews" class="previews"></div>
+</section>
+
+<section class="card">
+<h2><span class="step">4</span>Preview & Publish</h2>
+<p class="muted">I-check ang category, date, at caption. Awtomatikong pinapaliit ang photos para mabilis buksan sa mobile.</p>
+<button class="btn publish" id="publish" type="button" disabled>🚀 Publish Photos Now</button>
+<div id="progress" class="progress"><div id="progress-bar" class="progress-bar"></div></div>
+<div id="publish-status" class="status" role="status"></div>
+</section>
+</main>
+
+<footer>Authorized club administrators only · JETRIDERS CLUB PAMPANGA INC.</footer>
+
+<script>
+(function(){
+'use strict';
+
+var REPOSITORY='jetridersclubpampangainc/jetridersclubpampangainc';
+var BRANCH='main';
+var MAX_FILES=12;
+var MAX_INPUT_BYTES=20*1024*1024;
+var preparedFiles=[];
+var verified=false;
+
+var tokenInput=document.getElementById('token');
+var verifyButton=document.getElementById('verify');
+var clearTokenButton=document.getElementById('clear-token');
+var authStatus=document.getElementById('auth-status');
+var filesInput=document.getElementById('files');
+var dropzone=document.getElementById('dropzone');
+var previews=document.getElementById('previews');
+var fileStatus=document.getElementById('file-status');
+var publishButton=document.getElementById('publish');
+var publishStatus=document.getElementById('publish-status');
+var progress=document.getElementById('progress');
+var progressBar=document.getElementById('progress-bar');
+var dateInput=document.getElementById('photo-date');
+var defaultCaption=document.getElementById('default-caption');
+
+dateInput.value=new Date().toISOString().slice(0,10);
+var savedToken=sessionStorage.getItem('jrcp_admin_token');
+if(savedToken){tokenInput.value=savedToken;setAuthStatus('May saved Admin Key sa session na ito. Click Verify Admin.','info')}
+
+function setStatus(element,message,type){element.textContent=message;element.className='status show '+type}
+function clearStatus(element){element.textContent='';element.className='status'}
+function setAuthStatus(message,type){setStatus(authStatus,message,type)}
+function updatePublishButton(){publishButton.disabled=!verified||preparedFiles.length===0}
+function formatBytes(bytes){if(bytes<1024*1024){return Math.round(bytes/1024)+' KB'}return (bytes/(1024*1024)).toFixed(1)+' MB'}
+function uniqueId(){return window.crypto&&crypto.randomUUID?crypto.randomUUID():Date.now().toString(36)+'-'+Math.random().toString(36).slice(2)}
+function safeName(name){return name.toLowerCase().replace(/\.[^.]+$/,'').replace(/[^a-z0-9]+/g,'-').replace(/^-+|-+$/g,'').slice(0,45)||'photo'}
+function apiPath(path){return 'https://api.github.com'+path}
+
+async function githubApi(path,options){
+var token=tokenInput.value.trim();
+if(!token){throw new Error('Ilagay muna ang GitHub Admin Key.')}
+var config=options||{};
+config.headers=Object.assign({'Accept':'application/vnd.github+json','Authorization':'Bearer '+token,'X-GitHub-Api-Version':'2022-11-28','Content-Type':'application/json'},config.headers||{});
+var response=await fetch(apiPath(path),config);
+if(!response.ok){
+var body={};
+try{body=await response.json()}catch(ignore){}
+var message=body.message||('GitHub request failed ('+response.status+')');
+if(response.status===401){message='Invalid o expired ang Admin Key.'}
+if(response.status===403){message='Walang write permission ang Admin Key. Set Contents to Read and write.'}
+throw new Error(message);
+}
+return response.status===204?null:response.json();
+}
+
+verifyButton.addEventListener('click',async function(){
+verified=false;updatePublishButton();verifyButton.disabled=true;setAuthStatus('Vine-verify ang admin access...','info');
+try{
+var repo=await githubApi('/repos/'+REPOSITORY);
+if(repo.permissions&&repo.permissions.push===false){throw new Error('Read-only ang Admin Key. Kailangan ng Contents: Read and write.')}
+verified=true;sessionStorage.setItem('jrcp_admin_token',tokenInput.value.trim());
+setAuthStatus('✅ Verified! Authorized admin access. Pwede ka nang mag-publish.','success');
+}catch(error){sessionStorage.removeItem('jrcp_admin_token');setAuthStatus('❌ '+error.message,'error')}
+verifyButton.disabled=false;updatePublishButton();
+});
+
+clearTokenButton.addEventListener('click',function(){
+sessionStorage.removeItem('jrcp_admin_token');tokenInput.value='';verified=false;updatePublishButton();setAuthStatus('Admin Key cleared.','info');
+});
+
+defaultCaption.addEventListener('input',function(){
+preparedFiles.forEach(function(item){if(!item.captionEdited){item.caption=defaultCaption.value.trim()}});renderPreviews();
+});
+
+filesInput.addEventListener('change',function(){handleFiles(Array.from(filesInput.files||[]));filesInput.value='' });
+['dragenter','dragover'].forEach(function(eventName){dropzone.addEventListener(eventName,function(event){event.preventDefault();dropzone.classList.add('dragging')})});
+['dragleave','drop'].forEach(function(eventName){dropzone.addEventListener(eventName,function(event){event.preventDefault();dropzone.classList.remove('dragging')})});
+dropzone.addEventListener('drop',function(event){handleFiles(Array.from(event.dataTransfer.files||[]))});
+
+async function handleFiles(files){
+clearStatus(fileStatus);
+var room=MAX_FILES-preparedFiles.length;
+if(room<=0){setStatus(fileStatus,'Maximum '+MAX_FILES+' photos bawat publish.','error');return}
+var selected=files.slice(0,room);
+if(files.length>room){setStatus(fileStatus,'Unang '+room+' photos lang ang idinagdag dahil maximum '+MAX_FILES+'.','info')}
+for(var i=0;i<selected.length;i++){
+var file=selected[i];
+if(!/^image\/(jpeg|png|webp)$/i.test(file.type)){setStatus(fileStatus,'Nilaktawan ang '+file.name+': JPG, PNG, o WebP lamang.','error');continue}
+if(file.size>MAX_INPUT_BYTES){setStatus(fileStatus,'Nilaktawan ang '+file.name+': lampas 20 MB.','error');continue}
+try{
+setStatus(fileStatus,'Inihahanda ang photo '+(i+1)+' of '+selected.length+'...','info');
+var compressed=await compressPhoto(file);
+preparedFiles.push({id:uniqueId(),originalName:file.name,fileName:safeName(file.name)+'.jpg',blob:compressed,previewUrl:URL.createObjectURL(compressed),caption:defaultCaption.value.trim(),captionEdited:false});
+renderPreviews();
+}catch(error){setStatus(fileStatus,'Hindi mabasa ang '+file.name+'. Subukan ang JPG format.','error')}
+}
+if(preparedFiles.length){setStatus(fileStatus,'✅ '+preparedFiles.length+' photo(s) ready for preview.','success')}
+updatePublishButton();
+}
+
+function compressPhoto(file){
+return new Promise(function(resolve,reject){
+var image=new Image();
+var sourceUrl=URL.createObjectURL(file);
+image.onload=function(){
+try{
+var maxSide=1800;
+var scale=Math.min(1,maxSide/Math.max(image.naturalWidth,image.naturalHeight));
+var width=Math.max(1,Math.round(image.naturalWidth*scale));
+var height=Math.max(1,Math.round(image.naturalHeight*scale));
+var canvas=document.createElement('canvas');canvas.width=width;canvas.height=height;
+var context=canvas.getContext('2d');context.fillStyle='#ffffff';context.fillRect(0,0,width,height);context.drawImage(image,0,0,width,height);
+canvas.toBlob(function(blob){URL.revokeObjectURL(sourceUrl);if(blob){resolve(blob)}else{reject(new Error('Compression failed'))}},'image/jpeg',.84);
+}catch(error){URL.revokeObjectURL(sourceUrl);reject(error)}
+};
+image.onerror=function(){URL.revokeObjectURL(sourceUrl);reject(new Error('Invalid image'))};
+image.src=sourceUrl;
+});
+}
+
+function renderPreviews(){
+previews.innerHTML='';
+preparedFiles.forEach(function(item){
+var card=document.createElement('article');card.className='preview';card.dataset.id=item.id;
+var image=document.createElement('img');image.src=item.previewUrl;image.alt='Photo preview';
+var body=document.createElement('div');body.className='preview-body';
+var name=document.createElement('div');name.className='preview-name';name.textContent=item.originalName;
+var caption=document.createElement('input');caption.type='text';caption.maxLength=120;caption.placeholder='Caption for this photo';caption.value=item.caption;
+caption.addEventListener('input',function(){item.caption=caption.value.trim();item.captionEdited=true});
+var actions=document.createElement('div');actions.className='preview-actions';
+var size=document.createElement('span');size.className='size';size.textContent=formatBytes(item.blob.size);
+var remove=document.createElement('button');remove.type='button';remove.className='remove';remove.textContent='Remove';
+remove.addEventListener('click',function(){URL.revokeObjectURL(item.previewUrl);preparedFiles=preparedFiles.filter(function(file){return file.id!==item.id});renderPreviews();updatePublishButton()});
+actions.appendChild(size);actions.appendChild(remove);body.appendChild(name);body.appendChild(caption);body.appendChild(actions);card.appendChild(image);card.appendChild(body);previews.appendChild(card);
+});
+}
+
+function bufferToBase64(buffer){
+var bytes=new Uint8Array(buffer);var binary='';var chunk=32768;
+for(var i=0;i<bytes.length;i+=chunk){binary+=String.fromCharCode.apply(null,bytes.subarray(i,Math.min(i+chunk,bytes.length)))}
+return btoa(binary);
+}
+
+function base64ToText(value){
+var clean=value.replace(/\s/g,'');var binary=atob(clean);var bytes=new Uint8Array(binary.length);
+for(var i=0;i<binary.length;i++){bytes[i]=binary.charCodeAt(i)}
+return new TextDecoder().decode(bytes);
+}
+
+async function publishPhotos(){
+if(!verified){setStatus(publishStatus,'Verify Admin muna.','error');return}
+if(!preparedFiles.length){setStatus(publishStatus,'Pumili muna ng pictures.','error');return}
+var category=document.getElementById('category').value;
+var photoDate=dateInput.value||new Date().toISOString().slice(0,10);
+var stamp=Date.now();
+publishButton.disabled=true;verifyButton.disabled=true;progress.classList.add('show');progressBar.style.width='5%';setStatus(publishStatus,'Kinukuha ang latest gallery...','info');
+try{
+var manifestResponse=await githubApi('/repos/'+REPOSITORY+'/contents/gallery.json?ref='+encodeURIComponent(BRANCH));
+var manifest=JSON.parse(base64ToText(manifestResponse.content));
+var ref=await githubApi('/repos/'+REPOSITORY+'/git/ref/heads/'+encodeURIComponent(BRANCH));
+var headSha=ref.object.sha;
+var commit=await githubApi('/repos/'+REPOSITORY+'/git/commits/'+headSha);
+progressBar.style.width='15%';
+
+var newItems=[];var treeEntries=[];
+for(var i=0;i<preparedFiles.length;i++){
+var item=preparedFiles[i];
+setStatus(publishStatus,'Ina-upload ang photo '+(i+1)+' of '+preparedFiles.length+'...','info');
+var imageBase64=bufferToBase64(await item.blob.arrayBuffer());
+var blob=await githubApi('/repos/'+REPOSITORY+'/git/blobs',{method:'POST',body:JSON.stringify({content:imageBase64,encoding:'base64'})});
+var path='image/gallery/'+category+'/'+photoDate.replace(/-/g,'')+'-'+stamp+'-'+(i+1)+'-'+item.fileName;
+treeEntries.push({path:path,mode:'100644',type:'blob',sha:blob.sha});
+newItems.push({id:uniqueId(),type:'image',category:category,src:path,caption:item.caption||'JETRIDERS Club Photo',date:photoDate,uploadedAt:new Date().toISOString()});
+progressBar.style.width=(15+Math.round(((i+1)/preparedFiles.length)*55))+'%';
+}
+
+manifest.version=1;manifest.updatedAt=new Date().toISOString();manifest.items=newItems.concat(Array.isArray(manifest.items)?manifest.items:[]);
+var manifestBlob=await githubApi('/repos/'+REPOSITORY+'/git/blobs',{method:'POST',body:JSON.stringify({content:JSON.stringify(manifest,null,2)+'\n',encoding:'utf-8'})});
+treeEntries.push({path:'gallery.json',mode:'100644',type:'blob',sha:manifestBlob.sha});
+progressBar.style.width='78%';setStatus(publishStatus,'Pinapublish ang gallery update...','info');
+
+var tree=await githubApi('/repos/'+REPOSITORY+'/git/trees',{method:'POST',body:JSON.stringify({base_tree:commit.tree.sha,tree:treeEntries})});
+var newCommit=await githubApi('/repos/'+REPOSITORY+'/git/commits',{method:'POST',body:JSON.stringify({message:'Publish '+preparedFiles.length+' gallery photo'+(preparedFiles.length===1?'':'s'),tree:tree.sha,parents:[headSha]})});
+await githubApi('/repos/'+REPOSITORY+'/git/refs/heads/'+encodeURIComponent(BRANCH),{method:'PATCH',body:JSON.stringify({sha:newCommit.sha,force:false})});
+progressBar.style.width='100%';
+
+preparedFiles.forEach(function(item){URL.revokeObjectURL(item.previewUrl)});preparedFiles=[];renderPreviews();
+setStatus(publishStatus,'✅ Published successfully! Lalabas ang pictures sa official Gallery sa loob ng humigit-kumulang 1–3 minuto.','success');
+var link=document.createElement('a');link.href='index.html#gallery';link.textContent='Open Official Gallery';link.className='btn secondary';link.style.marginTop='12px';publishStatus.appendChild(document.createElement('br'));publishStatus.appendChild(link);
+}catch(error){
+setStatus(publishStatus,'❌ Hindi na-publish: '+error.message+'\nWalang binago sa live gallery. Paki-refresh at subukan ulit.','error');
+}
+verifyButton.disabled=false;progress.classList.remove('show');progressBar.style.width='0';updatePublishButton();
+}
+
+publishButton.addEventListener('click',publishPhotos);
+})();
+</script>
+</body>
+</html>

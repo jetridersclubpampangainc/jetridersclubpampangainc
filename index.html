@@ -14,6 +14,15 @@
 .gallery-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:16px;margin-top:18px}
 .gallery-grid img,.gallery-grid video{width:100%;height:240px;object-fit:cover;border-radius:15px;border:2px solid #00ff66;background:#000;box-shadow:0 0 14px rgba(0,255,102,.3);transition:.3s}
 .gallery-grid img:hover,.gallery-grid video:hover{transform:scale(1.03)}
+.gallery-card{margin:0;background:rgba(0,0,0,.55);border:1px solid rgba(184,255,184,.45);border-radius:16px;overflow:hidden}
+.gallery-card a{display:block;line-height:0}
+.gallery-card figcaption{padding:12px 14px;color:#fff;font-size:14px;line-height:1.4}
+.gallery-card time{display:block;color:#b8ffb8;font-size:12px;margin-top:4px}
+.gallery-status{text-align:center;padding:28px 12px;color:#dfffe5}
+.gallery-actions{text-align:center;margin-top:20px}
+.gallery-admin-note{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;padding:14px 16px;margin:15px 0;background:rgba(0,255,102,.09);border:1px solid rgba(0,255,102,.45);border-radius:14px}
+.gallery-admin-note p{margin:0}
+.gallery-count{display:inline-block;margin-left:6px;background:#004d1a;color:#fff;padding:2px 7px;border-radius:12px;font-size:11px}
 #visitor-counter .counter-wrap{text-align:center}
 #goatcounter-stats{display:inline-flex;justify-content:center;align-items:center;min-width:220px;min-height:85px;padding:12px;background:#fff;border-radius:12px;box-shadow:0 0 18px rgba(0,255,102,.35);color:#003d12;font-weight:bold}
 .counter-note{color:#dfffe5;font-size:13px;margin-top:10px}
@@ -22,7 +31,7 @@
 </head>
 <body>
 <header id="home" class="hero-banner"><img src="grouppix.png" alt="JETRIDERS 25th Anniversary Banner"><div class="top-actions"><a class="btn" href="#application">Apply as New Member</a><a class="btn" href="#contact">Contact Us</a></div></header>
-<nav><a href="#home">Home</a><a href="#about">About</a><a href="#membership">Membership</a><a href="#officers">Officers</a><a href="#events">Events</a><a href="#rides">Rides</a><a href="#gallery">Gallery</a><a href="#documents">Documents</a><a href="#application">Apply</a><a href="#members">Members</a><a href="#contact">Contact</a></nav>
+<nav><a href="#home">Home</a><a href="#about">About</a><a href="#membership">Membership</a><a href="#officers">Officers</a><a href="#events">Events</a><a href="#rides">Rides</a><a href="#gallery">Gallery</a><a href="#documents">Documents</a><a href="#application">Apply</a><a href="#members">Members</a><a href="#contact">Contact</a><a href="admin.html">Admin Upload</a></nav>
 
 <section class="card" id="visitor-counter" style="max-width:1200px;margin:20px auto;">
 <div class="counter-wrap">
@@ -45,63 +54,22 @@
 
 <section class="card" id="gallery">
 <h2>📸 JETRIDERS Gallery</h2>
-<p>Organized gallery for club rides, events, meetings, and videos.</p>
+<p>Official photos from club rides, events, and meetings. Tap any photo to view it in full size.</p>
+
+<div class="gallery-admin-note">
+<p><strong>Club administrator?</strong> Mag-upload at mag-publish ng bagong pictures gamit ang simple uploader.</p>
+<a class="btn" href="admin.html">📤 Open Admin Upload</a>
+</div>
 
 <div class="gallery-tabs">
-<button class="gallery-btn active" type="button" onclick="showGalleryTab('gallery-rides', this)">🏍️ Rides</button>
-<button class="gallery-btn" type="button" onclick="showGalleryTab('gallery-events', this)">🎉 Events</button>
-<button class="gallery-btn" type="button" onclick="showGalleryTab('gallery-meetings', this)">🤝 Meetings</button>
-<button class="gallery-btn" type="button" onclick="showGalleryTab('gallery-videos', this)">🎥 Videos</button>
+<button class="gallery-btn active" type="button" data-category="rides" onclick="showGalleryTab('rides', this)">🏍️ Rides <span class="gallery-count" id="count-rides">0</span></button>
+<button class="gallery-btn" type="button" data-category="events" onclick="showGalleryTab('events', this)">🎉 Events <span class="gallery-count" id="count-events">0</span></button>
+<button class="gallery-btn" type="button" data-category="meetings" onclick="showGalleryTab('meetings', this)">🤝 Meetings <span class="gallery-count" id="count-meetings">0</span></button>
 </div>
 
-<div id="gallery-rides" class="gallery-tab active">
-<h3>🏍️ Ride Photos</h3>
-<div class="gallery-grid">
-<img src="image/rides/FB_IMG_1781518082599.jpg" 
-<img src="image/rides/FB_IMG_1781518094987.jpg" 
-<img src="image/rides/FB_IMG_1781518214293.jpg" 
-<img src="image/rides/FB_IMG_1781518226344.jpg"
-<img src="image/rides/FB_IMG_1781518228343.jpg"
-<img src="image/rides/FB_IMG_1781518230371.jpg"
-<img src="image/rides/FB_IMG_1781518233373.jpg" 
-<img src="image/rides/FB_IMG_1781518235893.jpg"
-<img src="image/rides/FB_IMG_1781518251713.jpg"
-<img src="image/rides/FB_IMG_1781518254259.jpg" 
-</div>>
-  
-  id="gallery-events" class="gallery-tab">
-<h3>🎉 Events</h3>
-<div class="gallery-grid">
-<img src="image/events/event1.jpg"
-<img src="image/events/event2.jpg" 
-<img src="image/events/event3.jpg" 
-<img src="event/event1.jpg"
-<img src="event/event2.jpg" 
-<img src="event/event3.jpg" 
-</div>
-</div>
-
-<div id="gallery-meetings" class="gallery-tab">
-<h3>🤝 Meetings</h3>
-<div class="gallery-grid">
-<img src="image/meetings/meeting1.jpg" alt="Meeting Photo" onerror="this.src='logo.jpg'">
-<img src="image/meetings/meeting2.jpg" alt="Meeting Photo" onerror="this.src='logo.jpg'">
-<img src="image/meetings/meeting3.jpg" alt="Meeting Photo" onerror="this.src='logo.jpg'">
-<img src="meeting/meeting1.jpg" alt="Meeting Photo" onerror="this.src='logo.jpg'">
-<img src="meeting/meeting2.jpg" alt="Meeting Photo" onerror="this.src='logo.jpg'">
-<img src="meeting/meeting3.jpg" alt="Meeting Photo" onerror="this.src='logo.jpg'">
-</div>
-</div>
-
-<div id="gallery-videos" class="gallery-tab">
-<h3>🎥 Videos</h3>
-<div class="gallery-grid">
-<video controls preload="metadata"><source src="video/rides/ride1.mp4" type="video/mp4"></video>
-<video controls preload="metadata"><source src="video/events/event1.mp4" type="video/mp4"></video>
-<video controls preload="metadata"><source src="video/meetings/meeting1.mp4" type="video/mp4"></video>
-<video controls preload="metadata"><source src="video/video1.mp4" type="video/mp4"></video>
-</div>
-</div>
+<div id="gallery-status" class="gallery-status" role="status">Loading gallery...</div>
+<div id="gallery-grid" class="gallery-grid" aria-live="polite"></div>
+<div class="gallery-actions"><button class="btn" id="gallery-more" type="button" style="display:none">View More Photos</button></div>
 </section>
 
 <section class="card" id="documents"><h2>📁 Legal Documents & Certificates</h2><p>Upload PDFs sa GitHub folder <b>documents/</b> para gumana ang buttons.</p><div class="documents-grid"><div class="document-card"><h3>📄 SEC Registration</h3><p>CN201720885</p><a class="btn" href="documents/sec-registration.pdf" target="_blank">View</a></div><div class="document-card"><h3>📜 Articles & By-Laws</h3><p>Official constitution and by-laws.</p><a class="btn" href="documents/articles-bylaws.pdf" target="_blank">View</a></div><div class="document-card"><h3>🏆 Certificate</h3><p>Certificate of incorporation.</p><a class="btn" href="documents/certificate-incorporation.pdf" target="_blank">View</a></div><div class="document-card"><h3>📝 Membership Form</h3><p>Downloadable form.</p><a class="btn" href="documents/membership-form.pdf" target="_blank">Download</a></div><div class="document-card"><h3>🪪 ID Guidelines</h3><p>ID issuance policies.</p><a class="btn" href="documents/id-guidelines.pdf" target="_blank">View</a></div><div class="document-card"><h3>📋 Club Rules</h3><p>Official club policies.</p><a class="btn" href="documents/club-policies.pdf" target="_blank">View</a></div></div></section>
@@ -149,12 +117,61 @@ const payment=document.getElementById('payment'),paymentDetails=document.getElem
 payment.addEventListener('change',function(){paymentDetails.style.display='none';gcashInfo.style.display='none';bankInfo.style.display='none';if(this.value==='GCash'){paymentDetails.style.display='block';gcashInfo.style.display='block'}if(this.value==='Bank Transfer'){paymentDetails.style.display='block';bankInfo.style.display='block'}});
 </script>
 <script>
-function showGalleryTab(tabId, btn){
-document.querySelectorAll('.gallery-tab').forEach(function(tab){tab.classList.remove('active')});
-document.querySelectorAll('.gallery-btn').forEach(function(button){button.classList.remove('active')});
-document.getElementById(tabId).classList.add('active');
-btn.classList.add('active');
+var galleryItems=[];
+var activeGalleryCategory='rides';
+var galleryVisible=12;
+
+function escapeGalleryText(value){
+return String(value||'').replace(/[&<>"']/g,function(character){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[character]});
 }
+
+function renderGallery(){
+var grid=document.getElementById('gallery-grid');
+var status=document.getElementById('gallery-status');
+var more=document.getElementById('gallery-more');
+var filtered=galleryItems.filter(function(item){return item.category===activeGalleryCategory});
+var visible=filtered.slice(0,galleryVisible);
+
+if(!visible.length){
+grid.innerHTML='';
+status.style.display='block';
+status.textContent='Wala pang photo sa category na ito. Check ulit soon!';
+more.style.display='none';
+return;
+}
+
+status.style.display='none';
+grid.innerHTML=visible.map(function(item){
+var caption=escapeGalleryText(item.caption||'JETRIDERS Club Photo');
+var date=item.date?'<time datetime="'+escapeGalleryText(item.date)+'">'+escapeGalleryText(item.date)+'</time>':'';
+return '<figure class="gallery-card"><a href="'+encodeURI(item.src)+'" target="_blank" rel="noopener"><img src="'+encodeURI(item.src)+'" alt="'+caption+'" loading="lazy" decoding="async"></a><figcaption>'+caption+date+'</figcaption></figure>';
+}).join('');
+more.style.display=filtered.length>galleryVisible?'inline-block':'none';
+}
+
+function showGalleryTab(category,btn){
+activeGalleryCategory=category;
+galleryVisible=12;
+document.querySelectorAll('.gallery-btn').forEach(function(button){button.classList.remove('active')});
+btn.classList.add('active');
+renderGallery();
+}
+
+document.getElementById('gallery-more').addEventListener('click',function(){galleryVisible+=12;renderGallery()});
+
+fetch('gallery.json?version='+Date.now()).then(function(response){
+if(!response.ok){throw new Error('Gallery data unavailable')}
+return response.json();
+}).then(function(data){
+galleryItems=Array.isArray(data.items)?data.items:[];
+['rides','events','meetings'].forEach(function(category){
+var count=document.getElementById('count-'+category);
+if(count){count.textContent=galleryItems.filter(function(item){return item.category===category}).length}
+});
+renderGallery();
+}).catch(function(){
+document.getElementById('gallery-status').textContent='Hindi ma-load ang gallery ngayon. Paki-refresh ang page.';
+});
 </script>
 <script data-goatcounter="https://jetriders.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
 <script>
