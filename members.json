@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-08-16T22:37:44.095Z",
+  "updatedAt": "2026-08-16T22:39:12.013Z",
   "items": [
     {
       "id": "JRCP-001",
@@ -245,6 +245,14 @@
     {
       "id": "JRCP-031",
       "name": "ALFRED DAVID",
+      "joined": "2026",
+      "status": "provisionary",
+      "position": "Member",
+      "photo": "logo.jpg"
+    },
+    {
+      "id": "JRCP-032",
+      "name": "MARK FABIAN",
       "joined": "2026",
       "status": "provisionary",
       "position": "Member",
