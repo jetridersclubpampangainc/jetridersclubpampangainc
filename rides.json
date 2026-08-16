@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "updatedAt": "2026-08-16T00:00:00.000Z",
+  "items": [
+    {"id":"ride-baler","title":"Baler Aurora Ride","date":"","location":"Baler, Aurora","description":"Official JETRIDERS club ride.","photo":""},
+    {"id":"ride-mother-falls","title":"Mother Falls Adventure","date":"","location":"Aurora","description":"Adventure ride with the JETRIDERS family.","photo":""},
+    {"id":"ride-dingalan","title":"Dingalan Ride","date":"","location":"Dingalan, Aurora","description":"Scenic group ride and fellowship.","photo":""},
+    {"id":"ride-atok","title":"Atok Benguet Ride","date":"","location":"Atok, Benguet","description":"Mountain ride and adventure.","photo":""},
+    {"id":"ride-pampanga-breakfast","title":"Pampanga Breakfast Ride","date":"","location":"Pampanga","description":"Local breakfast ride with club members.","photo":""}
+  ]
+}

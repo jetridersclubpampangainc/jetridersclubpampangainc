@@ -9,3 +9,14 @@ Open `admin.html` from the live website. The administrator can select up to 12 J
 The uploader requires a GitHub fine-grained personal access token restricted to this repository with **Contents: Read and write** permission. The token is never stored in the repository; it is kept only in the current browser session.
 
 The public gallery reads `gallery.json` and lazy-loads photos by category.
+
+## Other admin tools
+
+The Admin Dashboard also supports:
+
+- adding a member with an automatic next `JRCP-###` member ID
+- editing an existing member's name, year joined, status, position, and photo
+- adding or editing featured rides, including a cover photo
+- adding or editing past presidents and uploading their photos
+
+Public content is loaded from `members.json`, `rides.json`, and `past-presidents.json`. Updates are committed atomically to the `main` branch with the same repository-restricted Admin Key.

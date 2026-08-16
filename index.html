@@ -23,6 +23,14 @@
 .gallery-admin-note{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;padding:14px 16px;margin:15px 0;background:rgba(0,255,102,.09);border:1px solid rgba(0,255,102,.45);border-radius:14px}
 .gallery-admin-note p{margin:0}
 .gallery-count{display:inline-block;margin-left:6px;background:#004d1a;color:#fff;padding:2px 7px;border-radius:12px;font-size:11px}
+.featured-rides-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;margin-top:16px}
+.ride-card{background:rgba(0,0,0,.58);border:1px solid #b8ffb8;border-radius:16px;overflow:hidden;box-shadow:0 0 14px rgba(0,255,102,.25)}
+.ride-card img{display:block;width:100%;height:170px;object-fit:cover;background:#07180c}
+.ride-card-body{padding:16px}.ride-card h3{color:#b8ffb8;margin:0 0 8px}.ride-card p{font-size:14px;margin:5px 0}.ride-meta{color:#dfffe5;font-size:13px}
+.past-president-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:15px;margin-top:16px}
+.past-president-card{background:rgba(0,0,0,.58);border:1px solid #b8ffb8;border-radius:16px;text-align:center;padding:15px 10px}
+.past-president-card img{width:120px;height:120px;border-radius:50%;object-fit:cover;border:4px solid #00ff66;background:white}
+.past-president-card h3{font-size:14px;color:#b8ffb8;margin:10px 0 4px;text-transform:uppercase}.past-president-card p{font-size:13px;margin:3px 0}
 #visitor-counter .counter-wrap{text-align:center}
 #goatcounter-stats{display:inline-flex;justify-content:center;align-items:center;min-width:220px;min-height:85px;padding:12px;background:#fff;border-radius:12px;box-shadow:0 0 18px rgba(0,255,102,.35);color:#003d12;font-weight:bold}
 .counter-note{color:#dfffe5;font-size:13px;margin-top:10px}
@@ -48,9 +56,9 @@
 <section class="card"><h2>JETRIDERS Core Values</h2><ul><li><b>J</b> - Justice</li><li><b>E</b> - Excellence</li><li><b>T</b> - Teamwork</li><li><b>R</b> - Respect</li><li><b>I</b> - Integrity</li><li><b>D</b> - Discipline</li><li><b>E</b> - Equality</li><li><b>R</b> - Responsibility</li><li><b>S</b> - Service</li></ul></section>
 <section class="card" id="membership"><h2>Membership Requirements</h2><ul><li>Attend 3 General Membership Meetings</li><li>Join 3 consecutive rides</li><li>155cc scooter and above</li><li>Registered motorcycle</li><li>Motorcycle must be in good condition</li><li>Side mirrors required</li><li>Complete riding gear during rides</li></ul></section>
 <section class="card" id="officers"><h2>2026 Officers</h2><div class="officers-grid"><div class="person"><img src="image/apolonio.jpg.png" onerror="this.src='logo.jpg'"><h3>APOLONIO IGNACIO</h3><p>Founder</p></div><div class="person"><img src="image/edwin.jpg.jpg" onerror="this.src='logo.jpg'"><h3>EDWIN R. DAVID</h3><p>President</p></div><div class="person"><img src="image/jojo.jpg.jpg" onerror="this.src='logo.jpg'"><h3>JOJO POLICARPIO</h3><p>Corporate Secretary</p></div><div class="person"><img src="image/arlene.jpg.jpg" onerror="this.src='logo.jpg'"><h3>ARLENE C. PINEDA</h3><p>Treasurer</p></div><div class="person"><img src="image/rodelson.jpg.jpg" onerror="this.src='logo.jpg'"><h3>RODELSON D. PRING</h3><p>VPOP</p></div><div class="person"><img src="image/nation.jpg.jpg" onerror="this.src='logo.jpg'"><h3>NATION GARCIA</h3><p>Adviser</p></div><div class="person"><img src="image/ryan.jpg.png" onerror="this.src='logo.jpg'"><h3>RYAN P. ESCANILLAS</h3><p>Adviser</p></div><div class="person"><img src="image/michael.jpg.png" onerror="this.src='logo.jpg'"><h3>MICHAEL T. MANIO</h3><p>Adviser</p></div><div class="person"><img src="image/rey.jpg.png" onerror="this.src='logo.jpg'"><h3>REYNALDO JACINTO IGNACIO</h3><p>Adviser</p></div><div class="person"><img src="image/gilbert.jpg" onerror="this.src='logo.jpg'"><h3>GILBERT G. BASILIO</h3><p>Adviser</p></div></div></section>
-<section class="card"><h2>Past Presidents</h2><p>2001 - Apol Ignacio (Founder)</p><p>2007 - Richard Naguiat</p><p>2016 - Michael Manio</p><p>2017 - Celestino (Jolly) Medina</p><p>2018 - Henry Faustino</p><p>2019-2020 - Arlene Pineda</p><p>2021 - Jojo Policarpio</p><p>2022 - Gilbert Basilio</p><p>2023 - Charlie Caranto</p><p>2025 - Ryan Escanillas</p><p>2026 - Edwin David</p></section>
+<section class="card" id="past-presidents"><h2>Past Presidents</h2><p>Leaders who helped guide JETRIDERS through the years.</p><div id="past-president-grid" class="past-president-grid"><p>Loading past presidents...</p></div></section>
 <section class="card" id="events"><h2>📅 Upcoming Events</h2><p>✅ General Membership Meeting - Every 2nd Saturday of the Month</p><p>🎉 JETRIDERS Anniversary Celebration</p><p>🏅 Induction of New Members</p><p>🤝 Charity and Community Service Activities</p></section>
-<section class="card" id="rides"><h2>🏍️ Featured Rides</h2><p>🏍️ Baler Aurora Ride</p><p>🏍️ Mother Falls Adventure</p><p>🏍️ Dingalan Ride</p><p>🏍️ Atok Benguet Ride</p><p>🏍️ Pampanga Breakfast Ride</p></section>
+<section class="card" id="rides"><h2>🏍️ Featured Rides</h2><p>Official club rides and upcoming adventures.</p><div id="featured-rides-grid" class="featured-rides-grid"><p>Loading featured rides...</p></div></section>
 
 <section class="card" id="gallery">
 <h2>📸 JETRIDERS Gallery</h2>
@@ -79,7 +87,7 @@
 <section class="card" id="contact"><h2>Contact Us</h2><p><b>Mobile:</b> 09055907699</p><p><b>Email:</b> jetridersclubpampangainc@gmail.com</p><p><b>Facebook:</b> JETRIDERS CLUB PAMPANGA INC.</p><a class="btn" href="https://www.facebook.com" target="_blank">Visit Facebook Page</a><a class="btn" href="#application">Apply Now</a></section>
 </div><footer><h3>JETRIDERS CLUB PAMPANGA INC.</h3><p>SEC Registration No. CN201720885</p><p>Established 2001</p><p>Ride As One. Ride Together.</p><p>© 2026 All Rights Reserved.</p></footer>
 <script>
-const members={"JRCP-001":"REYNALDO JACINTO IGNACIO - ACTIVE",
+let members={"JRCP-001":"REYNALDO JACINTO IGNACIO - ACTIVE",
 "JRCP-002":"ARLENE C. PINEDA - ACTIVE",
 "JRCP-003":"ENRIQUE MANABAT - ACTIVE",
 "JRCP-004":"NATION GARCIA - ACTIVE",
@@ -110,11 +118,51 @@ const members={"JRCP-001":"REYNALDO JACINTO IGNACIO - ACTIVE",
 "JRCP-029":"RICHARD R. REYES - PROVISIONARY",
 "JRCP-030":"DEAN UMALI - PROVISIONARY"};
 function verifyMember(){const i=document.getElementById("memberSearch").value.trim().toUpperCase(),r=document.getElementById("verifyResult");r.innerHTML=members[i]?"✅ "+members[i]:"❌ Member ID not found. Please check the ID number."}
-const searchBox=document.getElementById("searchBox"),statusFilter=document.getElementById("statusFilter"),cards=Array.from(document.querySelectorAll(".member-card"));
+const searchBox=document.getElementById("searchBox"),statusFilter=document.getElementById("statusFilter");let cards=Array.from(document.querySelectorAll(".member-card"));
 function filterMembers(){const q=searchBox.value.toLowerCase().trim(),st=statusFilter.value;cards.forEach(c=>{const mt=c.dataset.name.includes(q)||c.dataset.id.includes(q),ms=st==="all"||c.dataset.status===st;c.style.display=(mt&&ms)?"":"none"})}
 searchBox.addEventListener("input",filterMembers);statusFilter.addEventListener("change",filterMembers);
 const payment=document.getElementById('payment'),paymentDetails=document.getElementById('paymentDetails'),gcashInfo=document.getElementById('gcashInfo'),bankInfo=document.getElementById('bankInfo');
 payment.addEventListener('change',function(){paymentDetails.style.display='none';gcashInfo.style.display='none';bankInfo.style.display='none';if(this.value==='GCash'){paymentDetails.style.display='block';gcashInfo.style.display='block'}if(this.value==='Bank Transfer'){paymentDetails.style.display='block';bankInfo.style.display='block'}});
+
+function escapeSiteText(value){return String(value||'').replace(/[&<>"']/g,function(character){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[character]})}
+function statusClass(value){var status=String(value||'inactive').toLowerCase();return ['active','inactive','provisionary'].includes(status)?status:'inactive'}
+function renderMemberDirectory(data){
+var memberItems=Array.isArray(data.items)?data.items:[];
+var container=document.querySelector('#members .member-photo-grid');
+var tableBody=document.querySelector('#members tbody');
+var total=document.querySelector('#members > p');
+members={};
+memberItems.forEach(function(item){members[item.id]=item.name+' - '+String(item.status||'').toUpperCase()});
+container.innerHTML=memberItems.map(function(item){
+var status=statusClass(item.status),photo=encodeURI(item.photo||'logo.jpg');
+return '<div class="person member-card" data-name="'+escapeSiteText(item.name).toLowerCase()+'" data-id="'+escapeSiteText(item.id).toLowerCase()+'" data-status="'+status+'"><img src="'+photo+'" alt="'+escapeSiteText(item.name)+'" loading="lazy" onerror="this.src=\'logo.jpg\'"><h3>'+escapeSiteText(item.name)+'</h3><p>'+escapeSiteText(item.id)+'</p>'+(item.position?'<small>'+escapeSiteText(item.position)+'</small><br>':'')+'<small>Joined: '+escapeSiteText(item.joined)+'</small><br><span class="status '+status+'">'+escapeSiteText(String(item.status||'').toUpperCase())+'</span></div>';
+}).join('');
+tableBody.innerHTML=memberItems.map(function(item,index){var status=statusClass(item.status);return '<tr><td>'+String(index+1).padStart(3,'0')+'</td><td>'+escapeSiteText(item.joined)+'</td><td>'+escapeSiteText(item.id)+'</td><td>'+escapeSiteText(item.name)+'</td><td><span class="status '+status+'">'+escapeSiteText(String(item.status||'').toUpperCase())+'</span></td></tr>'}).join('');
+if(total){total.textContent='Total Official Members: '+memberItems.length}
+cards=Array.from(document.querySelectorAll('.member-card'));filterMembers();
+}
+
+function renderFeaturedRides(data){
+var rideItems=Array.isArray(data.items)?data.items:[];
+var grid=document.getElementById('featured-rides-grid');
+if(!rideItems.length){grid.innerHTML='<p>Wala pang featured ride.</p>';return}
+grid.innerHTML=rideItems.map(function(item){
+var image=item.photo?'<img src="'+encodeURI(item.photo)+'" alt="'+escapeSiteText(item.title)+'" loading="lazy" onerror="this.style.display=\'none\'">':'';
+var meta=[item.date,item.location].filter(Boolean).map(escapeSiteText).join(' · ');
+return '<article class="ride-card">'+image+'<div class="ride-card-body"><h3>🏍️ '+escapeSiteText(item.title)+'</h3>'+(meta?'<div class="ride-meta">'+meta+'</div>':'')+(item.description?'<p>'+escapeSiteText(item.description)+'</p>':'')+'</div></article>';
+}).join('');
+}
+
+function renderPastPresidents(data){
+var items=Array.isArray(data.items)?data.items:[];
+var grid=document.getElementById('past-president-grid');
+if(!items.length){grid.innerHTML='<p>Wala pang past president record.</p>';return}
+grid.innerHTML=items.map(function(item){var photo=encodeURI(item.photo||'logo.jpg');return '<article class="past-president-card"><img src="'+photo+'" alt="'+escapeSiteText(item.name)+'" loading="lazy" onerror="this.src=\'logo.jpg\'"><h3>'+escapeSiteText(item.name)+'</h3><p><strong>'+escapeSiteText(item.term)+'</strong></p>'+(item.note?'<p>'+escapeSiteText(item.note)+'</p>':'')+'</article>'}).join('');
+}
+
+fetch('members.json?version='+Date.now()).then(function(response){if(!response.ok){throw new Error('members')};return response.json()}).then(renderMemberDirectory).catch(function(){});
+fetch('rides.json?version='+Date.now()).then(function(response){if(!response.ok){throw new Error('rides')};return response.json()}).then(renderFeaturedRides).catch(function(){document.getElementById('featured-rides-grid').innerHTML='<p>Hindi ma-load ang featured rides ngayon.</p>'});
+fetch('past-presidents.json?version='+Date.now()).then(function(response){if(!response.ok){throw new Error('past presidents')};return response.json()}).then(renderPastPresidents).catch(function(){document.getElementById('past-president-grid').innerHTML='<p>Hindi ma-load ang past presidents ngayon.</p>'});
 </script>
 <script>
 var galleryItems=[];
