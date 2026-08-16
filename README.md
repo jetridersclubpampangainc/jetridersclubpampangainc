@@ -18,5 +18,6 @@ The Admin Dashboard also supports:
 - editing an existing member's name, year joined, status, position, and photo
 - adding or editing featured rides, including a cover photo
 - adding or editing past presidents and uploading their photos
+- uploading or replacing public legal documents and certificates in PDF format
 
-Public content is loaded from `members.json`, `rides.json`, and `past-presidents.json`. Updates are committed atomically to the `main` branch with the same repository-restricted Admin Key.
+Public content is loaded from `members.json`, `rides.json`, `past-presidents.json`, and `documents.json`. Updates are committed atomically to the `main` branch with the same repository-restricted Admin Key.
