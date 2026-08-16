@@ -1,0 +1,247 @@
+{
+  "version": 1,
+  "updatedAt": "2026-08-16T00:00:00.000Z",
+  "items": [
+    {
+      "id": "JRCP-001",
+      "name": "REYNALDO JACINTO IGNACIO",
+      "joined": "2001",
+      "status": "active",
+      "position": "Member",
+      "photo": "image/rey.jpg.png"
+    },
+    {
+      "id": "JRCP-002",
+      "name": "ARLENE C. PINEDA",
+      "joined": "2001",
+      "status": "active",
+      "position": "Member",
+      "photo": "image/arlene.jpg.jpg"
+    },
+    {
+      "id": "JRCP-003",
+      "name": "ENRIQUE MANABAT",
+      "joined": "2001",
+      "status": "active",
+      "position": "Member",
+      "photo": "image/enrique.jpg.jpg"
+    },
+    {
+      "id": "JRCP-004",
+      "name": "NATION GARCIA",
+      "joined": "2002",
+      "status": "active",
+      "position": "Member",
+      "photo": "image/nation.jpg.jpg"
+    },
+    {
+      "id": "JRCP-005",
+      "name": "GILBERT G. BASILIO",
+      "joined": "2002",
+      "status": "active",
+      "position": "Member",
+      "photo": "image/gilbert.jpg"
+    },
+    {
+      "id": "JRCP-006",
+      "name": "HENRY R. FAUSTINO",
+      "joined": "2002",
+      "status": "active",
+      "position": "Member",
+      "photo": "image/henry.jpg.jpg"
+    },
+    {
+      "id": "JRCP-007",
+      "name": "CHARLIE B. CARANTO",
+      "joined": "2004",
+      "status": "active",
+      "position": "Member",
+      "photo": "image/charle.jpg.jpg"
+    },
+    {
+      "id": "JRCP-008",
+      "name": "DENNIS JUNIO",
+      "joined": "2004",
+      "status": "active",
+      "position": "Member",
+      "photo": "image/dennis.jpg.jpg"
+    },
+    {
+      "id": "JRCP-009",
+      "name": "EDWIN R. DAVID",
+      "joined": "2004",
+      "status": "active",
+      "position": "Member",
+      "photo": "image/edwin.jpg.jpg"
+    },
+    {
+      "id": "JRCP-010",
+      "name": "ERIC NOVEDA",
+      "joined": "2004",
+      "status": "active",
+      "position": "Member",
+      "photo": "image/eric.jpg.jpg"
+    },
+    {
+      "id": "JRCP-011",
+      "name": "ARES SANTOS",
+      "joined": "2004",
+      "status": "active",
+      "position": "Member",
+      "photo": "image/ares.jpg.jpg"
+    },
+    {
+      "id": "JRCP-012",
+      "name": "RONALDO PINEDA",
+      "joined": "2004",
+      "status": "active",
+      "position": "Member",
+      "photo": "image/ronaldo.jpg.jpg"
+    },
+    {
+      "id": "JRCP-013",
+      "name": "MARLON M. AGUILAR",
+      "joined": "2008",
+      "status": "active",
+      "position": "Member",
+      "photo": "image/marlon.jpg.jpg"
+    },
+    {
+      "id": "JRCP-014",
+      "name": "JAYAR CARANTO",
+      "joined": "2008",
+      "status": "active",
+      "position": "Member",
+      "photo": "image/jayar.jpg.jpg"
+    },
+    {
+      "id": "JRCP-015",
+      "name": "LEO MADARANG",
+      "joined": "2010",
+      "status": "active",
+      "position": "Member",
+      "photo": "image/leo.jpg.jpg"
+    },
+    {
+      "id": "JRCP-016",
+      "name": "ROGER P. CHAVEZ",
+      "joined": "2010",
+      "status": "active",
+      "position": "Member",
+      "photo": "image/roger.jpg.jpg"
+    },
+    {
+      "id": "JRCP-017",
+      "name": "HOWARD DAVID",
+      "joined": "2010",
+      "status": "active",
+      "position": "Member",
+      "photo": "image/howard.jpg.jpg"
+    },
+    {
+      "id": "JRCP-018",
+      "name": "DOMINGO JUNIO JR",
+      "joined": "2013",
+      "status": "active",
+      "position": "Member",
+      "photo": "image/domingo.jpg.jpg"
+    },
+    {
+      "id": "JRCP-019",
+      "name": "ONASIS AQUINO",
+      "joined": "2014",
+      "status": "active",
+      "position": "Member",
+      "photo": "image/onasis.jpg.jpg"
+    },
+    {
+      "id": "JRCP-020",
+      "name": "RODELSON D. PRING",
+      "joined": "2014",
+      "status": "active",
+      "position": "Member",
+      "photo": "image/rodelson.jpg.jpg"
+    },
+    {
+      "id": "JRCP-021",
+      "name": "MICHAEL T. MANIO",
+      "joined": "2016",
+      "status": "active",
+      "position": "Member",
+      "photo": "image/michael.jpg.png"
+    },
+    {
+      "id": "JRCP-022",
+      "name": "JOJO POLICARPIO",
+      "joined": "2017",
+      "status": "active",
+      "position": "Member",
+      "photo": "image/jojo.jpg.jpg"
+    },
+    {
+      "id": "JRCP-023",
+      "name": "ALEXANDER D. MICLAT",
+      "joined": "2017",
+      "status": "active",
+      "position": "Member",
+      "photo": "image/alexander.jpg.jpg"
+    },
+    {
+      "id": "JRCP-024",
+      "name": "EDUARDO T. TOLENTINO",
+      "joined": "2018",
+      "status": "active",
+      "position": "Member",
+      "photo": "image/eduardo.jpg.jpg"
+    },
+    {
+      "id": "JRCP-025",
+      "name": "RYAN P. ESCANILLAS",
+      "joined": "2021",
+      "status": "active",
+      "position": "Member",
+      "photo": "image/ryan.jpg.png"
+    },
+    {
+      "id": "JRCP-026",
+      "name": "MYRON MARK C. LIWANAG",
+      "joined": "2023",
+      "status": "active",
+      "position": "Member",
+      "photo": "image/myron.jpg.jpg"
+    },
+    {
+      "id": "JRCP-027",
+      "name": "MALIK GIRO BASILIO",
+      "joined": "2025",
+      "status": "provisionary",
+      "position": "Member",
+      "photo": "image/malik.jpg.jpg"
+    },
+    {
+      "id": "JRCP-028",
+      "name": "RONALD ALLAN TIZON",
+      "joined": "2026",
+      "status": "provisionary",
+      "position": "Member",
+      "photo": "image/ronald allan.jpg"
+    },
+    {
+      "id": "JRCP-029",
+      "name": "RICHARD R. REYES",
+      "joined": "2026",
+      "status": "provisionary",
+      "position": "Member",
+      "photo": "image/richard.jpg.jpg"
+    },
+    {
+      "id": "JRCP-030",
+      "name": "DEAN UMALI",
+      "joined": "2026",
+      "status": "provisionary",
+      "position": "Member",
+      "photo": "image/dean.jpg.jpg"
+    }
+  ]
+}
+
