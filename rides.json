@@ -1,11 +1,54 @@
 {
   "version": 1,
-  "updatedAt": "2026-08-16T00:00:00.000Z",
+  "updatedAt": "2026-08-16T23:38:21.572Z",
   "items": [
-    {"id":"ride-baler","title":"Baler Aurora Ride","date":"","location":"Baler, Aurora","description":"Official JETRIDERS club ride.","photo":""},
-    {"id":"ride-mother-falls","title":"Mother Falls Adventure","date":"","location":"Aurora","description":"Adventure ride with the JETRIDERS family.","photo":""},
-    {"id":"ride-dingalan","title":"Dingalan Ride","date":"","location":"Dingalan, Aurora","description":"Scenic group ride and fellowship.","photo":""},
-    {"id":"ride-atok","title":"Atok Benguet Ride","date":"","location":"Atok, Benguet","description":"Mountain ride and adventure.","photo":""},
-    {"id":"ride-pampanga-breakfast","title":"Pampanga Breakfast Ride","date":"","location":"Pampanga","description":"Local breakfast ride with club members.","photo":""}
+    {
+      "id": "ride-ride-to-rama-international-beach-resort-mswg458u",
+      "title": "RIDE TO RAMA INTERNATIONAL BEACH RESORT",
+      "date": "2026-08-29",
+      "location": "BOTOLAN ZAMBALES",
+      "description": "OVERNIGHT RIDE ON AUGUST 29-30 2026(SATURDAY -SUNDAY)",
+      "photo": "image/featured-rides/ride-to-rama-international-beach-resort-1786923501550.jpg"
+    },
+    {
+      "id": "ride-baler",
+      "title": "Baler Aurora Ride",
+      "date": "",
+      "location": "Baler, Aurora",
+      "description": "Official JETRIDERS club ride.",
+      "photo": ""
+    },
+    {
+      "id": "ride-mother-falls",
+      "title": "Mother Falls Adventure",
+      "date": "",
+      "location": "Aurora",
+      "description": "Adventure ride with the JETRIDERS family.",
+      "photo": ""
+    },
+    {
+      "id": "ride-dingalan",
+      "title": "Dingalan Ride",
+      "date": "",
+      "location": "Dingalan, Aurora",
+      "description": "Scenic group ride and fellowship.",
+      "photo": ""
+    },
+    {
+      "id": "ride-atok",
+      "title": "Atok Benguet Ride",
+      "date": "",
+      "location": "Atok, Benguet",
+      "description": "Mountain ride and adventure.",
+      "photo": ""
+    },
+    {
+      "id": "ride-pampanga-breakfast",
+      "title": "Pampanga Breakfast Ride",
+      "date": "",
+      "location": "Pampanga",
+      "description": "Local breakfast ride with club members.",
+      "photo": ""
+    }
   ]
 }
