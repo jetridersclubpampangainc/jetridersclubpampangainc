@@ -43,7 +43,7 @@ input:focus,select:focus,textarea:focus{outline:3px solid rgba(0,231,101,.18);bo
 .progress{display:none;height:10px;background:#e3eee6;border-radius:8px;overflow:hidden;margin-top:12px}.progress.show{display:block}.progress-bar{height:100%;width:0;background:linear-gradient(90deg,var(--green),var(--bright));transition:width .25s}
 details{margin-top:13px}summary{cursor:pointer;font-weight:bold;color:var(--green)}ol{padding-left:23px}code{background:#edf2ee;padding:2px 5px;border-radius:5px}
 .toolbar{display:flex;flex-wrap:wrap;gap:10px;margin-top:12px}
-.quick-nav{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}
+.quick-nav{display:grid;grid-template-columns:repeat(auto-fit,minmax(165px,1fr));gap:10px}
 .quick-nav .btn{min-height:58px;text-align:center}
 .manager-heading{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
 .mode-row{display:grid;grid-template-columns:1fr 2fr;gap:14px;margin-bottom:14px}
@@ -70,6 +70,7 @@ footer{text-align:center;color:#4a6252;padding:10px 15px 35px;font-size:13px}
 <a class="btn" href="#member-manager">👥 Add/Edit Member</a>
 <a class="btn" href="#ride-manager">🏍️ Featured Rides</a>
 <a class="btn" href="#past-president-manager">🏆 Past Presidents</a>
+<a class="btn" href="#document-manager">📄 Legal Documents</a>
 </div>
 </section>
 
@@ -235,6 +236,34 @@ footer{text-align:center;color:#4a6252;padding:10px 15px 35px;font-size:13px}
 <button class="btn publish" id="save-past" type="button" disabled>💾 Save & Publish Past President</button>
 <div id="past-status-message" class="status" role="status"></div>
 </section>
+
+<section class="card" id="document-manager">
+<div class="manager-heading"><h2>📄 Legal Documents & Certificates</h2><a class="btn secondary" href="index.html#documents" target="_blank">View Public Documents</a></div>
+<p class="section-note">Mag-upload o magpalit ng official PDF. Public ang files sa website, kaya huwag mag-upload ng confidential o personal records.</p>
+<div class="form-grid">
+<label class="full">Document Type
+<select id="document-select"><option value="">Select a legal document</option></select>
+</label>
+<label class="full">Display Title
+<input id="document-title" type="text" maxlength="120">
+</label>
+<label class="full">Description
+<input id="document-description" type="text" maxlength="200">
+</label>
+<label>Document Date (optional)
+<input id="document-date" type="date">
+</label>
+<label>PDF Status
+<input id="document-current-status" type="text" readonly value="Select a document">
+</label>
+<label class="full">Upload or Replace PDF
+<input id="document-file" type="file" accept="application/pdf,.pdf">
+<span class="muted">PDF only, maximum 20 MB. Required kapag first upload.</span>
+</label>
+</div>
+<button class="btn publish" id="save-document" type="button" disabled>💾 Save & Publish Legal Document</button>
+<div id="document-status-message" class="status" role="status"></div>
+</section>
 </main>
 
 <footer>Authorized club administrators only · JETRIDERS CLUB PAMPANGA INC.</footer>
@@ -297,7 +326,15 @@ var pastPhoto=document.getElementById('past-photo');
 var pastPhotoPreview=document.getElementById('past-photo-preview');
 var savePastButton=document.getElementById('save-past');
 var pastStatusMessage=document.getElementById('past-status-message');
-var memberData=[];var rideData=[];var pastData=[];
+var documentSelect=document.getElementById('document-select');
+var documentTitle=document.getElementById('document-title');
+var documentDescription=document.getElementById('document-description');
+var documentDateField=document.getElementById('document-date');
+var documentCurrentStatus=document.getElementById('document-current-status');
+var documentFile=document.getElementById('document-file');
+var saveDocumentButton=document.getElementById('save-document');
+var documentStatusMessage=document.getElementById('document-status-message');
+var memberData=[];var rideData=[];var pastData=[];var documentData=[];
 
 function localDateString(date){
 var local=new Date(date.getTime()-date.getTimezoneOffset()*60000);
@@ -316,6 +353,7 @@ publishButton.disabled=!verified||preparedFiles.length===0;
 saveMemberButton.disabled=!verified;
 saveRideButton.disabled=!verified;
 savePastButton.disabled=!verified;
+saveDocumentButton.disabled=!verified;
 }
 function formatBytes(bytes){if(bytes<1024*1024){return Math.round(bytes/1024)+' KB'}return (bytes/(1024*1024)).toFixed(1)+' MB'}
 function uniqueId(){return window.crypto&&crypto.randomUUID?crypto.randomUUID():Date.now().toString(36)+'-'+Math.random().toString(36).slice(2)}
@@ -485,11 +523,18 @@ function resetPastForm(){pastSelect.value='';pastTerm.value='';pastName.value=''
 function refreshPastControls(){optionList(pastSelect,pastData,'Select a past president');pastSelectWrap.style.display=pastMode.value==='edit'?'block':'none';resetPastForm()}
 function loadSelectedPast(){var item=pastData.find(function(record){return record.id===pastSelect.value});if(!item){resetPastForm();return}pastTerm.value=item.term||'';pastName.value=item.name||'';pastNote.value=item.note||'Past President';pastPhoto.value='';pastPhotoPreview.src=item.photo||'logo.jpg'}
 
+function resetDocumentForm(){documentTitle.value='';documentDescription.value='';documentDateField.value='';documentCurrentStatus.value='Select a document';documentFile.value='';clearStatus(documentStatusMessage)}
+function refreshDocumentControls(){optionList(documentSelect,documentData,'Select a legal document');documentSelect.value='';resetDocumentForm()}
+function loadSelectedDocument(){
+var item=documentData.find(function(record){return record.id===documentSelect.value});if(!item){resetDocumentForm();return}
+documentTitle.value=item.title||'';documentDescription.value=item.description||'';documentDateField.value=item.documentDate||'';documentCurrentStatus.value=item.available?'Uploaded - ready on website':'Not uploaded yet';documentFile.value='';clearStatus(documentStatusMessage);
+}
+
 async function loadAdminData(){
 try{
-var responses=await Promise.all(['members.json','rides.json','past-presidents.json'].map(function(path){return fetch(path+'?version='+Date.now()).then(function(response){if(!response.ok){throw new Error(path)};return response.json()})}));
-memberData=responses[0].items||[];rideData=responses[1].items||[];pastData=responses[2].items||[];
-refreshMemberControls();refreshRideControls();refreshPastControls();
+var responses=await Promise.all(['members.json','rides.json','past-presidents.json','documents.json'].map(function(path){return fetch(path+'?version='+Date.now()).then(function(response){if(!response.ok){throw new Error(path)};return response.json()})}));
+memberData=responses[0].items||[];rideData=responses[1].items||[];pastData=responses[2].items||[];documentData=responses[3].items||[];
+refreshMemberControls();refreshRideControls();refreshPastControls();refreshDocumentControls();
 }catch(error){setStatus(memberStatusMessage,'Hindi ma-load ang management data. Paki-refresh ang page.','error')}
 }
 
@@ -502,6 +547,7 @@ preview.src=URL.createObjectURL(file);
 memberMode.addEventListener('change',refreshMemberControls);memberSelect.addEventListener('change',loadSelectedMember);memberPhoto.addEventListener('change',function(){previewSelectedPhoto(memberPhoto,memberPhotoPreview)});
 rideMode.addEventListener('change',refreshRideControls);rideSelect.addEventListener('change',loadSelectedRide);ridePhoto.addEventListener('change',function(){previewSelectedPhoto(ridePhoto,ridePhotoPreview)});
 pastMode.addEventListener('change',refreshPastControls);pastSelect.addEventListener('change',loadSelectedPast);pastPhoto.addEventListener('change',function(){previewSelectedPhoto(pastPhoto,pastPhotoPreview)});
+documentSelect.addEventListener('change',loadSelectedDocument);
 
 saveMemberButton.addEventListener('click',async function(){
 if(!verified){setStatus(memberStatusMessage,'Verify Admin muna.','error');return}
@@ -551,6 +597,28 @@ var index=items.findIndex(function(item){return item.id===id});if(index>=0){item
 files.push({path:'past-presidents.json',content:JSON.stringify(manifest,null,2)+'\n'});await commitRepositoryFiles(files,(index>=0?'Update ':'Add ')+'past president: '+name);
 pastData=items;refreshPastControls();setStatus(pastStatusMessage,'✅ Past president published! Lalabas ang picture sa website sa loob ng 1–3 minuto.','success');
 }catch(error){setStatus(pastStatusMessage,'❌ Hindi na-save: '+error.message,'error')}
+updatePublishButton();
+});
+
+saveDocumentButton.addEventListener('click',async function(){
+if(!verified){setStatus(documentStatusMessage,'Verify Admin muna.','error');return}
+var id=documentSelect.value,title=documentTitle.value.trim();
+if(!id){setStatus(documentStatusMessage,'Pumili muna ng legal document.','error');return}
+if(!title){setStatus(documentStatusMessage,'Ilagay ang Display Title.','error');return}
+var pdfFile=documentFile.files&&documentFile.files[0];
+if(pdfFile&&(!/\.pdf$/i.test(pdfFile.name)||(pdfFile.type&&pdfFile.type!=='application/pdf'))){documentFile.value='';setStatus(documentStatusMessage,'PDF file lamang ang puwedeng i-upload.','error');return}
+if(pdfFile&&pdfFile.size>MAX_INPUT_BYTES){documentFile.value='';setStatus(documentStatusMessage,'Maximum 20 MB lamang ang PDF.','error');return}
+saveDocumentButton.disabled=true;setStatus(documentStatusMessage,'Sine-save ang legal document...','info');
+try{
+var manifest=await getRepositoryJson('documents.json');var items=Array.isArray(manifest.items)?manifest.items:[];var index=items.findIndex(function(item){return item.id===id});
+if(index<0){throw new Error('Hindi makita ang selected document record.')}
+var existing=items[index];if(!pdfFile&&!existing.available){throw new Error('Pumili muna ng PDF para sa first upload.')}
+var record={id:existing.id,title:title,description:documentDescription.value.trim(),path:existing.path,available:existing.available,documentDate:documentDateField.value,uploadedAt:existing.uploadedAt||''};var files=[];
+if(pdfFile){record.available=true;record.uploadedAt=new Date().toISOString();files.push({path:record.path,content:bufferToBase64(await pdfFile.arrayBuffer()),encoding:'base64'})}
+items[index]=record;manifest.version=1;manifest.updatedAt=new Date().toISOString();manifest.items=items;
+files.push({path:'documents.json',content:JSON.stringify(manifest,null,2)+'\n'});await commitRepositoryFiles(files,'Publish legal document: '+title);
+documentData=items;refreshDocumentControls();documentSelect.value=id;loadSelectedDocument();setStatus(documentStatusMessage,'✅ Legal document published! Lalabas sa website sa loob ng 1–3 minuto.','success');
+}catch(error){setStatus(documentStatusMessage,'❌ Hindi na-save: '+error.message,'error')}
 updatePublishButton();
 });
 

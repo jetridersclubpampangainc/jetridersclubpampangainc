@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "updatedAt": "2026-08-16T00:00:00.000Z",
+  "items": [
+    {"id":"sec-registration","title":"SEC Registration","description":"SEC Registration No. CN201720885","path":"documents/sec-registration.pdf","available":false,"documentDate":"","uploadedAt":""},
+    {"id":"articles-bylaws","title":"Articles & By-Laws","description":"Official Articles of Incorporation and By-Laws","path":"documents/articles-bylaws.pdf","available":false,"documentDate":"","uploadedAt":""},
+    {"id":"certificate-incorporation","title":"Certificate of Incorporation","description":"SEC Certificate of Incorporation - Company Reg. No. CN201720885","path":"documents/certificate-incorporation.pdf","available":true,"documentDate":"2017-06-30","uploadedAt":"2026-08-16T00:00:00.000Z"},
+    {"id":"membership-form","title":"Membership Form","description":"Downloadable official membership form","path":"documents/membership-form.pdf","available":false,"documentDate":"","uploadedAt":""},
+    {"id":"id-guidelines","title":"ID Guidelines","description":"Official member ID issuance guidelines","path":"documents/id-guidelines.pdf","available":false,"documentDate":"","uploadedAt":""},
+    {"id":"club-policies","title":"Club Rules & Policies","description":"Official club rules, policies, and guidelines","path":"documents/club-policies.pdf","available":false,"documentDate":"","uploadedAt":""}
+  ]
+}
