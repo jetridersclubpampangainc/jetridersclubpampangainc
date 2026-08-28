@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>JETRIDERS Membership Admin Review</title>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<style>
+*{box-sizing:border-box}body{margin:0;font-family:Arial,sans-serif;background:#06150a;color:#fff}.wrap{max-width:1250px;margin:auto;padding:20px}.panel{background:#0c2c15;border:1px solid #42ff7c;border-radius:18px;padding:20px;margin:16px 0}.hidden{display:none!important}h1,h2{color:#7dff9f}input,select,textarea,button{width:100%;padding:10px;border-radius:9px;border:1px solid #65ff90;margin:5px 0 10px}button{background:#00e85c;color:#001b08;font-weight:800;cursor:pointer}.danger{background:#d94747;color:#fff}.warn{background:#f2c94c}.neutral{background:#fff}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px}.app-card{background:#071d0d;border:1px solid #2fe66d;border-radius:14px;padding:14px;margin:12px 0}.badge{display:inline-block;padding:5px 10px;border-radius:20px;background:#173d23}.pending{background:#665600}.approved{background:#145d2a}.rejected{background:#681d1d}.needs_info{background:#60451b}.detail-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:8px}.detail{background:#0b2712;padding:9px;border-radius:8px}.muted{color:#b7d9c0;font-size:12px}.statusbox{padding:10px;border-radius:8px;background:#102f18;margin:10px 0}.toplink{color:#9cffb4}
+</style>
+</head><body><div class="wrap">
+<a class="toplink" href="index.html">← Back to website</a>
+<h1>🏍️ JETRIDERS Membership Admin</h1>
+<section id="loginPanel" class="panel"><h2>🔐 Admin Login</h2><p>Only approved club admin accounts can review applications.</p><input id="email" type="email" autocomplete="username" placeholder="Admin email"><input id="password" type="password" autocomplete="current-password" placeholder="Password"><button id="loginBtn">Login</button><div id="loginStatus" class="statusbox"></div></section>
+<section id="adminPanel" class="hidden">
+<div class="panel"><div class="grid"><div><h2>Membership Applications</h2><div id="who"></div></div><div><button id="logoutBtn" class="neutral">Logout</button></div></div>
+<div class="grid"><select id="statusFilter"><option value="pending">Pending</option><option value="needs_info">Needs Info</option><option value="approved">Approved</option><option value="rejected">Rejected</option><option value="all">All</option></select><input id="searchBox" type="search" placeholder="Search name / member ID / reference"></div></div>
+<div id="applications"></div>
+</section></div>
+<script>
+const SUPABASE_URL='https://hwtkplolyunhuhjdqacb.supabase.co';
+const SUPABASE_KEY='sb_publishable_h6Z7EK1Axb8cdH9lVxZsgw_-BEPyEXY';
+const sb=supabase.createClient(SUPABASE_URL,SUPABASE_KEY);
+const loginPanel=document.getElementById('loginPanel'),adminPanel=document.getElementById('adminPanel'),apps=document.getElementById('applications');
+let rows=[];
+function esc(v=''){return String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[c]));}
+function label(k){return k.replaceAll('_',' ').replace(/\b\w/g,m=>m.toUpperCase());}
+async function checkAdmin(){
+ const {data:{user}}=await sb.auth.getUser();
+ if(!user){loginPanel.classList.remove('hidden');adminPanel.classList.add('hidden');return;}
+ loginPanel.classList.add('hidden');adminPanel.classList.remove('hidden');document.getElementById('who').textContent=user.email||user.id;await loadApps();
+}
+document.getElementById('loginBtn').onclick=async()=>{loginStatus.textContent='Logging in...';const {error}=await sb.auth.signInWithPassword({email:email.value.trim(),password:password.value});loginStatus.textContent=error?error.message:'Login successful';if(!error)checkAdmin();};
+document.getElementById('logoutBtn').onclick=async()=>{await sb.auth.signOut();checkAdmin();};
+async function loadApps(){
+ apps.innerHTML='<div class="panel">Loading...</div>';
+ const {data,error}=await sb.from('membership_applications').select('*').order('created_at',{ascending:false});
+ if(error){apps.innerHTML='<div class="panel">Access denied or database setup incomplete: '+esc(error.message)+'</div>';return;}
+ rows=data||[];render();
+}
+function render(){
+ const f=statusFilter.value,q=searchBox.value.trim().toLowerCase();
+ const filtered=rows.filter(r=>(f==='all'||r.status===f)&&(!q||[r.full_name,r.existing_member_id,r.reference_no,r.mobile_number].some(x=>String(x||'').toLowerCase().includes(q))));
+ apps.innerHTML=filtered.length?'':'<div class="panel">No applications found.</div>';
+ filtered.forEach(r=>{
+  const div=document.createElement('section');div.className='app-card';
+  const details=['application_type','existing_member_id','full_name','nickname','birth_date','blood_type','mobile_number','email','facebook_profile','address','emergency_contact_name','emergency_contact_relation','emergency_contact_mobile','motorcycle_brand_model','engine_cc','has_valid_license','motorcycle_registered','complete_side_mirrors','complete_riding_gear','membership_category','preferred_ride_group','date_joined','applicant_notes'];
+  div.innerHTML=`<div class="grid"><div><strong>${esc(r.full_name)}</strong><br><span class="muted">${esc(r.reference_no)} • ${esc(r.application_type)}</span></div><div><span class="badge ${esc(r.status)}">${esc(r.status)}</span></div></div><div class="detail-grid">${details.map(k=>`<div class="detail"><span class="muted">${label(k)}</span><br>${esc(r[k]===true?'Yes':r[k]===false?'No':r[k]||'-')}</div>`).join('')}</div><div class="grid"><div><label>Approved / Confirmed Member ID</label><input class="memberId" value="${esc(r.approved_member_id||r.existing_member_id||'')}" placeholder="JRCP-000"></div><div><label>Admin Notes</label><textarea class="notes">${esc(r.admin_notes||'')}</textarea></div></div><div class="grid"><button class="approve">✅ Approve</button><button class="warn needs">ℹ️ Needs Info</button><button class="danger reject">❌ Reject</button></div>`;
+  div.querySelector('.approve').onclick=()=>review(r.id,'approved',div);div.querySelector('.needs').onclick=()=>review(r.id,'needs_info',div);div.querySelector('.reject').onclick=()=>review(r.id,'rejected',div);apps.appendChild(div);
+ });
+}
+async function review(id,status,card){
+ const approved_member_id=card.querySelector('.memberId').value.trim()||null,admin_notes=card.querySelector('.notes').value.trim()||null;
+ if(status==='approved'&&!approved_member_id){alert('Please enter or confirm a Member ID before approval.');return;}
+ const {data:{user}}=await sb.auth.getUser();
+ const {error}=await sb.from('membership_applications').update({status,approved_member_id,admin_notes,reviewed_at:new Date().toISOString(),reviewed_by:user.id}).eq('id',id);
+ if(error){alert('Unable to update: '+error.message);return;}await loadApps();
+}
+statusFilter.onchange=render;searchBox.oninput=render;sb.auth.onAuthStateChange(()=>checkAdmin());checkAdmin();
+</script></body></html>
