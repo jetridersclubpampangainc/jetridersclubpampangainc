@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>JETRIDERS Member Information Form</title>
+<style>
+*{box-sizing:border-box}body{margin:0;font-family:Arial,sans-serif;background:linear-gradient(145deg,#e7f8ec,#bdebc9);color:#12351d}.wrap{max-width:920px;margin:auto;padding:18px}.card{background:#fff;border:1px solid #a6d7b3;border-radius:18px;padding:22px;margin:16px 0;box-shadow:0 10px 28px rgba(0,80,30,.10)}h1,h2{color:#075c27}.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}.full{grid-column:1/-1}label{font-weight:700;display:block}input,select,textarea{width:100%;padding:12px;border:1px solid #8fc5a0;border-radius:10px;margin-top:6px;font-size:16px}textarea{min-height:90px}.checks label{font-weight:400;margin:10px 0}.checks input{width:auto;margin-right:8px}.btn{width:100%;padding:14px;border:0;border-radius:12px;background:#008a37;color:#fff;font-weight:800;font-size:17px;cursor:pointer}.note{padding:12px;background:#f0fbf3;border-left:4px solid #0a8f3a;border-radius:8px}.status{display:none;padding:12px;border-radius:10px;margin-top:12px}.status.show{display:block}.success{background:#e7f8ec;color:#166534}.error{background:#ffeceb;color:#9f1d16}.top{display:flex;align-items:center;gap:12px}.top img{width:70px;height:70px;border-radius:50%;object-fit:cover}.back{color:#075c27;font-weight:bold}@media(max-width:680px){.grid{grid-template-columns:1fr}.full{grid-column:auto}.wrap{padding:10px}.card{padding:16px}}
+</style>
+</head>
+<body><main class="wrap">
+<a class="back" href="index.html">← Back to Official Website</a>
+<section class="card"><div class="top"><img src="logo.jpg" alt="JETRIDERS logo"><div><h1>JETRIDERS Member Information Form</h1><p>Required for both old/existing members and new member applicants.</p></div></div><div class="note">All submissions are <strong>PENDING</strong> until reviewed by an authorized JETRIDERS administrator. Old members should enter their existing JRCP Member ID.</div></section>
+<form id="memberForm" class="card">
+<h2>1. Membership Type</h2><div class="grid">
+<label>Application Type *<select id="application_type" required><option value="old_member">Old / Existing Member — Update Information</option><option value="new_member">New Member Applicant</option></select></label>
+<label id="existingWrap">Existing Member ID *<input id="existing_member_id" placeholder="Example: JRCP-022"></label>
+</div>
+<h2>2. Personal Information</h2><div class="grid">
+<label>Full Name *<input id="full_name" required></label><label>Nickname<input id="nickname"></label>
+<label>Birth Date *<input id="birth_date" type="date" required></label><label>Blood Type<input id="blood_type" placeholder="Example: O+"></label>
+<label>Mobile Number *<input id="mobile_number" required></label><label>Email<input id="email" type="email"></label>
+<label class="full">Facebook Profile<input id="facebook_profile"></label><label class="full">Complete Address *<textarea id="address" required></textarea></label>
+</div>
+<h2>3. Emergency Contact</h2><div class="grid">
+<label>Name *<input id="emergency_contact_name" required></label><label>Relationship *<input id="emergency_contact_relation" required></label><label>Mobile Number *<input id="emergency_contact_mobile" required></label>
+</div>
+<h2>4. Motorcycle & Riding Information</h2><div class="grid">
+<label>Motorcycle Brand / Model *<input id="motorcycle_brand_model" required></label><label>Engine CC *<input id="engine_cc" type="number" min="155" required></label>
+<label>Membership Category *<select id="membership_category" required><option>Guest Rider</option><option>Provisionary Member</option><option>Official Member</option><option>Honorary Member</option></select></label>
+<label>Preferred Ride Group<select id="preferred_ride_group"><option value="">Select</option><option>City Ride</option><option>Long Ride</option><option>Adventure Ride</option><option>Charity Ride</option><option>All Rides</option></select></label>
+<label>Date Joined (Old Member)<input id="date_joined" type="date"></label>
+</div>
+<div class="checks">
+<label><input id="has_valid_license" type="checkbox" required> I have a valid driver's license.</label>
+<label><input id="motorcycle_registered" type="checkbox" required> My motorcycle is currently registered.</label>
+<label><input id="complete_side_mirrors" type="checkbox" required> My motorcycle has complete side mirrors.</label>
+<label><input id="complete_riding_gear" type="checkbox" required> I have complete riding gear.</label>
+</div>
+<h2>5. Notes, Waiver & Consent</h2><label>Additional Information<textarea id="applicant_notes"></textarea></label>
+<div class="checks">
+<label><input id="waiver_accepted" type="checkbox" required> I understand that motorcycle riding has inherent risks, voluntarily assume those risks, and agree to follow JETRIDERS club and safety rules.</label>
+<label><input id="privacy_consent" type="checkbox" required> I consent to JETRIDERS collecting and using the information above for membership administration, verification, emergency contact, and club records.</label>
+</div>
+<button class="btn" id="submitBtn" type="submit">Submit for Admin Review</button><div id="statusBox" class="status"></div>
+</form></main>
+<script>
+const SUPABASE_URL='https://hwtkplolyunhuhjdqacb.supabase.co';
+const SUPABASE_KEY='sb_publishable_h6Z7EK1Axb8cdH9lVxZsgw_-BEPyEXY';
+const type=document.getElementById('application_type'),oldWrap=document.getElementById('existingWrap'),oldId=document.getElementById('existing_member_id');
+function syncType(){const old=type.value==='old_member';oldWrap.style.display=old?'block':'none';oldId.required=old;if(!old)oldId.value='';}type.onchange=syncType;syncType();
+const form=document.getElementById('memberForm'),statusBox=document.getElementById('statusBox'),submitBtn=document.getElementById('submitBtn');
+function val(id){return document.getElementById(id).value.trim()||null}function checked(id){return document.getElementById(id).checked}
+form.addEventListener('submit',async e=>{e.preventDefault();statusBox.className='status';statusBox.textContent='';submitBtn.disabled=true;submitBtn.textContent='Submitting...';
+ const payload={application_type:type.value,existing_member_id:type.value==='old_member'?val('existing_member_id'):null,full_name:val('full_name'),nickname:val('nickname'),birth_date:val('birth_date'),blood_type:val('blood_type'),mobile_number:val('mobile_number'),email:val('email'),facebook_profile:val('facebook_profile'),address:val('address'),emergency_contact_name:val('emergency_contact_name'),emergency_contact_relation:val('emergency_contact_relation'),emergency_contact_mobile:val('emergency_contact_mobile'),motorcycle_brand_model:val('motorcycle_brand_model'),engine_cc:Number(val('engine_cc')),has_valid_license:checked('has_valid_license'),motorcycle_registered:checked('motorcycle_registered'),complete_side_mirrors:checked('complete_side_mirrors'),complete_riding_gear:checked('complete_riding_gear'),membership_category:val('membership_category'),preferred_ride_group:val('preferred_ride_group'),date_joined:val('date_joined'),applicant_notes:val('applicant_notes'),waiver_accepted:checked('waiver_accepted'),privacy_consent:checked('privacy_consent'),status:'pending'};
+ try{const res=await fetch(SUPABASE_URL+'/rest/v1/membership_applications',{method:'POST',headers:{apikey:SUPABASE_KEY,Authorization:'Bearer '+SUPABASE_KEY,'Content-Type':'application/json','Prefer':'return=representation'},body:JSON.stringify(payload)});const data=await res.json();if(!res.ok)throw new Error(data.message||data.details||'Unable to submit application');const ref=Array.isArray(data)&&data[0]?data[0].reference_no:'';statusBox.className='status show success';statusBox.textContent='✅ Submitted successfully. Status: PENDING'+(ref?'\nReference: '+ref:'')+'\nPlease wait for JETRIDERS admin review.';form.reset();type.value='old_member';syncType();}catch(err){statusBox.className='status show error';statusBox.textContent='Submission failed: '+err.message;}finally{submitBtn.disabled=false;submitBtn.textContent='Submit for Admin Review';}
+});
+</script></body></html>
