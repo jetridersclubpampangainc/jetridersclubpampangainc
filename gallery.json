@@ -1,7 +1,79 @@
 {
   "version": 1,
-  "updatedAt": "2026-08-28T16:56:57.112Z",
+  "updatedAt": "2026-08-29T08:38:43.038Z",
   "items": [
+    {
+      "id": "e0c96183-d4a8-49c3-a686-825662b4aafe",
+      "type": "image",
+      "category": "rides",
+      "src": "image/gallery/rides/20260829-1787992703050-1-1000241446.jpg",
+      "caption": "JETRIDERS Club Photo",
+      "date": "2026-08-29",
+      "uploadedAt": "2026-08-29T08:38:27.800Z"
+    },
+    {
+      "id": "781bb232-d53e-4c84-a753-3defc845f330",
+      "type": "image",
+      "category": "rides",
+      "src": "image/gallery/rides/20260829-1787992703050-2-1000241445.jpg",
+      "caption": "JETRIDERS Club Photo",
+      "date": "2026-08-29",
+      "uploadedAt": "2026-08-29T08:38:29.908Z"
+    },
+    {
+      "id": "fa159a70-3225-49bf-90c2-d719bf598f3e",
+      "type": "image",
+      "category": "rides",
+      "src": "image/gallery/rides/20260829-1787992703050-3-1000241444.jpg",
+      "caption": "JETRIDERS Club Photo",
+      "date": "2026-08-29",
+      "uploadedAt": "2026-08-29T08:38:31.647Z"
+    },
+    {
+      "id": "43878f28-7d73-48fb-b98b-d3e88e467262",
+      "type": "image",
+      "category": "rides",
+      "src": "image/gallery/rides/20260829-1787992703050-4-1000241441.jpg",
+      "caption": "JETRIDERS Club Photo",
+      "date": "2026-08-29",
+      "uploadedAt": "2026-08-29T08:38:33.843Z"
+    },
+    {
+      "id": "e421a1d5-c0eb-4b20-87da-9d8343de88a7",
+      "type": "image",
+      "category": "rides",
+      "src": "image/gallery/rides/20260829-1787992703050-5-1000241442.jpg",
+      "caption": "JETRIDERS Club Photo",
+      "date": "2026-08-29",
+      "uploadedAt": "2026-08-29T08:38:36.213Z"
+    },
+    {
+      "id": "60c609dc-7265-41f3-9032-d5338dc03582",
+      "type": "image",
+      "category": "rides",
+      "src": "image/gallery/rides/20260829-1787992703050-6-1000241443.jpg",
+      "caption": "JETRIDERS Club Photo",
+      "date": "2026-08-29",
+      "uploadedAt": "2026-08-29T08:38:38.415Z"
+    },
+    {
+      "id": "ae414ca2-f248-491e-9230-91d3c7189873",
+      "type": "image",
+      "category": "rides",
+      "src": "image/gallery/rides/20260829-1787992703050-7-1000241439.jpg",
+      "caption": "JETRIDERS Club Photo",
+      "date": "2026-08-29",
+      "uploadedAt": "2026-08-29T08:38:41.390Z"
+    },
+    {
+      "id": "a2b84e84-7927-4b56-85de-d4b58aa668a4",
+      "type": "image",
+      "category": "rides",
+      "src": "image/gallery/rides/20260829-1787992703050-8-1000241440.jpg",
+      "caption": "JETRIDERS Club Photo",
+      "date": "2026-08-29",
+      "uploadedAt": "2026-08-29T08:38:43.038Z"
+    },
     {
       "id": "bcf7817d-07bb-4825-947d-e5a768343486",
       "type": "image",
