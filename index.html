@@ -37,6 +37,9 @@
 #goatcounter-stats{display:inline-flex;justify-content:center;align-items:center;min-width:220px;min-height:85px;padding:12px;background:#fff;border-radius:12px;box-shadow:0 0 18px rgba(0,255,102,.35);color:#003d12;font-weight:bold}
 .counter-note{color:#dfffe5;font-size:13px;margin-top:10px}
 
+.gallery-video-wrap{position:relative;line-height:0;background:#000}
+.gallery-video-wrap video{display:block;width:100%;height:240px;object-fit:contain;background:#000}
+.gallery-video-watermark{position:absolute;right:10px;bottom:48px;z-index:2;padding:6px 9px;border-radius:7px;background:rgba(0,35,12,.72);border:1px solid rgba(0,255,102,.95);color:#fff;font-size:11px;font-weight:800;line-height:1.2;pointer-events:none;text-shadow:0 1px 3px #000}
 </style>
 </head>
 <body>
@@ -75,6 +78,7 @@
 <button class="gallery-btn active" type="button" data-category="rides" onclick="showGalleryTab('rides', this)">🏍️ Rides <span class="gallery-count" id="count-rides">0</span></button>
 <button class="gallery-btn" type="button" data-category="events" onclick="showGalleryTab('events', this)">🎉 Events <span class="gallery-count" id="count-events">0</span></button>
 <button class="gallery-btn" type="button" data-category="meetings" onclick="showGalleryTab('meetings', this)">🤝 Meetings <span class="gallery-count" id="count-meetings">0</span></button>
+<button class="gallery-btn" type="button" data-category="videos" onclick="showGalleryTab('videos', this)">🎥 Videos <span class="gallery-count" id="count-videos">0</span></button>
 </div>
 
 <div id="gallery-status" class="gallery-status" role="status">Loading gallery...</div>
@@ -216,7 +220,8 @@ status.style.display='none';
 grid.innerHTML=visible.map(function(item){
 var caption=escapeGalleryText(item.caption||'JETRIDERS Club Photo');
 var date=item.date?'<time datetime="'+escapeGalleryText(item.date)+'">'+escapeGalleryText(item.date)+'</time>':'';
-return '<figure class="gallery-card"><a href="'+encodeURI(item.src)+'" target="_blank" rel="noopener"><img src="'+encodeURI(item.src)+'" alt="'+caption+'" loading="lazy" decoding="async"></a><figcaption>'+caption+date+'</figcaption></figure>';
+var media=item.type==='video'?'<div class="gallery-video-wrap"><video controls controlsList="nodownload" disablePictureInPicture preload="metadata"><source src="'+encodeURI(item.src)+'"></video><div class="gallery-video-watermark">JETRIDERS CLUB PAMPANGA INC.<br>OFFICIAL VIDEO</div></div>':'<a href="'+encodeURI(item.src)+'" target="_blank" rel="noopener"><img src="'+encodeURI(item.src)+'" alt="'+caption+'" loading="lazy" decoding="async"></a>';
+return '<figure class="gallery-card">'+media+'<figcaption>'+caption+date+'</figcaption></figure>';
 }).join('');
 more.style.display=filtered.length>galleryVisible?'inline-block':'none';
 }
@@ -236,7 +241,7 @@ if(!response.ok){throw new Error('Gallery data unavailable')}
 return response.json();
 }).then(function(data){
 galleryItems=Array.isArray(data.items)?data.items:[];
-['rides','events','meetings'].forEach(function(category){
+['rides','events','meetings','videos'].forEach(function(category){
 var count=document.getElementById('count-'+category);
 if(count){count.textContent=galleryItems.filter(function(item){return item.category===category}).length}
 });

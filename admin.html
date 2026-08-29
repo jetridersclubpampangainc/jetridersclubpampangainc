@@ -36,7 +36,7 @@ input:focus,select:focus,textarea:focus{outline:3px solid rgba(0,231,101,.18);bo
 .dropzone:hover,.dropzone.dragging{border-color:var(--green);background:#e5f8eb}.dropzone input{display:none}.dropzone strong{display:block;font-size:18px;color:var(--green-dark);margin-bottom:6px}
 .previews{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:14px;margin-top:18px}
 .preview{border:1px solid var(--line);border-radius:14px;overflow:hidden;background:#f7faf8}
-.preview img{display:block;width:100%;height:170px;object-fit:cover;background:#dfe8e2}
+.preview img,.preview video{display:block;width:100%;height:170px;object-fit:cover;background:#dfe8e2}
 .preview-body{padding:11px}.preview-name{font-size:12px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-bottom:8px}.preview input{font-size:14px;margin:0;padding:10px}
 .preview-actions{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-top:9px}.size{font-size:12px;color:var(--muted)}.remove{border:0;background:transparent;color:var(--danger);font-weight:bold;cursor:pointer}
 .status{display:none;padding:14px 15px;border-radius:12px;margin-top:14px;font-weight:bold;white-space:pre-line}.status.show{display:block}.status.info{background:#eef7ff;color:#174ea6;border:1px solid #b8d7f8}.status.success{background:#e8f8ed;color:#176b36;border:1px solid #a8deb7}.status.error{background:#fff0ee;color:#9a241a;border:1px solid #efb5ae}
@@ -50,7 +50,7 @@ details{margin-top:13px}summary{cursor:pointer;font-weight:bold;color:var(--gree
 .small-preview{display:block;width:110px;height:110px;object-fit:cover;border-radius:14px;border:3px solid #b7d9c1;background:#eef5f0;margin-top:10px}
 .section-note{padding:12px 14px;background:#f1f8f3;border-left:4px solid var(--green);border-radius:8px;margin-bottom:15px;color:#35523e}
 footer{text-align:center;color:#4a6252;padding:10px 15px 35px;font-size:13px}
-@media(max-width:650px){header{padding:18px 14px}.brand img{width:54px;height:54px}h1{font-size:20px}.wrap{padding:14px 10px 35px}.card{padding:17px;border-radius:15px}.form-grid,.token-row,.mode-row,.quick-nav{grid-template-columns:1fr}.btn{width:100%}.previews{grid-template-columns:1fr 1fr}.preview img{height:135px}}
+@media(max-width:650px){header{padding:18px 14px}.brand img{width:54px;height:54px}h1{font-size:20px}.wrap{padding:14px 10px 35px}.card{padding:17px;border-radius:15px}.form-grid,.token-row,.mode-row,.quick-nav{grid-template-columns:1fr}.btn{width:100%}.previews{grid-template-columns:1fr 1fr}.preview img,.preview video{height:135px}}
 @media(max-width:420px){.previews{grid-template-columns:1fr}}
 </style>
 </head>
@@ -66,7 +66,7 @@ footer{text-align:center;color:#4a6252;padding:10px 15px 35px;font-size:13px}
 <section class="card">
 <h2>Admin Tools</h2>
 <div class="quick-nav">
-<a class="btn" href="#gallery-manager">📷 Gallery Photos</a>
+<a class="btn" href="#gallery-manager">📷🎥 Gallery Media</a>
 <a class="btn" href="#member-manager">👥 Add/Edit Member</a>
 <a class="btn" href="#ride-manager">🏍️ Featured Rides</a>
 <a class="btn" href="#past-president-manager">🏆 Past Presidents</a>
@@ -101,13 +101,14 @@ footer{text-align:center;color:#4a6252;padding:10px 15px 35px;font-size:13px}
 </section>
 
 <section class="card" id="gallery-manager">
-<h2><span class="step">2</span>Photo Details</h2>
+<h2><span class="step">2</span>Photo / Video Details</h2>
 <div class="form-grid">
 <label>Gallery Category
 <select id="category">
 <option value="rides">🏍️ Rides</option>
 <option value="events">🎉 Events</option>
 <option value="meetings">🤝 Meetings</option>
+<option value="videos">🎥 Videos</option>
 </select>
 </label>
 <label>Date
@@ -120,11 +121,11 @@ footer{text-align:center;color:#4a6252;padding:10px 15px 35px;font-size:13px}
 </section>
 
 <section class="card">
-<h2><span class="step">3</span>Select Pictures</h2>
+<h2><span class="step">3</span>Select Photos or Video</h2>
 <label class="dropzone" id="dropzone">
-<input id="files" type="file" accept="image/jpeg,image/png,image/webp" multiple>
-<strong>📷 Tap to Choose Pictures</strong>
-<span class="muted">Pwede ring i-drag dito. Maximum 12 photos bawat publish.</span>
+<input id="files" type="file" accept="image/jpeg,image/png,image/webp,video/mp4,video/webm" multiple>
+<strong>📷🎥 Tap to Choose Photos or Video</strong>
+<span class="muted">Pwede ring i-drag dito. Maximum 12 photos or 1 short MP4/WebM video (up to 25 MB) bawat publish.</span>
 </label>
 <div id="file-status" class="status" role="status"></div>
 <div id="previews" class="previews"></div>
@@ -132,8 +133,8 @@ footer{text-align:center;color:#4a6252;padding:10px 15px 35px;font-size:13px}
 
 <section class="card">
 <h2><span class="step">4</span>Preview & Publish</h2>
-<p class="muted">I-check ang category, date, at caption. Awtomatikong pinapaliit ang photos para mabilis buksan sa mobile.</p>
-<button class="btn publish" id="publish" type="button" disabled>🚀 Publish Photos Now</button>
+<p class="muted">I-check ang category, date, at caption. Photos are compressed and permanently watermarked. Videos display a JETRIDERS watermark overlay in the public gallery.</p>
+<button class="btn publish" id="publish" type="button" disabled>🚀 Publish Photos / Video Now</button>
 <div id="progress" class="progress"><div id="progress-bar" class="progress-bar"></div></div>
 <div id="publish-status" class="status" role="status"></div>
 </section>
@@ -276,6 +277,7 @@ var REPOSITORY='jetridersclubpampangainc/jetridersclubpampangainc';
 var BRANCH='main';
 var MAX_FILES=12;
 var MAX_INPUT_BYTES=20*1024*1024;
+var MAX_VIDEO_BYTES=25*1024*1024;
 var preparedFiles=[];
 var verified=false;
 
@@ -403,22 +405,44 @@ dropzone.addEventListener('drop',function(event){handleFiles(Array.from(event.da
 
 async function handleFiles(files){
 clearStatus(fileStatus);
+if(!files.length){return}
+
+var videoFiles=files.filter(function(file){return /^video\/(mp4|webm)$/i.test(file.type)});
+var imageFiles=files.filter(function(file){return /^image\/(jpeg|png|webp)$/i.test(file.type)});
+var unsupported=files.filter(function(file){return !/^video\/(mp4|webm)$/i.test(file.type)&&!/^image\/(jpeg|png|webp)$/i.test(file.type)});
+
+if(unsupported.length){
+setStatus(fileStatus,'Unsupported file: '+unsupported[0].name+'. Use JPG, PNG, WebP, MP4, or WebM.','error');
+return;
+}
+
+if(videoFiles.length){
+if(files.length!==1||preparedFiles.length){setStatus(fileStatus,'Video must be uploaded one at a time. Remove other prepared files first.','error');return}
+var video=videoFiles[0];
+if(video.size>MAX_VIDEO_BYTES){setStatus(fileStatus,'Video is larger than 25 MB. Trim or compress it first.','error');return}
+var extension=video.type==='video/webm'?'.webm':'.mp4';
+preparedFiles.push({id:uniqueId(),mediaType:'video',originalName:video.name,fileName:safeName(video.name)+extension,blob:video,previewUrl:URL.createObjectURL(video),caption:defaultCaption.value.trim(),captionEdited:false});
+renderPreviews();
+setStatus(fileStatus,'✅ 1 video ready for preview.','success');
+updatePublishButton();
+return;
+}
+
 var room=MAX_FILES-preparedFiles.length;
 if(room<=0){setStatus(fileStatus,'Maximum '+MAX_FILES+' photos bawat publish.','error');return}
-var selected=files.slice(0,room);
-if(files.length>room){setStatus(fileStatus,'Unang '+room+' photos lang ang idinagdag dahil maximum '+MAX_FILES+'.','info')}
+var selected=imageFiles.slice(0,room);
+if(imageFiles.length>room){setStatus(fileStatus,'First '+room+' photos only were added because the maximum is '+MAX_FILES+'.','info')}
 for(var i=0;i<selected.length;i++){
 var file=selected[i];
-if(!/^image\/(jpeg|png|webp)$/i.test(file.type)){setStatus(fileStatus,'Nilaktawan ang '+file.name+': JPG, PNG, o WebP lamang.','error');continue}
-if(file.size>MAX_INPUT_BYTES){setStatus(fileStatus,'Nilaktawan ang '+file.name+': lampas 20 MB.','error');continue}
+if(file.size>MAX_INPUT_BYTES){setStatus(fileStatus,'Skipped '+file.name+': over 20 MB.','error');continue}
 try{
-setStatus(fileStatus,'Inihahanda ang photo '+(i+1)+' of '+selected.length+'...','info');
+setStatus(fileStatus,'Preparing and watermarking photo '+(i+1)+' of '+selected.length+'...','info');
 var compressed=await compressPhoto(file);
-preparedFiles.push({id:uniqueId(),originalName:file.name,fileName:safeName(file.name)+'.jpg',blob:compressed,previewUrl:URL.createObjectURL(compressed),caption:defaultCaption.value.trim(),captionEdited:false});
+preparedFiles.push({id:uniqueId(),mediaType:'image',originalName:file.name,fileName:safeName(file.name)+'.jpg',blob:compressed,previewUrl:URL.createObjectURL(compressed),caption:defaultCaption.value.trim(),captionEdited:false});
 renderPreviews();
-}catch(error){setStatus(fileStatus,'Hindi mabasa ang '+file.name+'. Subukan ang JPG format.','error')}
+}catch(error){setStatus(fileStatus,'Could not read '+file.name+'. Try JPG format.','error')}
 }
-if(preparedFiles.length){setStatus(fileStatus,'✅ '+preparedFiles.length+' photo(s) ready for preview.','success')}
+if(preparedFiles.length){setStatus(fileStatus,'✅ '+preparedFiles.length+' photo(s) ready with permanent watermark.','success')}
 updatePublishButton();
 }
 
@@ -434,6 +458,27 @@ var width=Math.max(1,Math.round(image.naturalWidth*scale));
 var height=Math.max(1,Math.round(image.naturalHeight*scale));
 var canvas=document.createElement('canvas');canvas.width=width;canvas.height=height;
 var context=canvas.getContext('2d');context.fillStyle='#ffffff';context.fillRect(0,0,width,height);context.drawImage(image,0,0,width,height);
+var pad=Math.max(14,Math.round(width*.018));
+var fontSize=Math.max(18,Math.round(width*.028));
+var watermark='JETRIDERS CLUB PAMPANGA INC. • OFFICIAL';
+context.font='700 '+fontSize+'px Arial, Helvetica, sans-serif';
+context.textBaseline='middle';
+var textWidth=context.measureText(watermark).width;
+var boxWidth=Math.min(width-pad*2,textWidth+pad*2);
+var boxHeight=fontSize+pad*1.5;
+var boxX=width-boxWidth-pad;
+var boxY=height-boxHeight-pad;
+context.fillStyle='rgba(0,35,12,.72)';
+context.fillRect(boxX,boxY,boxWidth,boxHeight);
+context.strokeStyle='rgba(0,255,102,.95)';
+context.lineWidth=Math.max(2,Math.round(width*.002));
+context.strokeRect(boxX,boxY,boxWidth,boxHeight);
+context.fillStyle='#ffffff';
+context.shadowColor='rgba(0,0,0,.75)';
+context.shadowBlur=4;
+context.textAlign='right';
+context.fillText(watermark,width-pad*2,boxY+boxHeight/2);
+context.shadowBlur=0;
 canvas.toBlob(function(blob){URL.revokeObjectURL(sourceUrl);if(blob){resolve(blob)}else{reject(new Error('Compression failed'))}},'image/jpeg',.84);
 }catch(error){URL.revokeObjectURL(sourceUrl);reject(error)}
 };
@@ -446,7 +491,7 @@ function renderPreviews(){
 previews.innerHTML='';
 preparedFiles.forEach(function(item){
 var card=document.createElement('article');card.className='preview';card.dataset.id=item.id;
-var image=document.createElement('img');image.src=item.previewUrl;image.alt='Photo preview';
+var image=document.createElement(item.mediaType==='video'?'video':'img');image.src=item.previewUrl;image.alt=item.mediaType==='video'?'Video preview':'Photo preview';if(item.mediaType==='video'){image.controls=true;image.preload='metadata'}
 var body=document.createElement('div');body.className='preview-body';
 var name=document.createElement('div');name.className='preview-name';name.textContent=item.originalName;
 var caption=document.createElement('input');caption.type='text';caption.maxLength=120;caption.placeholder='Caption for this photo';caption.value=item.caption;
@@ -624,9 +669,9 @@ updatePublishButton();
 
 loadAdminData();
 
-async function publishPhotos(){
+async function publishMedia(){
 if(!verified){setStatus(publishStatus,'Verify Admin muna.','error');return}
-if(!preparedFiles.length){setStatus(publishStatus,'Pumili muna ng pictures.','error');return}
+if(!preparedFiles.length){setStatus(publishStatus,'Choose photos or a video first.','error');return}
 var category=document.getElementById('category').value;
 var photoDate=dateInput.value||localDateString(new Date());
 var stamp=Date.now();
@@ -642,12 +687,13 @@ progressBar.style.width='15%';
 var newItems=[];var treeEntries=[];
 for(var i=0;i<preparedFiles.length;i++){
 var item=preparedFiles[i];
-setStatus(publishStatus,'Ina-upload ang photo '+(i+1)+' of '+preparedFiles.length+'...','info');
+setStatus(publishStatus,'Uploading '+(item.mediaType==='video'?'video':'photo')+' '+(i+1)+' of '+preparedFiles.length+'...','info');
 var imageBase64=bufferToBase64(await item.blob.arrayBuffer());
 var blob=await githubApi('/repos/'+REPOSITORY+'/git/blobs',{method:'POST',body:JSON.stringify({content:imageBase64,encoding:'base64'})});
-var path='image/gallery/'+category+'/'+photoDate.replace(/-/g,'')+'-'+stamp+'-'+(i+1)+'-'+item.fileName;
+var folder=item.mediaType==='video'?'video/gallery/':'image/gallery/';
+var path=folder+category+'/'+photoDate.replace(/-/g,'')+'-'+stamp+'-'+(i+1)+'-'+item.fileName;
 treeEntries.push({path:path,mode:'100644',type:'blob',sha:blob.sha});
-newItems.push({id:uniqueId(),type:'image',category:category,src:path,caption:item.caption||'JETRIDERS Club Photo',date:photoDate,uploadedAt:new Date().toISOString()});
+newItems.push({id:uniqueId(),type:item.mediaType||'image',category:item.mediaType==='video'?'videos':category,src:path,caption:item.caption||(item.mediaType==='video'?'JETRIDERS Club Video':'JETRIDERS Club Photo'),date:photoDate,uploadedAt:new Date().toISOString()});
 progressBar.style.width=(15+Math.round(((i+1)/preparedFiles.length)*55))+'%';
 }
 
@@ -657,12 +703,12 @@ treeEntries.push({path:'gallery.json',mode:'100644',type:'blob',sha:manifestBlob
 progressBar.style.width='78%';setStatus(publishStatus,'Pinapublish ang gallery update...','info');
 
 var tree=await githubApi('/repos/'+REPOSITORY+'/git/trees',{method:'POST',body:JSON.stringify({base_tree:commit.tree.sha,tree:treeEntries})});
-var newCommit=await githubApi('/repos/'+REPOSITORY+'/git/commits',{method:'POST',body:JSON.stringify({message:'Publish '+preparedFiles.length+' gallery photo'+(preparedFiles.length===1?'':'s'),tree:tree.sha,parents:[headSha]})});
+var newCommit=await githubApi('/repos/'+REPOSITORY+'/git/commits',{method:'POST',body:JSON.stringify({message:'Publish '+preparedFiles.length+' gallery media item'+(preparedFiles.length===1?'':'s'),tree:tree.sha,parents:[headSha]})});
 await githubApi('/repos/'+REPOSITORY+'/git/refs/heads/'+encodeURIComponent(BRANCH),{method:'PATCH',body:JSON.stringify({sha:newCommit.sha,force:false})});
 progressBar.style.width='100%';
 
 preparedFiles.forEach(function(item){URL.revokeObjectURL(item.previewUrl)});preparedFiles=[];renderPreviews();
-setStatus(publishStatus,'✅ Published successfully! Lalabas ang pictures sa official Gallery sa loob ng humigit-kumulang 1–3 minuto.','success');
+setStatus(publishStatus,'✅ Published successfully! The photo/video will appear in the official Gallery sa loob ng humigit-kumulang 1–3 minuto.','success');
 var link=document.createElement('a');link.href='index.html#gallery';link.textContent='Open Official Gallery';link.className='btn secondary';link.style.marginTop='12px';publishStatus.appendChild(document.createElement('br'));publishStatus.appendChild(link);
 }catch(error){
 setStatus(publishStatus,'❌ Hindi na-publish: '+error.message+'\nWalang binago sa live gallery. Paki-refresh at subukan ulit.','error');
@@ -670,7 +716,7 @@ setStatus(publishStatus,'❌ Hindi na-publish: '+error.message+'\nWalang binago 
 verifyButton.disabled=false;progress.classList.remove('show');progressBar.style.width='0';updatePublishButton();
 }
 
-publishButton.addEventListener('click',publishPhotos);
+publishButton.addEventListener('click',publishMedia);
 })();
 </script>
 </body>
