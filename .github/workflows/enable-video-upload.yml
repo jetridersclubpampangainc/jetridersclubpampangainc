@@ -1,0 +1,202 @@
+name: Enable JETRIDERS video upload
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/enable-video-upload.yml'
+      - 'admin.html'
+      - 'index.html'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  patch-video-support:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Add photo and video upload support
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          import re
+
+          def replace_once(text, old, new, label):
+              if new in text:
+                  return text
+              if old not in text:
+                  raise RuntimeError(f'Missing expected block: {label}')
+              return text.replace(old, new, 1)
+
+          # ---------------- ADMIN UPLOADER ----------------
+          admin_path = Path('admin.html')
+          admin = admin_path.read_text(encoding='utf-8')
+
+          admin = admin.replace('.preview img{display:block;width:100%;height:170px;object-fit:cover;background:#dfe8e2}', '.preview img,.preview video{display:block;width:100%;height:170px;object-fit:cover;background:#dfe8e2}')
+          admin = admin.replace('.preview img{height:135px}', '.preview img,.preview video{height:135px}')
+          admin = admin.replace('📷 Gallery Photos</a>', '📷🎥 Gallery Media</a>')
+          admin = admin.replace('<h2><span class="step">2</span>Photo Details</h2>', '<h2><span class="step">2</span>Photo / Video Details</h2>')
+
+          if '<option value="videos">🎥 Videos</option>' not in admin:
+              admin = replace_once(
+                  admin,
+                  '<option value="meetings">🤝 Meetings</option>\n</select>',
+                  '<option value="meetings">🤝 Meetings</option>\n<option value="videos">🎥 Videos</option>\n</select>',
+                  'gallery category options'
+              )
+
+          admin = admin.replace('<h2><span class="step">3</span>Select Pictures</h2>', '<h2><span class="step">3</span>Select Photos or Video</h2>')
+          admin = admin.replace('accept="image/jpeg,image/png,image/webp" multiple', 'accept="image/jpeg,image/png,image/webp,video/mp4,video/webm" multiple')
+          admin = admin.replace('📷 Tap to Choose Pictures', '📷🎥 Tap to Choose Photos or Video')
+          admin = admin.replace('Pwede ring i-drag dito. Maximum 12 photos bawat publish.', 'Pwede ring i-drag dito. Maximum 12 photos or 1 short MP4/WebM video (up to 25 MB) bawat publish.')
+          admin = admin.replace('I-check ang category, date, at caption. Awtomatikong pinapaliit ang photos para mabilis buksan sa mobile.', 'I-check ang category, date, at caption. Photos are compressed and permanently watermarked. Videos display a JETRIDERS watermark overlay in the public gallery.')
+          admin = admin.replace('🚀 Publish Photos Now', '🚀 Publish Photos / Video Now')
+
+          admin = admin.replace(
+              "var MAX_FILES=12;\nvar MAX_INPUT_BYTES=20*1024*1024;",
+              "var MAX_FILES=12;\nvar MAX_INPUT_BYTES=20*1024*1024;\nvar MAX_VIDEO_BYTES=25*1024*1024;"
+          )
+
+          new_handle = r'''async function handleFiles(files){
+          clearStatus(fileStatus);
+          if(!files.length){return}
+
+          var videoFiles=files.filter(function(file){return /^video\/(mp4|webm)$/i.test(file.type)});
+          var imageFiles=files.filter(function(file){return /^image\/(jpeg|png|webp)$/i.test(file.type)});
+          var unsupported=files.filter(function(file){return !/^video\/(mp4|webm)$/i.test(file.type)&&!/^image\/(jpeg|png|webp)$/i.test(file.type)});
+
+          if(unsupported.length){
+          setStatus(fileStatus,'Unsupported file: '+unsupported[0].name+'. Use JPG, PNG, WebP, MP4, or WebM.','error');
+          return;
+          }
+
+          if(videoFiles.length){
+          if(files.length!==1||preparedFiles.length){setStatus(fileStatus,'Video must be uploaded one at a time. Remove other prepared files first.','error');return}
+          var video=videoFiles[0];
+          if(video.size>MAX_VIDEO_BYTES){setStatus(fileStatus,'Video is larger than 25 MB. Trim or compress it first.','error');return}
+          var extension=video.type==='video/webm'?'.webm':'.mp4';
+          preparedFiles.push({id:uniqueId(),mediaType:'video',originalName:video.name,fileName:safeName(video.name)+extension,blob:video,previewUrl:URL.createObjectURL(video),caption:defaultCaption.value.trim(),captionEdited:false});
+          renderPreviews();
+          setStatus(fileStatus,'✅ 1 video ready for preview.','success');
+          updatePublishButton();
+          return;
+          }
+
+          var room=MAX_FILES-preparedFiles.length;
+          if(room<=0){setStatus(fileStatus,'Maximum '+MAX_FILES+' photos bawat publish.','error');return}
+          var selected=imageFiles.slice(0,room);
+          if(imageFiles.length>room){setStatus(fileStatus,'First '+room+' photos only were added because the maximum is '+MAX_FILES+'.','info')}
+          for(var i=0;i<selected.length;i++){
+          var file=selected[i];
+          if(file.size>MAX_INPUT_BYTES){setStatus(fileStatus,'Skipped '+file.name+': over 20 MB.','error');continue}
+          try{
+          setStatus(fileStatus,'Preparing and watermarking photo '+(i+1)+' of '+selected.length+'...','info');
+          var compressed=await compressPhoto(file);
+          preparedFiles.push({id:uniqueId(),mediaType:'image',originalName:file.name,fileName:safeName(file.name)+'.jpg',blob:compressed,previewUrl:URL.createObjectURL(compressed),caption:defaultCaption.value.trim(),captionEdited:false});
+          renderPreviews();
+          }catch(error){setStatus(fileStatus,'Could not read '+file.name+'. Try JPG format.','error')}
+          }
+          if(preparedFiles.length){setStatus(fileStatus,'✅ '+preparedFiles.length+' photo(s) ready with permanent watermark.','success')}
+          updatePublishButton();
+          }
+
+          function compressPhoto(file){'''
+
+          admin, count = re.subn(
+              r'async function handleFiles\(files\)\{[\s\S]*?\n\}\n\nfunction compressPhoto\(file\)\{',
+              new_handle,
+              admin,
+              count=1
+          )
+          if count != 1 and 'videoFiles=files.filter' not in admin:
+              raise RuntimeError('Could not patch handleFiles')
+
+          watermark_draw = """context.drawImage(image,0,0,width,height);
+          var pad=Math.max(14,Math.round(width*.018));
+          var fontSize=Math.max(18,Math.round(width*.028));
+          var watermark='JETRIDERS CLUB PAMPANGA INC. • OFFICIAL';
+          context.font='700 '+fontSize+'px Arial, Helvetica, sans-serif';
+          context.textBaseline='middle';
+          var textWidth=context.measureText(watermark).width;
+          var boxWidth=Math.min(width-pad*2,textWidth+pad*2);
+          var boxHeight=fontSize+pad*1.5;
+          var boxX=width-boxWidth-pad;
+          var boxY=height-boxHeight-pad;
+          context.fillStyle='rgba(0,35,12,.72)';
+          context.fillRect(boxX,boxY,boxWidth,boxHeight);
+          context.strokeStyle='rgba(0,255,102,.95)';
+          context.lineWidth=Math.max(2,Math.round(width*.002));
+          context.strokeRect(boxX,boxY,boxWidth,boxHeight);
+          context.fillStyle='#ffffff';
+          context.shadowColor='rgba(0,0,0,.75)';
+          context.shadowBlur=4;
+          context.textAlign='right';
+          context.fillText(watermark,width-pad*2,boxY+boxHeight/2);
+          context.shadowBlur=0;"""
+          if watermark_draw not in admin:
+              admin = replace_once(admin, 'context.drawImage(image,0,0,width,height);', watermark_draw, 'photo canvas watermark')
+
+          old_preview = "var image=document.createElement('img');image.src=item.previewUrl;image.alt='Photo preview';"
+          new_preview = "var image=document.createElement(item.mediaType==='video'?'video':'img');image.src=item.previewUrl;image.alt=item.mediaType==='video'?'Video preview':'Photo preview';if(item.mediaType==='video'){image.controls=true;image.preload='metadata'}"
+          admin = replace_once(admin, old_preview, new_preview, 'media preview')
+
+          admin = admin.replace('async function publishPhotos(){', 'async function publishMedia(){')
+          admin = admin.replace("if(!preparedFiles.length){setStatus(publishStatus,'Pumili muna ng pictures.','error');return}", "if(!preparedFiles.length){setStatus(publishStatus,'Choose photos or a video first.','error');return}")
+          admin = admin.replace("setStatus(publishStatus,'Ina-upload ang photo '+(i+1)+' of '+preparedFiles.length+'...','info');", "setStatus(publishStatus,'Uploading '+(item.mediaType==='video'?'video':'photo')+' '+(i+1)+' of '+preparedFiles.length+'...','info');")
+
+          old_publish_path = "var path='image/gallery/'+category+'/'+photoDate.replace(/-/g,'')+'-'+stamp+'-'+(i+1)+'-'+item.fileName;\ntreeEntries.push({path:path,mode:'100644',type:'blob',sha:blob.sha});\nnewItems.push({id:uniqueId(),type:'image',category:category,src:path,caption:item.caption||'JETRIDERS Club Photo',date:photoDate,uploadedAt:new Date().toISOString()});"
+          new_publish_path = "var folder=item.mediaType==='video'?'video/gallery/':'image/gallery/';\nvar path=folder+category+'/'+photoDate.replace(/-/g,'')+'-'+stamp+'-'+(i+1)+'-'+item.fileName;\ntreeEntries.push({path:path,mode:'100644',type:'blob',sha:blob.sha});\nnewItems.push({id:uniqueId(),type:item.mediaType||'image',category:item.mediaType==='video'?'videos':category,src:path,caption:item.caption||(item.mediaType==='video'?'JETRIDERS Club Video':'JETRIDERS Club Photo'),date:photoDate,uploadedAt:new Date().toISOString()});"
+          admin = replace_once(admin, old_publish_path, new_publish_path, 'publish media path')
+
+          admin = admin.replace("message:'Publish '+preparedFiles.length+' gallery photo'+(preparedFiles.length===1?'':'s')", "message:'Publish '+preparedFiles.length+' gallery media item'+(preparedFiles.length===1?'':'s')")
+          admin = admin.replace("'✅ Published successfully! Lalabas ang pictures sa official Gallery", "'✅ Published successfully! The photo/video will appear in the official Gallery")
+          admin = admin.replace("publishButton.addEventListener('click',publishPhotos);", "publishButton.addEventListener('click',publishMedia);")
+
+          admin_path.write_text(admin, encoding='utf-8')
+
+          # ---------------- PUBLIC GALLERY ----------------
+          index_path = Path('index.html')
+          index = index_path.read_text(encoding='utf-8')
+
+          if 'data-category="videos"' not in index:
+              index = replace_once(
+                  index,
+                  '<button class="gallery-btn" type="button" data-category="meetings" onclick="showGalleryTab(\'meetings\', this)">🤝 Meetings <span class="gallery-count" id="count-meetings">0</span></button>',
+                  '<button class="gallery-btn" type="button" data-category="meetings" onclick="showGalleryTab(\'meetings\', this)">🤝 Meetings <span class="gallery-count" id="count-meetings">0</span></button>\n<button class="gallery-btn" type="button" data-category="videos" onclick="showGalleryTab(\'videos\', this)">🎥 Videos <span class="gallery-count" id="count-videos">0</span></button>',
+                  'videos gallery tab'
+              )
+
+          gallery_css = """
+          .gallery-video-wrap{position:relative;line-height:0;background:#000}
+          .gallery-video-wrap video{display:block;width:100%;height:240px;object-fit:contain;background:#000}
+          .gallery-video-watermark{position:absolute;right:10px;bottom:48px;z-index:2;padding:6px 9px;border-radius:7px;background:rgba(0,35,12,.72);border:1px solid rgba(0,255,102,.95);color:#fff;font-size:11px;font-weight:800;line-height:1.2;pointer-events:none;text-shadow:0 1px 3px #000}
+          """.strip()
+          if '.gallery-video-wrap{' not in index:
+              index = replace_once(index, '</style>', gallery_css+'\n</style>', 'video gallery CSS')
+
+          old_render = "return '<figure class=\"gallery-card\"><a href=\"'+encodeURI(item.src)+'\" target=\"_blank\" rel=\"noopener\"><img src=\"'+encodeURI(item.src)+'\" alt=\"'+caption+'\" loading=\"lazy\" decoding=\"async\"></a><figcaption>'+caption+date+'</figcaption></figure>';"
+          new_render = "var media=item.type==='video'?'<div class=\"gallery-video-wrap\"><video controls controlsList=\"nodownload\" disablePictureInPicture preload=\"metadata\"><source src=\"'+encodeURI(item.src)+'\"></video><div class=\"gallery-video-watermark\">JETRIDERS CLUB PAMPANGA INC.<br>OFFICIAL VIDEO</div></div>':'<a href=\"'+encodeURI(item.src)+'\" target=\"_blank\" rel=\"noopener\"><img src=\"'+encodeURI(item.src)+'\" alt=\"'+caption+'\" loading=\"lazy\" decoding=\"async\"></a>';\nreturn '<figure class=\"gallery-card\">'+media+'<figcaption>'+caption+date+'</figcaption></figure>';"
+          index = replace_once(index, old_render, new_render, 'gallery media renderer')
+          index = index.replace("['rides','events','meetings'].forEach(function(category){", "['rides','events','meetings','videos'].forEach(function(category){")
+
+          index_path.write_text(index, encoding='utf-8')
+          PY
+
+      - name: Commit patched uploader and gallery
+        shell: bash
+        run: |
+          if git diff --quiet; then
+            echo 'Video support already applied.'
+            exit 0
+          fi
+          git config user.name 'JETRIDERS Website Bot'
+          git config user.email 'actions@users.noreply.github.com'
+          git add admin.html index.html
+          git commit -m 'Add photo and video gallery upload support'
+          git push
