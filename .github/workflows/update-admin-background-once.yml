@@ -2,9 +2,10 @@ name: Update JETRIDERS admin background
 
 on:
   push:
-    branches: [main]
+    branches:
+      - main
     paths:
-      - '.github/workflows/update-admin-background-once.yml'
+      - .github/workflows/update-admin-background-once.yml
   workflow_dispatch:
 
 permissions:
@@ -23,79 +24,17 @@ jobs:
         run: |
           python3 - <<'PY'
           from pathlib import Path
+          import base64
 
           admin_path = Path('admin.html')
           html = admin_path.read_text(encoding='utf-8')
-
           marker = '/* JETRIDERS FINAL DARK ADMIN THEME */'
+          encoded = 'Ci8qIEpFVFJJREVSUyBGSU5BTCBEQVJLIEFETUlOIFRIRU1FICovCmJvZHl7CiAgY29sb3I6I2VmZmZmMzsKICBiYWNrZ3JvdW5kOgogICAgcmFkaWFsLWdyYWRpZW50KGNpcmNsZSBhdCA4NiUgOCUscmdiYSgwLDIzMSwxMDEsLjE5KSx0cmFuc3BhcmVudCAzMCUpLAogICAgcmFkaWFsLWdyYWRpZW50KGNpcmNsZSBhdCAxMiUgOTIlLHJnYmEoMCwxMzUsNTUsLjIyKSx0cmFuc3BhcmVudCAzNiUpLAogICAgbGluZWFyLWdyYWRpZW50KDE0NWRlZywjMDEwODA0IDAlLCMwNjE3MGMgNDglLCMwMDIyMGQgMTAwJSk7CiAgYmFja2dyb3VuZC1hdHRhY2htZW50OmZpeGVkOwogIHBvc2l0aW9uOnJlbGF0aXZlOwp9CmJvZHk6OmJlZm9yZXsKICBjb250ZW50OiIiOwogIHBvc2l0aW9uOmZpeGVkOwogIGluc2V0OjA7CiAgei1pbmRleDotMTsKICBwb2ludGVyLWV2ZW50czpub25lOwogIGJhY2tncm91bmQ6dXJsKCdsb2dvLmpwZycpIGNlbnRlciAxMjBweC81MjBweCBhdXRvIG5vLXJlcGVhdDsKICBvcGFjaXR5Oi4wNTU7CiAgZmlsdGVyOmdyYXlzY2FsZSguMTUpOwp9CmhlYWRlcntcbiAgYmFja2dyb3VuZDpsaW5lYXItZ3JhZGllbnQoMTM1ZGVnLHJnYmEoMCwzNCwxMiwuOTgpLHJnYmEoMCwxMTIsNDMsLjk2KSk7CiAgYm9yZGVyLWJvdHRvbToxcHggc29saWQgcmdiYSgwLDI1NSwxMDIsLjU4KTsKICBib3gtc2hhZG93OjAgOHB4IDMwcHggcmdiYSgwLDAsMCwuNDgpLDAgMCAyOHB4IHJnYmEoMCwyMzEsMTAxLC4xMik7Cn0KLmNhcmR7CiAgY29sb3I6I2VmZmZmMzsKICBiYWNrZ3JvdW5kOmxpbmVhci1ncmFkaWVudCgxNDVkZWcscmdiYSg1LDI5LDEzLC45NiksaW5lYXItZ3JhZGllbnQoMTQ1ZGVnLHJnYmEoMiwyMSw5LC45NCkpOwogIGJvcmRlcjoxcHggc29saWQgcmdiYSgwLDIzMSwxMDEsLjUwKTsKICBib3gtc2hhZG93OjAgMTZweCAzOHB4IHJnYmEoMCwwLDAsLjQyKSxpbnNldCAwIDFweCAwIHJnYmEoMjU1LDI1NSwyNTUsLjAyNSk7CiAgYmFja2Ryb3AtZmlsdGVyOmJsdXIoMTBweCk7Cn0KaDEsaDJ7Y29sb3I6Izc4ZmY5Y30KcCxsaXtjb2xvcjojZTVmOGVhfQoubXV0ZWR7Y29sb3I6I2E5Y2RiNH0KbGFiZWx7Y29sb3I6I2Q4ZmZlM30KLnNlY3Rpb24tbm90ZXsKICBjb2xvcjojZDhmZmUzOwogIGJhY2tncm91bmQ6cmdiYSgwLDIzMSwxMDEsLjA3NSk7CiAgYm9yZGVyLWxlZnQtY29sb3I6IzAwZTc2NTsKfQoubm90aWNlLnNhZmV7CiAgY29sb3I6I2RmZmZlNzsKICBiYWNrZ3JvdW5kOnJnYmEoMCwxMjYsNDgsLjE4KTsKICBib3JkZXItY29sb3I6cmdiYSgwLDIzMSwxMDEsLjQyKTsKfQoubm90aWNlLmRhbmdlcnsKICBjb2xvcjojZmZkOWQ0OwogIGJhY2tncm91bmQ6cmdiYSgxODAsMzUsMjQsLjE4KTsKICBib3JkZXItY29sb3I6cmdiYSgyNTUsMTAwLDg4LC40NSk7Cn0KLnF1aWNrLW5hdiAuYnRue2JveC1zaGFkb3c6MCA4cHggMThweCByZ2JhKDAsMCwwLC4yNSl9Ci5wcmV2aWV3ewogIGNvbG9yOiNlZmZmZjM7CiAgYmFja2dyb3VuZDpyZ2JhKDUsMjUsMTIsLjk0KTsKICBib3JkZXItY29sb3I6cmdiYSgwLDIzMSwxMDEsLjM1KTsKfQoucHJldmlldy1uYW1lLC5zaXpke2NvbG9yOiNiN2Q4YzB9Ci5wcm9ncmVzc3tiYWNrZ3JvdW5kOiMwYTI2MTJ9Ci5zdGF0dXMuaW5mb3tiYWNrZ3JvdW5kOnJnYmEoMjMsNzgsMTY2LC4yMCk7Y29sb3I6I2Q5ZThmZjtidorder-color:rgba(88,145,230,.55)}Ci5zdGF0dXMuc3VjY2Vzc3tiYWNrZ3JvdW5kOnJnYmEoMjMsMTA3LDU0LC4yMyk7Y29sb3I6I2RmZmZlODtib3JkZXItY29sb3I6cmdiYSg2OSwxOTgsMTEyLC41NSl9Ci5zdGF0dXMuZXJyb3J7YmFja2dyb3VuZDpyZ2JhKDE1NCwzNiwyNiwuMjMpO2NvbG9yOiNmZmUwZGM7Ym9yZGVyLWNvbG9yOnJnYmEoMjM5LDkxLDc2LC41NSl9CmlucHV0LHNlbGVjdCx0ZXh0YXJlYXsKICBjb2xvcjojMTAyMDE2OwogIGJhY2tncm91bmQ6I2Y4ZmZmYTsKfQpmb290ZXJ7Y29sb3I6I2I5ZGJjMn0K'
+          theme = base64.b64decode(encoded).decode('utf-8')
+
           if marker not in html:
-              theme = r'''
-/* JETRIDERS FINAL DARK ADMIN THEME */
-body{
-  color:#effff3;
-  background:
-    radial-gradient(circle at 86% 8%,rgba(0,231,101,.19),transparent 30%),
-    radial-gradient(circle at 12% 92%,rgba(0,135,55,.22),transparent 36%),
-    linear-gradient(145deg,#010804 0%,#06170c 48%,#00220d 100%);
-  background-attachment:fixed;
-  position:relative;
-}
-body::before{
-  content:"";
-  position:fixed;
-  inset:0;
-  z-index:-1;
-  pointer-events:none;
-  background:url('logo.jpg') center 120px/520px auto no-repeat;
-  opacity:.055;
-  filter:grayscale(.15);
-}
-header{
-  background:linear-gradient(135deg,rgba(0,34,12,.98),rgba(0,112,43,.96));
-  border-bottom:1px solid rgba(0,255,102,.58);
-  box-shadow:0 8px 30px rgba(0,0,0,.48),0 0 28px rgba(0,231,101,.12);
-}
-.card{
-  color:#effff3;
-  background:linear-gradient(145deg,rgba(5,29,13,.96),rgba(2,18,8,.94));
-  border:1px solid rgba(0,231,101,.50);
-  box-shadow:0 16px 38px rgba(0,0,0,.42),inset 0 1px 0 rgba(255,255,255,.025);
-  backdrop-filter:blur(10px);
-}
-h1,h2{color:#78ff9c}
-p,li{color:#e5f8ea}
-.muted{color:#a9cdb4}
-label{color:#d8ffe3}
-.section-note{
-  color:#d8ffe3;
-  background:rgba(0,231,101,.075);
-  border-left-color:#00e765;
-}
-.notice.safe{
-  color:#dfffe7;
-  background:rgba(0,126,48,.18);
-  border-color:rgba(0,231,101,.42);
-}
-.notice.danger{
-  color:#ffd9d4;
-  background:rgba(180,35,24,.18);
-  border-color:rgba(255,100,88,.45);
-}
-.quick-nav .btn{
-  box-shadow:0 8px 18px rgba(0,0,0,.25);
-}
-.preview{
-  color:#effff3;
-  background:rgba(5,25,12,.94);
-  border-color:rgba(0,231,101,.35);
-}
-.preview-name,.size{color:#b7d8c0}
-.progress{background:#0a2612}
-.status.info{background:rgba(23,78,166,.20);color:#d9e8ff;border-color:rgba(88,145,230,.55)}
-.status.success{background:rgba(23,107,54,.23);color:#dfffe8;border-color:rgba(69,198,112,.55)}
-.status.error{background:rgba(154,36,26,.23);color:#ffe0dc;border-color:rgba(239,91,76,.55)}
-footer{color:#b9dbc2}
-'''
+              if '</style>' not in html:
+                  raise RuntimeError('admin.html has no closing style tag')
               html = html.replace('</style>', theme + '\n</style>', 1)
               admin_path.write_text(html, encoding='utf-8')
           PY
