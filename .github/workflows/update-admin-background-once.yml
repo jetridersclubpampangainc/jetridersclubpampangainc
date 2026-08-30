@@ -1,0 +1,114 @@
+name: Update JETRIDERS admin background
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/update-admin-background-once.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  update-background:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Apply dark JETRIDERS admin theme
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+
+          admin_path = Path('admin.html')
+          html = admin_path.read_text(encoding='utf-8')
+
+          marker = '/* JETRIDERS FINAL DARK ADMIN THEME */'
+          if marker not in html:
+              theme = r'''
+/* JETRIDERS FINAL DARK ADMIN THEME */
+body{
+  color:#effff3;
+  background:
+    radial-gradient(circle at 86% 8%,rgba(0,231,101,.19),transparent 30%),
+    radial-gradient(circle at 12% 92%,rgba(0,135,55,.22),transparent 36%),
+    linear-gradient(145deg,#010804 0%,#06170c 48%,#00220d 100%);
+  background-attachment:fixed;
+  position:relative;
+}
+body::before{
+  content:"";
+  position:fixed;
+  inset:0;
+  z-index:-1;
+  pointer-events:none;
+  background:url('logo.jpg') center 120px/520px auto no-repeat;
+  opacity:.055;
+  filter:grayscale(.15);
+}
+header{
+  background:linear-gradient(135deg,rgba(0,34,12,.98),rgba(0,112,43,.96));
+  border-bottom:1px solid rgba(0,255,102,.58);
+  box-shadow:0 8px 30px rgba(0,0,0,.48),0 0 28px rgba(0,231,101,.12);
+}
+.card{
+  color:#effff3;
+  background:linear-gradient(145deg,rgba(5,29,13,.96),rgba(2,18,8,.94));
+  border:1px solid rgba(0,231,101,.50);
+  box-shadow:0 16px 38px rgba(0,0,0,.42),inset 0 1px 0 rgba(255,255,255,.025);
+  backdrop-filter:blur(10px);
+}
+h1,h2{color:#78ff9c}
+p,li{color:#e5f8ea}
+.muted{color:#a9cdb4}
+label{color:#d8ffe3}
+.section-note{
+  color:#d8ffe3;
+  background:rgba(0,231,101,.075);
+  border-left-color:#00e765;
+}
+.notice.safe{
+  color:#dfffe7;
+  background:rgba(0,126,48,.18);
+  border-color:rgba(0,231,101,.42);
+}
+.notice.danger{
+  color:#ffd9d4;
+  background:rgba(180,35,24,.18);
+  border-color:rgba(255,100,88,.45);
+}
+.quick-nav .btn{
+  box-shadow:0 8px 18px rgba(0,0,0,.25);
+}
+.preview{
+  color:#effff3;
+  background:rgba(5,25,12,.94);
+  border-color:rgba(0,231,101,.35);
+}
+.preview-name,.size{color:#b7d8c0}
+.progress{background:#0a2612}
+.status.info{background:rgba(23,78,166,.20);color:#d9e8ff;border-color:rgba(88,145,230,.55)}
+.status.success{background:rgba(23,107,54,.23);color:#dfffe8;border-color:rgba(69,198,112,.55)}
+.status.error{background:rgba(154,36,26,.23);color:#ffe0dc;border-color:rgba(239,91,76,.55)}
+footer{color:#b9dbc2}
+'''
+              html = html.replace('</style>', theme + '\n</style>', 1)
+              admin_path.write_text(html, encoding='utf-8')
+          PY
+
+      - name: Commit updated background
+        shell: bash
+        run: |
+          if git diff --quiet; then
+            echo 'Dark background already applied.'
+            exit 0
+          fi
+          git config user.name 'JETRIDERS Website Bot'
+          git config user.email 'actions@users.noreply.github.com'
+          git add admin.html
+          git commit -m 'Update Admin Upload to dark JETRIDERS background'
+          git push
