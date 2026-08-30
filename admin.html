@@ -52,6 +52,34 @@ details{margin-top:13px}summary{cursor:pointer;font-weight:bold;color:var(--gree
 footer{text-align:center;color:#4a6252;padding:10px 15px 35px;font-size:13px}
 @media(max-width:650px){header{padding:18px 14px}.brand img{width:54px;height:54px}h1{font-size:20px}.wrap{padding:14px 10px 35px}.card{padding:17px;border-radius:15px}.form-grid,.token-row,.mode-row,.quick-nav{grid-template-columns:1fr}.btn{width:100%}.previews{grid-template-columns:1fr 1fr}.preview img,.preview video{height:135px}}
 @media(max-width:420px){.previews{grid-template-columns:1fr}}
+
+/* JETRIDERS FINAL DARK BACKGROUND */
+html{background:#020905}
+body{
+  min-height:100vh;
+  background:
+    radial-gradient(circle at 15% 10%,rgba(0,231,101,.25) 0,rgba(0,231,101,0) 30%),
+    radial-gradient(circle at 86% 15%,rgba(255,213,74,.10) 0,rgba(255,213,74,0) 26%),
+    linear-gradient(rgba(0,12,6,.86),rgba(0,45,18,.94)),
+    url('grouppix.png') center top/cover fixed no-repeat;
+}
+header{
+  background:linear-gradient(135deg,rgba(0,18,8,.98),rgba(0,112,44,.96),rgba(0,38,15,.98));
+  border-bottom:1px solid rgba(0,255,102,.55);
+  box-shadow:0 8px 28px rgba(0,0,0,.45);
+}
+.card{
+  background:rgba(255,255,255,.96);
+  border-color:rgba(0,231,101,.58);
+  box-shadow:0 14px 38px rgba(0,0,0,.28);
+  backdrop-filter:blur(10px);
+}
+footer{color:#dfffea;text-shadow:0 1px 3px #000}
+@media(max-width:650px){
+  body{background-attachment:scroll;background-position:center top}
+}
+/* END JETRIDERS FINAL DARK BACKGROUND */
+
 </style>
 </head>
 <body>
