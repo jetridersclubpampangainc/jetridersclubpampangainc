@@ -1,7 +1,16 @@
 {
   "version": 1,
-  "updatedAt": "2026-08-30T01:06:31.972Z",
+  "updatedAt": "2026-08-30T01:36:45.410Z",
   "items": [
+    {
+      "id": "3b4d6059-6bc4-421b-8195-b9fe586b5728",
+      "type": "video",
+      "category": "videos",
+      "src": "video/gallery/rides/20260830-1788053799223-1-1000241581.mp4",
+      "caption": "JETRIDERS Club Video",
+      "date": "2026-08-30",
+      "uploadedAt": "2026-08-30T01:36:45.409Z"
+    },
     {
       "id": "20560278-7216-4719-9059-ac262ddb438a",
       "type": "video",
