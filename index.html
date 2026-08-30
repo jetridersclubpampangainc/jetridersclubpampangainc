@@ -40,6 +40,47 @@
 .gallery-video-wrap{position:relative;line-height:0;background:#000}
 .gallery-video-wrap video{display:block;width:100%;height:240px;object-fit:contain;background:#000}
 .gallery-video-watermark{position:absolute;right:10px;bottom:48px;z-index:2;padding:6px 9px;border-radius:7px;background:rgba(0,35,12,.72);border:1px solid rgba(0,255,102,.95);color:#fff;font-size:11px;font-weight:800;line-height:1.2;pointer-events:none;text-shadow:0 1px 3px #000}
+/* JETRIDERS FINAL PUBLIC BACKGROUND */
+html{background:#010704}
+body{
+  color:#fff;
+  background:
+    radial-gradient(circle at 12% 8%,rgba(0,255,102,.18) 0,rgba(0,255,102,0) 28%),
+    radial-gradient(circle at 88% 18%,rgba(255,213,74,.08) 0,rgba(255,213,74,0) 24%),
+    linear-gradient(rgba(0,10,5,.86),rgba(0,48,19,.92)),
+    url('logo.jpg') center/280px repeat fixed;
+  background-color:#010704;
+}
+body:before{
+  background:linear-gradient(180deg,rgba(0,0,0,.12),rgba(0,20,8,.36));
+}
+nav{
+  background:rgba(0,20,8,.96);
+  border-bottom:1px solid rgba(0,255,102,.42);
+  box-shadow:0 5px 22px rgba(0,0,0,.40);
+  backdrop-filter:blur(10px);
+}
+.card{
+  background:linear-gradient(145deg,rgba(0,40,15,.94),rgba(0,19,8,.94));
+  border-left-color:#00ff66;
+  box-shadow:0 12px 32px rgba(0,0,0,.40),0 0 20px rgba(0,255,102,.08);
+  backdrop-filter:blur(8px);
+}
+.person,.document-card,.stat-box,.gallery-card,.ride-card,.past-president-card{
+  background:rgba(0,10,5,.70);
+  border-color:rgba(0,255,102,.58);
+}
+input,select,textarea{
+  background:rgba(255,255,255,.97);
+}
+footer{
+  background:linear-gradient(135deg,#001006,#00431a,#001006);
+  border-top:1px solid rgba(0,255,102,.45);
+}
+@media(max-width:700px){
+  body{background-attachment:scroll;background-size:220px}
+}
+/* END JETRIDERS FINAL PUBLIC BACKGROUND */
 </style>
 </head>
 <body>
