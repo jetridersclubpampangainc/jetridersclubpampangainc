@@ -1,0 +1,80 @@
+name: Merge JETRIDERS ID Maker links
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/merge-id-maker-links.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  merge-links:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Add ID Maker links to website and admin pages
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+
+          def patch(path, replacements):
+              p = Path(path)
+              text = p.read_text(encoding='utf-8')
+              original = text
+              for old, new in replacements:
+                  if new in text:
+                      continue
+                  if old in text:
+                      text = text.replace(old, new, 1)
+              if text != original:
+                  p.write_text(text, encoding='utf-8')
+
+          patch('index.html', [
+              (
+                  '<a href="admin.html">Admin Upload</a></nav>',
+                  '<a href="id-maker.html">🪪 ID Maker</a><a href="admin.html">Admin Upload</a></nav>'
+              ),
+              (
+                  '<section class="card" id="membership"><h2>Membership Requirements</h2>',
+                  '<section class="card" id="membership"><h2>Membership Requirements</h2><div style="text-align:center;margin:12px 0 18px"><a class="btn" href="membership-application.html">📝 Old / New Member Information Form</a><a class="btn" href="id-maker.html">🪪 Open JETRIDERS ID Maker</a></div>'
+              )
+          ])
+
+          patch('admin.html', [
+              (
+                  '<a class="btn" href="#gallery-manager">📷🎥 Gallery Media</a>',
+                  '<a class="btn" href="#gallery-manager">📷🎥 Gallery Media</a>\n<a class="btn" href="id-maker.html">🪪 Member ID Maker</a>'
+              ),
+              (
+                  '<a class="back" href="index.html#gallery">← Back to Official Website</a>',
+                  '<a class="back" href="index.html#gallery">← Back to Official Website</a> <a class="back" href="id-maker.html" style="margin-left:14px">🪪 Open ID Maker</a>'
+              )
+          ])
+
+          patch('member-admin.html', [
+              (
+                  '<a class="toplink" href="index.html">← Back to website</a>',
+                  '<a class="toplink" href="index.html">← Back to website</a> &nbsp; <a class="toplink" href="id-maker.html">🪪 Open ID Maker</a>'
+              )
+          ])
+          PY
+
+      - name: Commit merged links
+        shell: bash
+        run: |
+          if git diff --quiet; then
+            echo 'ID Maker links are already merged.'
+            exit 0
+          fi
+          git config user.name 'JETRIDERS Website Bot'
+          git config user.email 'actions@users.noreply.github.com'
+          git add index.html admin.html member-admin.html
+          git commit -m 'Merge ID Maker into JETRIDERS website and admin navigation'
+          git push
