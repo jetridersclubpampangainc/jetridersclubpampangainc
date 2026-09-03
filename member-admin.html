@@ -1,60 +1,336 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="robots" content="noindex,nofollow">
 <title>JETRIDERS Membership Admin Review</title>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <style>
-*{box-sizing:border-box}body{margin:0;font-family:Arial,sans-serif;background:#06150a;color:#fff}.wrap{max-width:1250px;margin:auto;padding:20px}.panel{background:#0c2c15;border:1px solid #42ff7c;border-radius:18px;padding:20px;margin:16px 0}.hidden{display:none!important}h1,h2{color:#7dff9f}input,select,textarea,button{width:100%;padding:10px;border-radius:9px;border:1px solid #65ff90;margin:5px 0 10px}button{background:#00e85c;color:#001b08;font-weight:800;cursor:pointer}.danger{background:#d94747;color:#fff}.warn{background:#f2c94c}.neutral{background:#fff}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px}.app-card{background:#071d0d;border:1px solid #2fe66d;border-radius:14px;padding:14px;margin:12px 0}.badge{display:inline-block;padding:5px 10px;border-radius:20px;background:#173d23}.pending{background:#665600}.approved{background:#145d2a}.rejected{background:#681d1d}.needs_info{background:#60451b}.detail-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:8px}.detail{background:#0b2712;padding:9px;border-radius:8px}.muted{color:#b7d9c0;font-size:12px}.statusbox{padding:10px;border-radius:8px;background:#102f18;margin:10px 0}.toplink{color:#9cffb4}
+:root{--bg:#041008;--panel:#0b2b14;--panel2:#071d0d;--line:#35ef72;--green:#00e85c;--mint:#7dff9f;--white:#f4fff7;--muted:#b7d9c0;--danger:#d94747;--warn:#f2c94c;--blue:#4ea1ff;--honor:#9bd3ff}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;background:#020a04}
+body{margin:0;font-family:Arial,Helvetica,sans-serif;background:radial-gradient(circle at 90% 5%,rgba(0,232,92,.17),transparent 30%),linear-gradient(145deg,#020904,#06190b 55%,#00200c);color:#fff;min-height:100vh}
+.wrap{max-width:1250px;margin:auto;padding:18px 14px 55px}
+.panel{background:linear-gradient(145deg,rgba(12,44,21,.97),rgba(5,24,11,.97));border:1px solid rgba(66,255,124,.72);border-radius:18px;padding:20px;margin:16px 0;box-shadow:0 14px 34px rgba(0,0,0,.32)}
+.hidden{display:none!important}
+h1,h2,h3{color:var(--mint)}
+h1{font-size:clamp(24px,4vw,34px);margin:12px 0}
+h2{margin:0 0 13px;font-size:22px}
+h3{margin:0 0 8px;font-size:18px}
+p{line-height:1.5}
+a{color:#9cffb4}
+input,select,textarea,button{width:100%;padding:11px 12px;border-radius:9px;border:1px solid #65ff90;margin:5px 0 10px;font:inherit}
+input,select,textarea{background:#f8fffa;color:#102016}
+textarea{min-height:80px;resize:vertical}
+button{background:var(--green);color:#001b08;font-weight:800;cursor:pointer;border:0;min-height:44px}
+button:hover{filter:brightness(1.06)}
+button:disabled{opacity:.55;cursor:not-allowed}
+button.danger{background:var(--danger);color:#fff}
+button.warn{background:var(--warn);color:#201900}
+button.neutral{background:#fff;color:#083419}
+button.secondary{background:#dfffea;color:#064820}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px}
+.actions{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:9px;margin-top:10px}
+.app-card,.member-row{background:rgba(2,18,8,.9);border:1px solid rgba(47,230,109,.65);border-radius:14px;padding:15px;margin:12px 0}
+.badge{display:inline-block;padding:5px 10px;border-radius:20px;background:#173d23;font-size:12px;font-weight:800;text-transform:uppercase}
+.badge.pending{background:#665600}.badge.approved,.badge.active{background:#145d2a}.badge.rejected,.badge.inactive{background:#681d1d}.badge.needs_info{background:#60451b}.badge.provisionary{background:#806a00;color:#fff3b0}.badge.honorary{background:#17567b;color:#dff4ff}
+.detail-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:8px;margin-top:12px}
+.detail{background:#0b2712;padding:9px;border-radius:8px;border:1px solid rgba(66,255,124,.12)}
+.muted{color:var(--muted);font-size:12px}
+.statusbox{padding:11px 13px;border-radius:9px;background:#102f18;margin:10px 0;white-space:pre-line;line-height:1.45}
+.statusbox.success{background:#123f20;border:1px solid #48df7a;color:#e7ffed}.statusbox.error{background:#4b1515;border:1px solid #e46a6a;color:#ffe9e9}.statusbox.info{background:#102d4b;border:1px solid #68aaf0;color:#eaf4ff}
+.topline{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.toplinks{display:flex;gap:10px;flex-wrap:wrap}
+.toplink{display:inline-block;color:#9cffb4;text-decoration:none;font-weight:700;padding:8px 11px;border:1px solid rgba(156,255,180,.4);border-radius:10px;background:rgba(0,0,0,.18)}
+.note{padding:12px 14px;border-left:4px solid var(--green);background:rgba(0,232,92,.08);border-radius:9px;line-height:1.5;margin:10px 0}
+.member-head{display:grid;grid-template-columns:minmax(230px,1.3fr) minmax(150px,.7fr);gap:12px;align-items:center}
+.member-editor{display:grid;grid-template-columns:minmax(160px,.7fr) minmax(220px,1.3fr);gap:12px;margin-top:12px}
+.member-meta{display:flex;gap:8px;flex-wrap:wrap;align-items:center}.member-meta strong{color:#fff}.override-note{font-size:12px;color:#ffefad}
+.section-tabs{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px}.section-tabs a{text-decoration:none;text-align:center;background:rgba(0,232,92,.12);border:1px solid rgba(0,232,92,.5);padding:12px;border-radius:12px;font-weight:800;color:#dfffea}
+.counts{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0}.count{padding:7px 10px;border-radius:20px;background:#143c20;font-size:12px}
+@media(max-width:720px){.wrap{padding:10px}.panel{padding:15px}.member-head,.member-editor{grid-template-columns:1fr}.section-tabs{grid-template-columns:1fr}.actions{grid-template-columns:1fr}}
 </style>
-</head><body><div class="wrap">
-<a class="toplink" href="index.html">← Back to website</a> &nbsp; <a class="toplink" href="id-maker.html">🪪 Open ID Maker</a>
+</head>
+<body>
+<div class="wrap">
+<div class="toplinks">
+<a class="toplink" href="index.html">← Back to website</a>
+<a class="toplink" href="membership-application.html">📝 Member Form</a>
+<a class="toplink" href="id-maker.html">🪪 ID Maker</a>
+<a class="toplink" href="admin.html">📷 Media Admin</a>
+</div>
 <h1>🏍️ JETRIDERS Membership Admin</h1>
-<section id="loginPanel" class="panel"><h2>🔐 Admin Login</h2><p>Only approved club admin accounts can review applications.</p><input id="email" type="email" autocomplete="username" placeholder="Admin email"><input id="password" type="password" autocomplete="current-password" placeholder="Password"><button id="loginBtn">Login</button><div id="loginStatus" class="statusbox"></div></section>
+
+<section id="loginPanel" class="panel">
+<h2>🔐 Admin Login</h2>
+<p>Only authorized JETRIDERS admin accounts can review applications and change member status.</p>
+<input id="email" type="email" autocomplete="username" placeholder="Admin email" value="jojopolicarpio365@gmail.com">
+<input id="password" type="password" autocomplete="current-password" placeholder="Password">
+<button id="loginBtn" type="button">Login</button>
+<div id="loginStatus" class="statusbox">Ready for admin login.</div>
+</section>
+
 <section id="adminPanel" class="hidden">
-<div class="panel"><div class="grid"><div><h2>Membership Applications</h2><div id="who"></div></div><div><button id="logoutBtn" class="neutral">Logout</button></div></div>
-<div class="grid"><select id="statusFilter"><option value="pending">Pending</option><option value="needs_info">Needs Info</option><option value="approved">Approved</option><option value="rejected">Rejected</option><option value="all">All</option></select><input id="searchBox" type="search" placeholder="Search name / member ID / reference"></div></div>
+<div class="panel">
+<div class="topline"><div><h2>Membership Administration</h2><div id="who" class="muted"></div></div><button id="logoutBtn" class="neutral" type="button" style="max-width:180px">Logout</button></div>
+<div class="section-tabs"><a href="#member-status-manager">👥 Old Member Status</a><a href="#application-review">📝 Application Review</a></div>
+</div>
+
+<section id="member-status-manager" class="panel">
+<h2>👥 Old / Existing Member Status Editor</h2>
+<div class="note"><strong>Admin-only control:</strong> Select any old member, including an inactive member, then change the status to Active, Inactive, Provisionary, or Honorary. Changes are saved in Supabase and synchronized to the public member directory.</div>
+<div class="grid">
+<label>Search Member<input id="memberStatusSearch" type="search" placeholder="Search name or Member ID"></label>
+<label>Filter Status<select id="memberStatusFilter"><option value="all">All Status</option><option value="active">Active</option><option value="inactive">Inactive</option><option value="provisionary">Provisionary</option><option value="honorary">Honorary</option></select></label>
+</div>
+<div id="memberCounts" class="counts"></div>
+<div id="memberStatusMessage" class="statusbox">Loading member records...</div>
+<div id="memberStatusList"></div>
+</section>
+
+<section id="application-review" class="panel">
+<h2>📝 Membership Applications</h2>
+<div class="grid">
+<label>Application Status<select id="statusFilter"><option value="pending">Pending</option><option value="needs_info">Needs Info</option><option value="approved">Approved</option><option value="rejected">Rejected</option><option value="all">All</option></select></label>
+<label>Search Application<input id="searchBox" type="search" placeholder="Search name / member ID / reference"></label>
+</div>
+<div id="applicationStatus" class="statusbox">Loading applications...</div>
 <div id="applications"></div>
-</section></div>
+</section>
+</section>
+</div>
+
 <script>
+(function(){
+'use strict';
 const SUPABASE_URL='https://hwtkplolyunhuhjdqacb.supabase.co';
 const SUPABASE_KEY='sb_publishable_h6Z7EK1Axb8cdH9lVxZsgw_-BEPyEXY';
-const sb=supabase.createClient(SUPABASE_URL,SUPABASE_KEY);
-const loginPanel=document.getElementById('loginPanel'),adminPanel=document.getElementById('adminPanel'),apps=document.getElementById('applications');
-let rows=[];
+const sb=window.supabase.createClient(SUPABASE_URL,SUPABASE_KEY);
+
+const loginPanel=document.getElementById('loginPanel');
+const adminPanel=document.getElementById('adminPanel');
+const apps=document.getElementById('applications');
+const loginStatus=document.getElementById('loginStatus');
+const applicationStatus=document.getElementById('applicationStatus');
+const memberStatusMessage=document.getElementById('memberStatusMessage');
+const memberStatusList=document.getElementById('memberStatusList');
+const memberCounts=document.getElementById('memberCounts');
+let applicationRows=[];
+let rosterRows=[];
+let statusOverrides={};
+let checking=false;
+
 function esc(v=''){return String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[c]));}
-function label(k){return k.replaceAll('_',' ').replace(/\b\w/g,m=>m.toUpperCase());}
+function label(k){return String(k).replaceAll('_',' ').replace(/\b\w/g,m=>m.toUpperCase());}
+function statusLabel(value){const v=String(value||'inactive').toLowerCase();return v==='provisionary'?'Provisionary':v==='honorary'?'Honorary':v==='active'?'Active':'Inactive';}
+function safeStatus(value){const v=String(value||'inactive').toLowerCase();return ['active','inactive','provisionary','honorary'].includes(v)?v:'inactive';}
+function appToMemberStatus(row){if(row.member_record_status)return safeStatus(row.member_record_status);const cat=String(row.membership_category||'').toLowerCase();if(cat.includes('provision'))return'provisionary';if(cat.includes('honor'))return'honorary';return'active';}
+function setBox(element,message,type){element.textContent=message;element.className='statusbox'+(type?' '+type:'');}
+
+async function authorize(){
+ const {data,error}=await sb.rpc('is_jetriders_admin');
+ if(error||data!==true)throw new Error('This account is not authorized as a JETRIDERS admin.');
+}
+
 async function checkAdmin(){
- const {data:{user}}=await sb.auth.getUser();
- if(!user){loginPanel.classList.remove('hidden');adminPanel.classList.add('hidden');return;}
- loginPanel.classList.add('hidden');adminPanel.classList.remove('hidden');document.getElementById('who').textContent=user.email||user.id;await loadApps();
+ if(checking)return;
+ checking=true;
+ try{
+  const {data:{user}}=await sb.auth.getUser();
+  if(!user){loginPanel.classList.remove('hidden');adminPanel.classList.add('hidden');return;}
+  await authorize();
+  loginPanel.classList.add('hidden');adminPanel.classList.remove('hidden');
+  document.getElementById('who').textContent='Logged in as '+(user.email||user.id);
+  await Promise.all([loadMemberStatuses(),loadApps()]);
+ }catch(error){
+  await sb.auth.signOut();
+  loginPanel.classList.remove('hidden');adminPanel.classList.add('hidden');
+  setBox(loginStatus,error.message,'error');
+ }finally{checking=false;}
 }
-document.getElementById('loginBtn').onclick=async()=>{loginStatus.textContent='Logging in...';const {error}=await sb.auth.signInWithPassword({email:email.value.trim(),password:password.value});loginStatus.textContent=error?error.message:'Login successful';if(!error)checkAdmin();};
-document.getElementById('logoutBtn').onclick=async()=>{await sb.auth.signOut();checkAdmin();};
-async function loadApps(){
- apps.innerHTML='<div class="panel">Loading...</div>';
- const {data,error}=await sb.from('membership_applications').select('*').order('created_at',{ascending:false});
- if(error){apps.innerHTML='<div class="panel">Access denied or database setup incomplete: '+esc(error.message)+'</div>';return;}
- rows=data||[];render();
+
+async function login(){
+ const btn=document.getElementById('loginBtn');
+ btn.disabled=true;setBox(loginStatus,'Logging in...','info');
+ try{
+  const {error}=await sb.auth.signInWithPassword({email:document.getElementById('email').value.trim(),password:document.getElementById('password').value});
+  if(error)throw error;
+  document.getElementById('password').value='';
+  setBox(loginStatus,'Login successful. Loading records...','success');
+  await checkAdmin();
+ }catch(error){setBox(loginStatus,'Login failed: '+error.message,'error');}
+ finally{btn.disabled=false;}
 }
-function render(){
- const f=statusFilter.value,q=searchBox.value.trim().toLowerCase();
- const filtered=rows.filter(r=>(f==='all'||r.status===f)&&(!q||[r.full_name,r.existing_member_id,r.reference_no,r.mobile_number].some(x=>String(x||'').toLowerCase().includes(q))));
- apps.innerHTML=filtered.length?'':'<div class="panel">No applications found.</div>';
- filtered.forEach(r=>{
-  const div=document.createElement('section');div.className='app-card';
-  const details=['application_type','existing_member_id','full_name','nickname','birth_date','blood_type','mobile_number','email','facebook_profile','address','emergency_contact_name','emergency_contact_relation','emergency_contact_mobile','motorcycle_brand_model','engine_cc','has_valid_license','motorcycle_registered','complete_side_mirrors','complete_riding_gear','membership_category','preferred_ride_group','date_joined','applicant_notes'];
-  div.innerHTML=`<div class="grid"><div><strong>${esc(r.full_name)}</strong><br><span class="muted">${esc(r.reference_no)} • ${esc(r.application_type)}</span></div><div><span class="badge ${esc(r.status)}">${esc(r.status)}</span></div></div><div class="detail-grid">${details.map(k=>`<div class="detail"><span class="muted">${label(k)}</span><br>${esc(r[k]===true?'Yes':r[k]===false?'No':r[k]||'-')}</div>`).join('')}</div><div class="grid"><div><label>Approved / Confirmed Member ID</label><input class="memberId" value="${esc(r.approved_member_id||r.existing_member_id||'')}" placeholder="JRCP-000"></div><div><label>Admin Notes</label><textarea class="notes">${esc(r.admin_notes||'')}</textarea></div></div><div class="grid"><button class="approve">✅ Approve</button><button class="warn needs">ℹ️ Needs Info</button><button class="danger reject">❌ Reject</button></div>`;
-  div.querySelector('.approve').onclick=()=>review(r.id,'approved',div);div.querySelector('.needs').onclick=()=>review(r.id,'needs_info',div);div.querySelector('.reject').onclick=()=>review(r.id,'rejected',div);apps.appendChild(div);
+
+async function loadMemberStatuses(){
+ setBox(memberStatusMessage,'Loading old and existing members...','info');
+ try{
+  const [rosterResponse,overrideResult]=await Promise.all([
+   fetch('members.json?version='+Date.now()),
+   sb.rpc('get_member_status_admin')
+  ]);
+  if(!rosterResponse.ok)throw new Error('Unable to load members.json');
+  const rosterData=await rosterResponse.json();
+  if(overrideResult.error)throw overrideResult.error;
+  rosterRows=Array.isArray(rosterData.items)?rosterData.items:[];
+  statusOverrides={};
+  (overrideResult.data||[]).forEach(item=>{statusOverrides[String(item.member_id||'').toUpperCase()]={status:safeStatus(item.status),note:item.note||'',updated_at:item.updated_at||''};});
+  renderMemberStatuses();
+  setBox(memberStatusMessage,'✅ '+rosterRows.length+' member record(s) loaded. Select a status and click Save Status.','success');
+ }catch(error){setBox(memberStatusMessage,'Unable to load member status editor: '+error.message,'error');}
+}
+
+function effectiveStatus(member){const id=String(member.id||'').toUpperCase();return statusOverrides[id]?statusOverrides[id].status:safeStatus(member.status);}
+function effectiveNote(member){const id=String(member.id||'').toUpperCase();return statusOverrides[id]?statusOverrides[id].note:'';}
+
+function renderMemberCounts(filtered){
+ const all=filtered||rosterRows;
+ const counts={active:0,inactive:0,provisionary:0,honorary:0};
+ all.forEach(member=>{counts[effectiveStatus(member)]++;});
+ memberCounts.innerHTML='<span class="count">Total: '+all.length+'</span><span class="count">Active: '+counts.active+'</span><span class="count">Inactive: '+counts.inactive+'</span><span class="count">Provisionary: '+counts.provisionary+'</span><span class="count">Honorary: '+counts.honorary+'</span>';
+}
+
+function renderMemberStatuses(){
+ const q=document.getElementById('memberStatusSearch').value.trim().toLowerCase();
+ const filter=document.getElementById('memberStatusFilter').value;
+ const filtered=rosterRows.filter(member=>{
+  const status=effectiveStatus(member);
+  const matchesText=!q||String(member.name||'').toLowerCase().includes(q)||String(member.id||'').toLowerCase().includes(q);
+  return matchesText&&(filter==='all'||status===filter);
+ });
+ renderMemberCounts(filtered);
+ memberStatusList.innerHTML=filtered.length?'':'<div class="member-row">No matching members found.</div>';
+ filtered.forEach(member=>{
+  const id=String(member.id||'').toUpperCase();
+  const current=effectiveStatus(member);
+  const hasOverride=Boolean(statusOverrides[id]);
+  const row=document.createElement('article');
+  row.className='member-row';
+  row.dataset.memberId=id;
+  row.innerHTML=`
+   <div class="member-head">
+    <div><div class="member-meta"><strong>${esc(member.name)}</strong><span class="badge ${current}">${statusLabel(current)}</span></div><div class="muted">${esc(id)} • Joined ${esc(member.joined||'-')} • ${esc(member.position||'Member')}</div>${hasOverride?'<div class="override-note">Supabase status override is active.</div>':''}</div>
+    <div class="muted">Base file status: ${esc(statusLabel(member.status))}</div>
+   </div>
+   <div class="member-editor">
+    <label>Member Status<select class="statusSelect"><option value="active">Active</option><option value="inactive">Inactive</option><option value="provisionary">Provisionary</option><option value="honorary">Honorary</option></select></label>
+    <label>Admin Note<textarea class="statusNote" placeholder="Optional reason or status note">${esc(effectiveNote(member))}</textarea></label>
+   </div>
+   <div class="actions"><button class="saveStatus" type="button">💾 Save Status</button><button class="secondary resetStatus" type="button" ${hasOverride?'':'disabled'}>↩ Use Base Status</button></div>`;
+  row.querySelector('.statusSelect').value=current;
+  row.querySelector('.saveStatus').onclick=()=>saveMemberStatus(id,row);
+  row.querySelector('.resetStatus').onclick=()=>resetMemberStatus(id);
+  memberStatusList.appendChild(row);
  });
 }
-async function review(id,status,card){
- const approved_member_id=card.querySelector('.memberId').value.trim()||null,admin_notes=card.querySelector('.notes').value.trim()||null;
- if(status==='approved'&&!approved_member_id){alert('Please enter or confirm a Member ID before approval.');return;}
- const {data:{user}}=await sb.auth.getUser();
- const {error}=await sb.from('membership_applications').update({status,approved_member_id,admin_notes,reviewed_at:new Date().toISOString(),reviewed_by:user.id}).eq('id',id);
- if(error){alert('Unable to update: '+error.message);return;}await loadApps();
+
+async function saveMemberStatus(memberId,row){
+ const button=row.querySelector('.saveStatus');
+ const status=safeStatus(row.querySelector('.statusSelect').value);
+ const note=row.querySelector('.statusNote').value.trim()||null;
+ button.disabled=true;button.textContent='Saving...';
+ setBox(memberStatusMessage,'Saving '+memberId+' as '+statusLabel(status)+'...','info');
+ try{
+  const {data,error}=await sb.rpc('set_member_status',{p_member_id:memberId,p_status:status,p_note:note});
+  if(error)throw error;
+  const saved=Array.isArray(data)&&data[0]?data[0]:{member_id:memberId,status,note};
+  statusOverrides[memberId]={status:safeStatus(saved.status),note:saved.note||'',updated_at:saved.updated_at||''};
+  renderMemberStatuses();
+  setBox(memberStatusMessage,'✅ '+memberId+' status changed to '+statusLabel(status)+'. The public directory will use this status.','success');
+ }catch(error){setBox(memberStatusMessage,'Unable to save member status: '+error.message,'error');}
+ finally{button.disabled=false;button.textContent='💾 Save Status';}
 }
-statusFilter.onchange=render;searchBox.oninput=render;sb.auth.onAuthStateChange(()=>checkAdmin());checkAdmin();
-</script></body></html>
+
+async function resetMemberStatus(memberId){
+ if(!confirm('Remove the Supabase status override for '+memberId+' and use the base members.json status?'))return;
+ setBox(memberStatusMessage,'Resetting '+memberId+'...','info');
+ try{
+  const {error}=await sb.rpc('clear_member_status',{p_member_id:memberId});
+  if(error)throw error;
+  delete statusOverrides[memberId];
+  renderMemberStatuses();
+  setBox(memberStatusMessage,'✅ '+memberId+' now uses its base status from members.json.','success');
+ }catch(error){setBox(memberStatusMessage,'Unable to reset status: '+error.message,'error');}
+}
+
+async function loadApps(){
+ setBox(applicationStatus,'Loading membership applications...','info');
+ const {data,error}=await sb.from('membership_applications').select('*').order('created_at',{ascending:false});
+ if(error){applicationRows=[];apps.innerHTML='';setBox(applicationStatus,'Unable to load applications: '+error.message,'error');return;}
+ applicationRows=data||[];renderApps();setBox(applicationStatus,'✅ '+applicationRows.length+' application(s) loaded.','success');
+}
+
+function renderApps(){
+ const f=document.getElementById('statusFilter').value;
+ const q=document.getElementById('searchBox').value.trim().toLowerCase();
+ const filtered=applicationRows.filter(r=>(f==='all'||r.status===f)&&(!q||[r.full_name,r.existing_member_id,r.approved_member_id,r.reference_no,r.mobile_number].some(x=>String(x||'').toLowerCase().includes(q))));
+ apps.innerHTML=filtered.length?'':'<div class="app-card">No applications found.</div>';
+ filtered.forEach(r=>{
+  const div=document.createElement('article');div.className='app-card';
+  const details=['application_type','existing_member_id','full_name','nickname','birth_date','blood_type','mobile_number','email','facebook_profile','address','emergency_contact_name','emergency_contact_relation','emergency_contact_mobile','motorcycle_brand_model','engine_cc','has_valid_license','motorcycle_registered','complete_side_mirrors','complete_riding_gear','membership_category','preferred_ride_group','date_joined','applicant_notes'];
+  div.innerHTML=`
+   <div class="topline"><div><strong>${esc(r.full_name)}</strong><br><span class="muted">${esc(r.reference_no)} • ${esc(r.application_type)}</span></div><span class="badge ${esc(r.status)}">${esc(r.status)}</span></div>
+   <div class="detail-grid">${details.map(k=>`<div class="detail"><span class="muted">${label(k)}</span><br>${esc(r[k]===true?'Yes':r[k]===false?'No':r[k]||'-')}</div>`).join('')}</div>
+   <div class="grid" style="margin-top:12px">
+    <label>Approved / Confirmed Member ID<input class="memberId" value="${esc(r.approved_member_id||r.existing_member_id||'')}" placeholder="JRCP-000"></label>
+    <label>Member Record Status<select class="recordStatus"><option value="active">Active</option><option value="inactive">Inactive</option><option value="provisionary">Provisionary</option><option value="honorary">Honorary</option></select></label>
+    <label style="grid-column:1/-1">Admin Notes<textarea class="notes">${esc(r.admin_notes||'')}</textarea></label>
+   </div>
+   <div class="actions"><button class="approve" type="button">✅ Approve</button><button class="warn needs" type="button">ℹ️ Needs Info</button><button class="danger reject" type="button">❌ Reject</button><button class="secondary saveRecordStatus" type="button">💾 Save Member Status Only</button></div>`;
+  div.querySelector('.recordStatus').value=appToMemberStatus(r);
+  div.querySelector('.approve').onclick=()=>review(r.id,'approved',div);
+  div.querySelector('.needs').onclick=()=>review(r.id,'needs_info',div);
+  div.querySelector('.reject').onclick=()=>review(r.id,'rejected',div);
+  div.querySelector('.saveRecordStatus').onclick=()=>saveApplicationMemberStatus(r.id,div);
+  apps.appendChild(div);
+ });
+}
+
+async function saveApplicationMemberStatus(id,card){
+ const memberId=card.querySelector('.memberId').value.trim().toUpperCase();
+ const memberStatus=safeStatus(card.querySelector('.recordStatus').value);
+ if(!memberId){alert('Enter or confirm the Member ID first.');return;}
+ const button=card.querySelector('.saveRecordStatus');button.disabled=true;button.textContent='Saving...';
+ try{
+  const statusResult=await sb.rpc('set_member_status',{p_member_id:memberId,p_status:memberStatus,p_note:card.querySelector('.notes').value.trim()||null});
+  if(statusResult.error)throw statusResult.error;
+  const updateResult=await sb.from('membership_applications').update({member_record_status:memberStatus}).eq('id',id);
+  if(updateResult.error)throw updateResult.error;
+  await Promise.all([loadMemberStatuses(),loadApps()]);
+  alert(memberId+' status saved as '+statusLabel(memberStatus)+'.');
+ }catch(error){alert('Unable to save status: '+error.message);}
+ finally{button.disabled=false;button.textContent='💾 Save Member Status Only';}
+}
+
+async function review(id,status,card){
+ const approvedMemberId=card.querySelector('.memberId').value.trim().toUpperCase()||null;
+ const adminNotes=card.querySelector('.notes').value.trim()||null;
+ const memberRecordStatus=safeStatus(card.querySelector('.recordStatus').value);
+ if(status==='approved'&&!approvedMemberId){alert('Please enter or confirm a Member ID before approval.');return;}
+ const buttons=card.querySelectorAll('button');buttons.forEach(b=>b.disabled=true);
+ try{
+  const {data:{user}}=await sb.auth.getUser();
+  const {error}=await sb.from('membership_applications').update({status,approved_member_id:approvedMemberId,admin_notes:adminNotes,member_record_status:memberRecordStatus,reviewed_at:new Date().toISOString(),reviewed_by:user.id}).eq('id',id);
+  if(error)throw error;
+  if(status==='approved'&&approvedMemberId){
+   const result=await sb.rpc('set_member_status',{p_member_id:approvedMemberId,p_status:memberRecordStatus,p_note:adminNotes});
+   if(result.error)throw result.error;
+  }
+  await Promise.all([loadMemberStatuses(),loadApps()]);
+ }catch(error){alert('Unable to update application: '+error.message);buttons.forEach(b=>b.disabled=false);}
+}
+
+document.getElementById('loginBtn').onclick=login;
+document.getElementById('password').addEventListener('keydown',event=>{if(event.key==='Enter')login();});
+document.getElementById('logoutBtn').onclick=async()=>{await sb.auth.signOut();location.reload();};
+document.getElementById('memberStatusSearch').addEventListener('input',renderMemberStatuses);
+document.getElementById('memberStatusFilter').addEventListener('change',renderMemberStatuses);
+document.getElementById('statusFilter').addEventListener('change',renderApps);
+document.getElementById('searchBox').addEventListener('input',renderApps);
+sb.auth.onAuthStateChange(()=>checkAdmin());
+checkAdmin();
+})();
+</script>
+</body>
+</html>
