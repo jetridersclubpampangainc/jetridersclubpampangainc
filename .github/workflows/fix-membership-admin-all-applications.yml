@@ -1,0 +1,46 @@
+name: Fix Membership Admin Applications View
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/fix-membership-admin-all-applications.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  patch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Patch membership admin view
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          p=Path('member-admin.html')
+          s=p.read_text(encoding='utf-8')
+          old='<label>Application Status<select id="statusFilter"><option value="pending">Pending</option><option value="needs_info">Needs Info</option><option value="approved">Approved</option><option value="rejected">Rejected</option><option value="all">All</option></select></label>'
+          new='<label>Application Status<select id="statusFilter"><option value="all" selected>All Applications</option><option value="pending">Pending</option><option value="needs_info">Needs Info</option><option value="approved">Approved</option><option value="rejected">Rejected</option></select></label>'
+          if old in s:
+              s=s.replace(old,new,1)
+          old2="applicationRows=data||[];renderApps();setBox(applicationStatus,'✅ '+applicationRows.length+' application(s) loaded.','success');"
+          new2="applicationRows=data||[];renderApps();const counts={pending:0,needs_info:0,approved:0,rejected:0};applicationRows.forEach(r=>{if(counts[r.status]!==undefined)counts[r.status]++;});setBox(applicationStatus,'✅ '+applicationRows.length+' application(s) loaded. Pending: '+counts.pending+' | Needs Info: '+counts.needs_info+' | Approved: '+counts.approved+' | Rejected: '+counts.rejected+'.','success');"
+          if old2 in s:
+              s=s.replace(old2,new2,1)
+          p.write_text(s,encoding='utf-8')
+          PY
+      - name: Commit fix
+        shell: bash
+        run: |
+          if git diff --quiet; then
+            echo 'No changes needed.'
+            exit 0
+          fi
+          git config user.name 'JETRIDERS Website Bot'
+          git config user.email 'actions@users.noreply.github.com'
+          git add member-admin.html
+          git commit -m 'Show all membership applications by default'
+          git push
