@@ -1,0 +1,55 @@
+name: Enable live member status sync
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/enable-member-status-sync.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  patch-index:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Connect public directory to Supabase status editor
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+
+          path = Path('index.html')
+          html = path.read_text(encoding='utf-8')
+
+          script = '<script src="member-status-sync.js?v=20260903-status-editor"></script>'
+          if script not in html:
+              html = html.replace('</body>', script + '\n</body>', 1)
+
+          if 'href="member-admin.html"' not in html:
+              html = html.replace(
+                  '<a href="admin.html">Admin Upload</a>',
+                  '<a href="admin.html">Admin Upload</a><a href="member-admin.html">Member Admin</a>',
+                  1
+              )
+
+          path.write_text(html, encoding='utf-8')
+          PY
+
+      - name: Commit public status synchronization
+        shell: bash
+        run: |
+          if git diff --quiet; then
+            echo 'Member status sync already enabled.'
+            exit 0
+          fi
+          git config user.name 'JETRIDERS Website Bot'
+          git config user.email 'actions@users.noreply.github.com'
+          git add index.html
+          git commit -m 'Sync public member status with Supabase admin editor'
+          git push
