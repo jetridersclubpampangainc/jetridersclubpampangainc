@@ -92,7 +92,7 @@ button.secondary{background:#dfffea;color:#064820}
 <section id="application-review" class="panel">
 <h2>📝 Membership Applications</h2>
 <div class="grid">
-<label>Application Status<select id="statusFilter"><option value="pending">Pending</option><option value="needs_info">Needs Info</option><option value="approved">Approved</option><option value="rejected">Rejected</option><option value="all">All</option></select></label>
+<label>Application Status<select id="statusFilter"><option value="all" selected>All Applications</option><option value="pending">Pending</option><option value="needs_info">Needs Info</option><option value="approved">Approved</option><option value="rejected">Rejected</option></select></label>
 <label>Search Application<input id="searchBox" type="search" placeholder="Search name / member ID / reference"></label>
 </div>
 <div id="applicationStatus" class="statusbox">Loading applications...</div>
@@ -258,7 +258,7 @@ async function loadApps(){
  setBox(applicationStatus,'Loading membership applications...','info');
  const {data,error}=await sb.from('membership_applications').select('*').order('created_at',{ascending:false});
  if(error){applicationRows=[];apps.innerHTML='';setBox(applicationStatus,'Unable to load applications: '+error.message,'error');return;}
- applicationRows=data||[];renderApps();setBox(applicationStatus,'✅ '+applicationRows.length+' application(s) loaded.','success');
+ applicationRows=data||[];renderApps();const counts={pending:0,needs_info:0,approved:0,rejected:0};applicationRows.forEach(r=>{if(counts[r.status]!==undefined)counts[r.status]++;});setBox(applicationStatus,'✅ '+applicationRows.length+' application(s) loaded. Pending: '+counts.pending+' | Needs Info: '+counts.needs_info+' | Approved: '+counts.approved+' | Rejected: '+counts.rejected+'.','success');
 }
 
 function renderApps(){
