@@ -1,0 +1,51 @@
+name: Install Membership Duplicate Warning
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/install-membership-duplicate-warning.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  install:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Add duplicate warning script to membership form
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+
+          path = Path('membership-application.html')
+          html = path.read_text(encoding='utf-8')
+          tag = '<script src="membership-duplicate-warning.js"></script>'
+
+          if tag not in html:
+              marker = '</form>\n</main>\n\n<script>'
+              replacement = '</form>\n</main>\n\n' + tag + '\n<script>'
+              if marker not in html:
+                  raise SystemExit('Could not find membership form script marker.')
+              html = html.replace(marker, replacement, 1)
+              path.write_text(html, encoding='utf-8')
+          PY
+
+      - name: Commit integration
+        shell: bash
+        run: |
+          if git diff --quiet; then
+            echo 'Duplicate warning is already installed.'
+            exit 0
+          fi
+          git config user.name 'JETRIDERS Website Bot'
+          git config user.email 'actions@users.noreply.github.com'
+          git add membership-application.html
+          git commit -m 'Enable duplicate application warning on member form'
+          git push
