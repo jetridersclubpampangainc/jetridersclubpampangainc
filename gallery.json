@@ -1,7 +1,16 @@
 {
   "version": 1,
-  "updatedAt": "2026-09-16T00:18:21.212Z",
+  "updatedAt": "2026-09-16T00:47:42.288Z",
   "items": [
+    {
+      "id": "aa5deaee-96b7-4cf9-8b61-ccc71bdfa433",
+      "type": "video",
+      "category": "videos",
+      "src": "video/gallery/videos/20251130-1789519655335-1-1000241564.mp4",
+      "caption": "Christmas party",
+      "date": "2025-11-30",
+      "uploadedAt": "2026-09-16T00:47:42.287Z"
+    },
     {
       "id": "65c0c6dd-10f1-4396-8fe4-418ae5525360",
       "type": "image",
