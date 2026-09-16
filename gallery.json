@@ -1,7 +1,16 @@
 {
   "version": 1,
-  "updatedAt": "2026-09-16T00:47:42.288Z",
+  "updatedAt": "2026-09-16T00:49:38.941Z",
   "items": [
+    {
+      "id": "c88dc4d3-910a-4351-aa21-5fe33449044b",
+      "type": "video",
+      "category": "videos",
+      "src": "video/gallery/videos/20260916-1789519771047-1-1000241570.mp4",
+      "caption": "JETRIDERS Club Video",
+      "date": "2026-09-16",
+      "uploadedAt": "2026-09-16T00:49:38.941Z"
+    },
     {
       "id": "aa5deaee-96b7-4cf9-8b61-ccc71bdfa433",
       "type": "video",
