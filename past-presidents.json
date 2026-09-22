@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-09-22T15:22:33.086Z",
+  "updatedAt": "2026-09-22T15:24:44.258Z",
   "items": [
     {
       "id": "past-apol-2001",
@@ -83,6 +83,13 @@
       "id": "past-mandy-ayson-muctp2pp",
       "term": "200",
       "name": "Mandy Ayson",
+      "note": "Past President",
+      "photo": ""
+    },
+    {
+      "id": "past-angelito-r-muctrvxe",
+      "term": "2002",
+      "name": "Angelito R. David",
       "note": "Past President",
       "photo": ""
     }
