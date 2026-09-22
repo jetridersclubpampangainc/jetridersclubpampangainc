@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-09-22T15:24:44.258Z",
+  "updatedAt": "2026-09-22T15:25:47.643Z",
   "items": [
     {
       "id": "past-apol-2001",
@@ -90,6 +90,13 @@
       "id": "past-angelito-r-muctrvxe",
       "term": "2002",
       "name": "Angelito R. David",
+      "note": "Past President",
+      "photo": ""
+    },
+    {
+      "id": "past-reynaldo-ignacio-muctt8u3",
+      "term": "2004",
+      "name": "Reynaldo Ignacio",
       "note": "Past President",
       "photo": ""
     }
