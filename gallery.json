@@ -1,7 +1,88 @@
 {
   "version": 1,
-  "updatedAt": "2026-09-23T02:08:24.293Z",
+  "updatedAt": "2026-09-26T11:22:51.296Z",
   "items": [
+    {
+      "id": "4a0bc76d-9a46-45ad-996f-2cb95713a585",
+      "type": "image",
+      "category": "events",
+      "src": "image/gallery/events/20260926-1790421742791-1-1000247652.jpg",
+      "caption": "Induction @ Sagada",
+      "date": "2026-09-26",
+      "uploadedAt": "2026-09-26T11:22:28.657Z"
+    },
+    {
+      "id": "5b17eda7-9b53-4978-be64-efebc41b6195",
+      "type": "image",
+      "category": "events",
+      "src": "image/gallery/events/20260926-1790421742791-2-1000247653.jpg",
+      "caption": "Induction @ Sagada",
+      "date": "2026-09-26",
+      "uploadedAt": "2026-09-26T11:22:30.508Z"
+    },
+    {
+      "id": "f1d55e4f-9a81-47c5-8507-21296eb2b815",
+      "type": "image",
+      "category": "events",
+      "src": "image/gallery/events/20260926-1790421742791-3-1000247651.jpg",
+      "caption": "Induction @ Sagada",
+      "date": "2026-09-26",
+      "uploadedAt": "2026-09-26T11:22:32.247Z"
+    },
+    {
+      "id": "f6f4f37a-ceb2-45ea-8b58-242e27ed8ebd",
+      "type": "image",
+      "category": "events",
+      "src": "image/gallery/events/20260926-1790421742791-4-1000247645.jpg",
+      "caption": "Induction @ Sagada",
+      "date": "2026-09-26",
+      "uploadedAt": "2026-09-26T11:22:35.011Z"
+    },
+    {
+      "id": "da2e9466-e702-418b-b644-ffaf4c0c5b67",
+      "type": "image",
+      "category": "events",
+      "src": "image/gallery/events/20260926-1790421742791-5-1000247650.jpg",
+      "caption": "Induction @ Sagada",
+      "date": "2026-09-26",
+      "uploadedAt": "2026-09-26T11:22:38.433Z"
+    },
+    {
+      "id": "af2667a7-67cd-43b8-9243-550b4f091542",
+      "type": "image",
+      "category": "events",
+      "src": "image/gallery/events/20260926-1790421742791-6-1000247649.jpg",
+      "caption": "Induction @ Sagada",
+      "date": "2026-09-26",
+      "uploadedAt": "2026-09-26T11:22:42.283Z"
+    },
+    {
+      "id": "df697cb2-34c5-45b8-b28c-d80537564061",
+      "type": "image",
+      "category": "events",
+      "src": "image/gallery/events/20260926-1790421742791-7-1000247646.jpg",
+      "caption": "Induction @ Sagada",
+      "date": "2026-09-26",
+      "uploadedAt": "2026-09-26T11:22:45.742Z"
+    },
+    {
+      "id": "9c8ab1b9-a8d2-4f3e-8a45-d03cbccf5c72",
+      "type": "image",
+      "category": "events",
+      "src": "image/gallery/events/20260926-1790421742791-8-1000247647.jpg",
+      "caption": "Induction @ Sagada",
+      "date": "2026-09-26",
+      "uploadedAt": "2026-09-26T11:22:48.533Z"
+    },
+    {
+      "id": "7969f4c4-86d0-4825-84a7-dea3ed4bb2fe",
+      "type": "image",
+      "category": "events",
+      "src": "image/gallery/events/20260926-1790421742791-9-1000247648.jpg",
+      "caption": "Induction @ Sagada",
+      "date": "2026-09-26",
+      "uploadedAt": "2026-09-26T11:22:51.295Z"
+    },
     {
       "id": "9b6618f5-b749-42f6-be21-ca79cfbcd318",
       "type": "image",
