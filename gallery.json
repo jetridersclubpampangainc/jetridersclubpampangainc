@@ -1,7 +1,16 @@
 {
   "version": 1,
-  "updatedAt": "2026-09-27T14:20:15.378Z",
+  "updatedAt": "2026-09-27T14:23:54.546Z",
   "items": [
+    {
+      "id": "fddc5701-7e70-4d64-bbe0-f3ad92de4fd3",
+      "type": "video",
+      "category": "videos",
+      "src": "video/gallery/rides/20260926-1790519031014-1-1000247629.mp4",
+      "caption": "Pioneer advicer",
+      "date": "2026-09-26",
+      "uploadedAt": "2026-09-27T14:23:54.546Z"
+    },
     {
       "id": "3b6a071b-b5da-4082-8011-7eb15e08cf3b",
       "type": "video",
