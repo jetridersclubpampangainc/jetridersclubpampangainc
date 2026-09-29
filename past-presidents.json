@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-09-22T15:25:47.643Z",
+  "updatedAt": "2026-09-29T21:40:15.380Z",
   "items": [
     {
       "id": "past-apol-2001",
@@ -99,6 +99,13 @@
       "name": "Reynaldo Ignacio",
       "note": "Past President",
       "photo": ""
+    },
+    {
+      "id": "past-eduardo-david-mun79rkm",
+      "term": "2001",
+      "name": "EDUARDO DAVID",
+      "note": "Co-Founder",
+      "photo": "image/past-presidents/eduardo-david-1790718015376.jpg"
     }
   ]
 }
