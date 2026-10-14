@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-10-14T11:22:15.413Z",
+  "updatedAt": "2026-10-14T11:23:25.402Z",
   "items": [
     {
       "id": "JRCP-001",
@@ -276,9 +276,9 @@
     },
     {
       "id": "JRCP-035",
-      "name": "KEANDAVID",
+      "name": "KEAN DAVID",
       "joined": "2026",
-      "status": "active",
+      "status": "inactive",
       "position": "Member",
       "photo": "image/members/jrcp-035-1790408718448.jpg"
     },
