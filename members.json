@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-10-14T11:18:13.558Z",
+  "updatedAt": "2026-10-14T11:22:15.413Z",
   "items": [
     {
       "id": "JRCP-001",
@@ -293,6 +293,14 @@
     {
       "id": "JRCP-037",
       "name": "GIBSON TACBOBO",
+      "joined": "2026",
+      "status": "inactive",
+      "position": "Member",
+      "photo": "logo.jpg"
+    },
+    {
+      "id": "JRCP-038",
+      "name": "JOMAR JUNIO",
       "joined": "2026",
       "status": "inactive",
       "position": "Member",
