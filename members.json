@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-10-14T11:23:25.402Z",
+  "updatedAt": "2026-10-17T02:22:21.358Z",
   "items": [
     {
       "id": "JRCP-001",
@@ -301,6 +301,14 @@
     {
       "id": "JRCP-038",
       "name": "JOMAR JUNIO",
+      "joined": "2026",
+      "status": "inactive",
+      "position": "Member",
+      "photo": "logo.jpg"
+    },
+    {
+      "id": "JRCP-039",
+      "name": "NOEL AYSON",
       "joined": "2026",
       "status": "inactive",
       "position": "Member",
