@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-10-17T02:28:51.545Z",
+  "updatedAt": "2026-10-17T02:30:05.397Z",
   "items": [
     {
       "id": "JRCP-001",
@@ -319,6 +319,14 @@
       "name": "MARLOWE ESPINO",
       "joined": "2026",
       "status": "inactive",
+      "position": "Member",
+      "photo": "logo.jpg"
+    },
+    {
+      "id": "JRCP-041",
+      "name": "PITER ANAS",
+      "joined": "2026",
+      "status": "active",
       "position": "Member",
       "photo": "logo.jpg"
     }
