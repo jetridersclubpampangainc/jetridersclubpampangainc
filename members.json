@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-10-17T02:22:21.358Z",
+  "updatedAt": "2026-10-17T02:28:51.545Z",
   "items": [
     {
       "id": "JRCP-001",
@@ -309,6 +309,14 @@
     {
       "id": "JRCP-039",
       "name": "NOEL AYSON",
+      "joined": "2026",
+      "status": "inactive",
+      "position": "Member",
+      "photo": "logo.jpg"
+    },
+    {
+      "id": "JRCP-040",
+      "name": "MARLOWE ESPINO",
       "joined": "2026",
       "status": "inactive",
       "position": "Member",
