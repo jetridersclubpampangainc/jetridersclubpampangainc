@@ -1,7 +1,15 @@
 {
   "version": 1,
-  "updatedAt": "2026-09-29T21:49:42.489Z",
+  "updatedAt": "2026-10-26T18:47:06.832Z",
   "items": [
+    {
+      "id": "ride-bolinao-ride-mvplz3r4",
+      "title": "Bolinao Ride",
+      "date": "2026-11-14",
+      "location": "Bolinao",
+      "description": "Patar beach / bolinao falls",
+      "photo": "image/featured-rides/bolinao-ride-1793040426826.jpg"
+    },
     {
       "id": "ride-ride-to-rama-international-beach-resort-mswg458u",
       "title": "RIDE TO SAGADA",
