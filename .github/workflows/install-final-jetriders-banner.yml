@@ -1,0 +1,55 @@
+name: Install Final JETRIDERS Banner
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/install-final-jetriders-banner.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  install-banner:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Rebuild optimized banner image
+        shell: bash
+        run: |
+          cat .banner_web/part01.txt .banner_web/part02.txt .banner_web/part03.txt .banner_web/part04.txt | tr -d '\n\r ' | base64 -d > jetriders-banner-final.webp
+          test -s jetriders-banner-final.webp
+          file jetriders-banner-final.webp
+
+      - name: Switch homepage hero to new banner
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          path=Path('index.html')
+          html=path.read_text(encoding='utf-8')
+          old='<header id="home" class="hero-banner"><img src="grouppix.png" alt="JETRIDERS 25th Anniversary Banner">'
+          new='<header id="home" class="hero-banner"><img src="jetriders-banner-final.webp" alt="JETRIDERS CLUB PAMPANGA INC. 25th Anniversary Banner">'
+          if old in html:
+              html=html.replace(old,new,1)
+          elif 'src="jetriders-banner-final.webp"' not in html:
+              raise SystemExit('Expected homepage hero markup not found')
+          path.write_text(html,encoding='utf-8')
+          PY
+
+      - name: Commit installed banner
+        shell: bash
+        run: |
+          if git diff --quiet -- index.html && git ls-files --error-unmatch jetriders-banner-final.webp >/dev/null 2>&1; then
+            echo 'Banner already installed.'
+            exit 0
+          fi
+          git config user.name 'JETRIDERS Website Bot'
+          git config user.email 'actions@users.noreply.github.com'
+          git add index.html jetriders-banner-final.webp
+          git commit -m 'Install new JETRIDERS anniversary homepage banner'
+          git push
